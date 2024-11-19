@@ -59,7 +59,7 @@ a{
 
 .year-2024 p{
 
-    width: 40px; height: 100%;
+    width: 50px; height: 100%;
     position: absolute;
 
     display: flex;
@@ -70,7 +70,7 @@ a{
 
 .p{
     margin-block: 5px;
-    margin-left: 65px;
+    margin-left: 70px;
     &:hover{
         text-decoration: underline;
     }
@@ -97,7 +97,7 @@ a{
 
 .title{
     position: absolute;
-    height: 100%; width: 120px;
+    height: 100%; width: 135px;
 
     display: flex;
     justify-content: center; align-items: center;
@@ -106,7 +106,7 @@ a{
 }
 
 .text{
-    margin-left: 135px;
+    margin-left: 155px;
     & h3 {
         margin-bottom: 10px;
     }
