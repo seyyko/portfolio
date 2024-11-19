@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='portfolio/css/styles.css') }}">
+
+    <title>Portfolio | About Me</title>
+</head>
+<body>
+    <nav id="navbar">
+        <div class="left-box">
+            <a href="{{ url_for('portfolio_app.index') }}">home</a>
+            <a href="{{ url_for('portfolio_app.aboutme') }}">about</a>
+        </div>
+    </nav>
+
+    <main id="aboutme">
+        <section class="aboutme">
+            <h2 class="title">About Me</h2>
+
+            <div class="text">
+                <h3>Hi there! 👋</h3>
+
+                <p>I'm a web developer who believes that great design isn't just about making things look good—it's about making them feel right. Whether it's crafting pixel-perfect layouts or debugging that one stubborn line of code at 2 a.m., I’m all in.</p>
+                <p>When I'm not busy coding, you'll find me designing creative solutions to everyday problems (like figuring out why my coffee keeps disappearing 🤔). My motto? "Good design is like good coffee: strong, simple, and keeps you going."</p>
+                <p>I’ve spent the last few years perfecting my craft in web development and design, blending functionality with aesthetics. From minimalist portfolios to intricate e-commerce sites, I thrive on turning ideas into experiences that make people say, “Wow, this is exactly what I needed!”</p>
+                <p>So, if you're here to explore, buckle up—my portfolio is where clean code meets cool design with just a dash of nerdy humor. And yes, every pixel is intentional. 😉</p>
+
+                <p class="end">Let’s build something awesome together!</p>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

@@ -1,0 +1,116 @@
+*, body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    height: 100vh;
+}
+
+a{
+    color: black;
+    text-decoration: none;
+}
+
+#navbar{
+    height: 80px; width: 100%;
+    display: flex;
+
+    border-bottom: 1px solid black;
+}
+
+.left-box, .right-box{
+    flex: 1;
+    margin-inline: 20px;
+
+    display: flex;
+    align-items: center; justify-content: var(--x);
+
+    & a {
+        padding: 10px; margin-inline: 5px;
+    }
+}
+
+.left-box{
+    --x: left;
+}
+.right-box{
+    --x: right;
+}
+
+#projects{
+    width: 100%;
+    display: flex; flex-direction: column;
+    align-items: center;
+}
+
+.project{
+    width: 80%;
+
+    margin-top: 20px;
+    padding: 30px 10px;
+
+    display: flex;
+    align-items: center;
+
+    position: relative;
+}
+
+.year-2024 p{
+
+    width: 40px; height: 100%;
+    position: absolute;
+
+    display: flex;
+    align-items: center; justify-content: center;
+
+    border-right: 1px solid black;
+}
+
+.p{
+    margin-block: 5px;
+    margin-left: 65px;
+    &:hover{
+        text-decoration: underline;
+    }
+}
+
+
+#aboutme{
+    width: 100%;
+    display: flex; flex-direction: column;
+    align-items: center;
+}
+
+.aboutme{
+    width: 80%;
+
+    margin-top: 20px;
+    padding: 30px 10px;
+
+    display: flex;
+    align-items: center;
+
+    position: relative;
+}
+
+.title{
+    position: absolute;
+    height: 100%; width: 120px;
+
+    display: flex;
+    justify-content: center; align-items: center;
+
+    border-right: 1px solid black;
+}
+
+.text{
+    margin-left: 135px;
+    & h3 {
+        margin-bottom: 10px;
+    }
+    .end{
+        margin-top: 20px;
+    }
+}

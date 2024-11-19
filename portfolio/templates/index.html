@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='portfolio/css/styles.css') }}">
+
+    <title>Portfolio | Home</title>
+</head>
+<body>
+    <nav id="navbar">
+        <div class="left-box">
+            <a href="{{ url_for('portfolio_app.index') }}">home</a>
+            <a href="{{ url_for('portfolio_app.aboutme') }}">about</a>
+        </div>
+    </nav>
+
+    <main id="projects">
+        <section class="project year-2024">
+            <p>2024</p>
+            <div class="projects">
+                <div class="p p1">
+                    <a href="{{ url_for('quran_app.home') }}">QuranTraining</a>
+                </div>
+                <div class="p p2">
+                    <a href="{{ url_for('portfolio_app.index') }}">Portfolio</a>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
