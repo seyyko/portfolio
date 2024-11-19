@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Harmattan:wght@400;500;600;700&family=Montserrat:wght@100..900&family=Tajawal:wght@200;300;400;500;700;800;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='QuranTraining/css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='QuranTraining/css/home.css') }}">
+
+    <title>QuranTraining | {{ title }}</title>
+</head>
+<body>
+
+    <div class="cursor">
+        <div class="tracker"></div>
+        <div class="currentCursor"></div>
+    </div>
+
+    <nav id="navbar">
+        <div class="navbg"></div>
+        <div class="floating-menu">
+            <div class="preferences">
+                <div class="streak">
+                    <h2>STREAK</h2>
+                    <p class="current-streak">current streak : ? days</p>
+                    <p class="longest-streak">longest streak : ? days</p>
+                </div>
+                <div id="toggle-theme" class="menu-btn hover-cursor-event" onclick="toggleTheme()">Toggle Dark/Light Theme</div>
+                <div id="del-data" class="menu-btn hover-cursor-event" onclick="deleteUserData()">Delete your data</div>
+            </div>
+        </div>
+        <ul class="navlist">
+            <li class="logo">
+
+                <a href="{{ url_for('quran_app.home') }}" class="logo-content hover-cursor-event">Quran Training</a>
+            </li>
+            <ul class="sublist">
+                <li class="features">
+                    <a href="{{ url_for('quran_app.home') }}#features" class="features-content uppercase underline-hover-animation hover-cursor-event">Features</a>
+                </li>
+                <li class="about">
+                    <a href="{{ url_for('quran_app.about') }}" class="about-content uppercase underline-hover-animation hover-cursor-event">about</a>
+                </li>
+                <li class="menu">
+                    <div class="menu-logo hover-cursor-event" onclick="toggleMenu()">
+                        <div class="upper-layer"></div>
+                        <div class="lower-layer"></div>
+                    </div>
+                </li>
+            </ul>
+        </ul>
+    </nav>
+
+    <header>
+        <div class="bg">
+            <div class="circles">
+                <h1 class="header-text fadein-ltr" style="font-family: 'Cinzel Decorative'">السلام عليكم ورحمة الله وبركاته</h1>
+                <div class="circle c1"></div>
+                <div class="circle c2"></div>
+                <div class="circle c3"></div>
+            </div>
+        </div>
+    </header>
+
+    <main id="main">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <script src="{{ url_for('static', filename='QuranTraining/js/main.js') }}"></script>
+    <script src="{{ url_for('static', filename='QuranTraining/js/surah_choice.js') }}"></script>
+
+</body>
+</html>

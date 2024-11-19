@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section id="surah">
+    <div id="surah-choice">
+        <form method="POST" class="surah-form">
+            <div id="surah-container">
+                {% for surah in surahs %}
+                    <label class="surah-btn hover-cursor-event {{ surah }}-btn">
+                        <input class="surah-checkbox" type="checkbox" name="surah" value="{{ surah }}" onclick="changeBtnBg(this)">
+                        {{ surah }}
+                    </label>
+                {% endfor %}
+            </div>
+            <button type="submit" class="hover-cursor-event">Submit</button>
+        </form>
+        <h1 class="title-surah-choice hover-cursor-event closed-form" onclick="toggleSurahChoice()">Click and Select Surahs to Memorize</h1>
+    </div>
+</section>
+
+<div id="features" style="margin-top: 300px">
+    <h1>FEATURES :) !</h1>
+</div>
+{% endblock %}
