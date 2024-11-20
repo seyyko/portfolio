@@ -1,7 +1,9 @@
 from flask import Flask
 from portfolio.app import portfolio_app
 from QuranTraining.app import quran_app
+import logging
 
+logging.basicConfig(level=logging.DEBUG)
 app = Flask(__name__)
 
 app.register_blueprint(portfolio_app, url_prefix='/')
