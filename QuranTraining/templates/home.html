@@ -3,20 +3,29 @@
 {% block content %}
 
 <section id="surah">
-    <div id="surah-choice">
-        <form method="POST" class="surah-form">
-            <div id="surah-container">
-                {% for surah in surahs %}
-                    <label class="surah-btn hover-cursor-event {{ surah }}-btn">
-                        <input class="surah-checkbox" type="checkbox" name="surah" value="{{ surah }}" onclick="changeBtnBg(this)">
-                        {{ surah }}
-                    </label>
-                {% endfor %}
+    <form method="POST" class="surah-form">
+        <div id="surah-container" class="scroll-cursor-event">
+            {% for surah in surahs %}
+                <label class="surah-btn hover-cursor-event">
+                    <input class="surah-checkbox" type="checkbox" name="surah" value="{{ surah }}" onclick="changeBtnBg(this)">
+                    <div class="surah-name">
+                        <p class="surah-name-index">{{ loop.index }}.</p>
+                        <p class="surah-name-text">{{ surah }}</p>
+                    </div>
+                </label>
+            {% endfor %}
+        </div>
+        <div class="button-container">
+            <div class="select-btn">
+                <button type="button" class="hover-cursor-event select-all" onclick="selectAllCheckboxes()">+</button>
+                <button type="button" class="hover-cursor-event clear-all" onclick="deselectAllCheckboxes()">x</button>
             </div>
-            <button type="submit" class="hover-cursor-event">Submit</button>
-        </form>
-        <h1 class="title-surah-choice hover-cursor-event closed-form" onclick="toggleSurahChoice()">Click and Select Surahs to Memorize</h1>
-    </div>
+            <div class="submit-btn">
+                <button type="submit" class="hover-cursor-event submit uppercase">Submit</button>
+            </div>
+        </div>
+    </form>
+    <h1 class="title-surah-choice hover-cursor-event" onclick="toggleSurahChoice()">Click and Select Surahs to Memorize</h1>
 </section>
 
 <div id="features" style="margin-top: 300px">
