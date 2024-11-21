@@ -1,0 +1,23 @@
+{
+    "projects": [
+        {
+            "year": "2024",
+            "project_list": [
+                {
+                    "name": "QuranTraining",
+                    "url": "quran_app.home",
+                    "description": "A web application to help with memorizing Quran verses.",
+                    "technologies": ["Flask", "Python", "HTML", "CSS"],
+                    "status": "In Progress"
+                },
+                {
+                    "name": "Portfolio",
+                    "url": "portfolio_app.index",
+                    "description": "A personal portfolio website to showcase projects and skills.",
+                    "technologies": ["Flask", "HTML", "CSS", "JavaScript"],
+                    "status": "Completed"
+                }
+            ]
+        }
+    ]
+}
