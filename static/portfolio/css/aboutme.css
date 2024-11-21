@@ -1,0 +1,39 @@
+#aboutme{
+    width: 100%;
+    display: flex; flex-direction: column;
+    align-items: center;
+}
+
+.aboutme{
+    width: 80%;
+
+    margin-top: 20px;
+
+    display: flex;
+    align-items: center;
+}
+
+.title{
+    flex: 1;
+
+    display: flex;
+    justify-content: center; align-items: center;
+
+    min-width: max-content;
+    padding-inline: 10px;
+}
+
+.text{
+    flex: 7;
+    border-left: 1px solid black;
+
+    & h3, p{
+        margin-left: 25px;
+    }
+    & h3 {
+        margin-bottom: 20px;
+    }
+    .end{
+        margin-top: 20px;
+    }
+}

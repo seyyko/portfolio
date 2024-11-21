@@ -6,6 +6,8 @@
 
 body{
     height: 100vh;
+    font-size: clamp(10px, 3vw, 20px);
+    font-family: 'Montserrat';
 }
 
 a{
@@ -45,72 +47,42 @@ a{
     align-items: center;
 }
 
-.project{
-    width: 80%;
+.project-container{
+    width: 80%; height: max-content;
 
     margin-top: 20px;
-    padding: 30px 10px;
+    padding-block: 15px;
 
     display: flex;
     align-items: center;
-
-    position: relative;
 }
 
-.year-2024 p{
-
-    width: 50px; height: 100%;
-    position: absolute;
+.date{
+    flex:1;
 
     display: flex;
     align-items: center; justify-content: center;
 
-    border-right: 1px solid black;
+    padding-inline: 10px;
 }
 
-.p{
+.projects{
+    flex:7;
+
+    border-left: 1px solid black;
+}
+
+.project{
+    margin-left: 25px;
     margin-block: 5px;
-    margin-left: 70px;
-    &:hover{
+
+    display: flex;
+    justify-content: space-between;
+
+    & a:hover{
         text-decoration: underline;
     }
-}
-
-
-#aboutme{
-    width: 100%;
-    display: flex; flex-direction: column;
-    align-items: center;
-}
-
-.aboutme{
-    width: 80%;
-
-    margin-top: 20px;
-    padding: 30px 10px;
-
-    display: flex;
-    align-items: center;
-
-    position: relative;
-}
-
-.title{
-    position: absolute;
-    height: 100%; width: 135px;
-
-    display: flex;
-    justify-content: center; align-items: center;
-
-    border-right: 1px solid black;
-}
-
-.text{
-    margin-left: 155px;
-    & h3 {
-        margin-bottom: 10px;
-    }
-    .end{
-        margin-top: 20px;
+    .status{
+        font-size: clamp(5px, 2vw, 10px);
     }
 }
