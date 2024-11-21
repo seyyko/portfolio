@@ -3,13 +3,17 @@
     margin: 0; padding: 0;
     box-sizing: border-box;
     scroll-behavior: smooth;
-    cursor: none; /* Goodbye cursor, you were overrated anyway */
+    cursor: none;
+}
+
+body{
+    overflow-x: hidden;
+
 }
 
 /* Theme variables */
 :root{
-    /* Default dark mode variables */
-    --navbar-bg: black; /* Because black is the new cool, right? */
+    --navbar-bg: black;
     --text-color: #f6f4ff;
 
     --background-primary: rgb(2,0,36);
@@ -27,7 +31,7 @@
 .light-mode {
 
     --navbar-bg: #e8e2f3;
-    --text-color: #2a1a40; /* When you want to live dangerously with dark text */
+    --text-color: #2a1a40;
 
     --background-primary: #f6f4ff;
     --background-secondary: #e3dbfa;
@@ -41,15 +45,15 @@
 }
 
 body{
-    background-color: var(--background-primary); /* A background that says "Welcome to an alternate universe" */
+    background-color: var(--background-primary);
     color: var(--text-color);
-    font-family: 'Tajawal'; /* This is not a generic font, you know. It's fancy... if you're into that. */
+    font-family: 'Tajawal';
 
     min-height: 200vh;
 }
 
 li{
-    list-style: none; /* Because bullet points are for amateurs. */
+    list-style: none;
 }
 
 a{
@@ -96,13 +100,12 @@ a{
     }
 }
 
-/* "Functions" (Because we developers don't like calling them just "classes") */
+/* "Functions" */
 
 .uppercase{
     text-transform: uppercase;
 }
 
-/* Underline animation on hover */
 .underline-hover-animation::after{
     content: '';
     width: 105%; height: 2px;
@@ -117,11 +120,9 @@ a{
 }
 
 .underline-hover-animation:hover::after{
-    /* Expand underline on hover */
     transform: translateX(-50%) scaleX(1);
 }
 
-/* Fade-in animations with offset */
 .fadein-utd, .fadein-dtu {
     animation: vertical-fadein 1s ease forwards;
 }
@@ -139,7 +140,6 @@ a{
     display: block;
 }
 
-/* Tracker and current cursor styles */
 .tracker, .currentCursor{
     position: absolute;
     z-index: 99999999;
@@ -154,7 +154,6 @@ a{
 }
 
 .currentCursor{
-    /* Set default cursor size */
     --radius: 8px;
     width: var(--radius); height: var(--radius);
     border-radius: 50%;
@@ -164,12 +163,42 @@ a{
     transition: width .2s ease, height .2s ease;
 }
 
-/* Enlarge cursor when hovering over interactive elements */
-.hovering{
-    --radius: 30px;
+.scroll-state{
+    --arrow-box: 14px;
+    --border-size: 5px;
+
+    width: 5px;
+    height: 24px;
+    border-radius: 0px;
+
+    transition: height .4s ease, width 0s;
+
+    &::after, &::before{
+        content: '';
+        width: var(--arrow-box); height: var(--arrow-box);
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%) rotate(45deg);
+        box-sizing: border-box;
+    }
+    &::after{
+        top: 0;
+        border-top: var(--border-size) solid var(--cursor-middle-color);
+        border-left: var(--border-size) solid var(--cursor-middle-color);
+    }
+    &::before{
+        bottom: 0;
+        border-bottom: var(--border-size) solid var(--cursor-middle-color);
+        border-right: var(--border-size) solid var(--cursor-middle-color);
+    }
 }
 
-/* Optimize performance for transformations (because we're all about speed... unless it's your internet connection) */
+.hovering{
+    --radius: 30px;
+    --arrow-box: 0;
+    --border-size: 0;
+}
+
 .tracker, .currentCursor, .circle {
     will-change: transform;
 }
@@ -343,6 +372,8 @@ header{
     position: relative;
 
     background-color: var(--background-primary);
+
+    z-index: 1;
 }
 
 .circles{
