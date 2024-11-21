@@ -87,7 +87,7 @@ surahForm.addEventListener('submit', function(event) {
 
     console.log("Selected surah before submit:", selectedSurahs);
 
-    fetch('ssubmit-surahs', {
+    fetch('submit-surahs', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

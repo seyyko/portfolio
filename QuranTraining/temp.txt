@@ -1,0 +1,5 @@
+https://api.alquran.cloud/v1/edition
+
+http://api.alquran.cloud/v1/ayah/2:245/ar.husarymujawwad
+http://api.alquran.cloud/v1/ayah/2:245/ar.ibrahimakhbar
+http://api.alquran.cloud/v1/ayah/2:245/ar.aymanswoaid
