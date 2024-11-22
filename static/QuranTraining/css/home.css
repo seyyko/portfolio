@@ -4,7 +4,7 @@
     align-items: center;
     font-family: 'Tajawal';
 
-    transform: translateY(calc(-100% + 80px));
+    transform: translateY(calc(-500px));
     
     transition: transform .3s ease;
 }
@@ -37,11 +37,8 @@
 }
 
 .opened-form{
-    --y: 0%;
+    --y: 0;
 }
-
-
-
 
 .surah-form{
     display: flex; flex-direction: column;
@@ -114,6 +111,8 @@ button {
 
     border: none;
     border-radius: 15px;
+
+    font-weight: bold;
 
     transition: background-color .15s ease;
 }

@@ -26,9 +26,42 @@
         </div>
     </form>
     <h1 class="title-surah-choice hover-cursor-event" onclick="toggleSurahChoice()">Click and Select Surahs to Memorize</h1>
-</section>
 
-<div id="features" style="margin-top: 300px">
-    <h1>FEATURES :) !</h1>
-</div>
+    <section id="training" class="training">
+
+        <div class="verse-preferences">
+            <div class="language-preferences">
+                <p>Translation</p>
+                <div class="slider-bg language-slider hover-cursor-event" onclick="slide(this)">
+                    <div class="language-slider slider"></div>
+                    <div class="switch-btn en">en</div>
+                    <div class="switch-btn fr">fr</div>
+                </div>
+            </div>
+            <div class="text-preferences">
+                <p>Recitation type</p>
+                <div class="slider-bg text-slider hover-cursor-event" onclick="slide(this)">
+                    <div class="text-slider slider"></div>
+                    <div class="switch-btn hafs">hafs</div>
+                    <div class="switch-btn warsh">warsh</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="surah-container">
+            <h1>Surah selected :</h1>
+            <div class="selected-surahs"> </div>
+        </div> -->
+        <div class="verse-btn-box">
+            <button class="verse-btn hover-cursor-event clear-history uppercase" onclick="clearHistory()">clear</button>
+            <button class="verse-btn hover-cursor-event previous-verse uppercase" onclick="previousVerse()">previous</button>
+            <button class="verse-btn hover-cursor-event next-verse uppercase" onclick="nextVerse()">generate</button>
+        </div>
+    
+        <div class="verse-display">
+            <p>No verses to display.</p>
+        </div>
+
+    </section>
+</section>
 {% endblock %}

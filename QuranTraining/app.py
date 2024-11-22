@@ -26,6 +26,11 @@ def home():
 def submit_surahs():
     data = request.get_json()
     selected_surahs = data.get('selected_surahs', [])
+    for i, surah in enumerate(quran["sourates"]):
+        for j, surah_name in enumerate(selected_surahs):
+            if surah["nom_phonetique"] == surah_name:
+                selected_surahs[j] = quran["sourates"][i]
+    
     return jsonify({'message': 'Data received and saved successfully', 'selected_surahs': selected_surahs}), 200
 
 @quran_app.route('/about')

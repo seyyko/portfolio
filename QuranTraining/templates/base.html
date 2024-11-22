@@ -10,6 +10,7 @@
 
     <link rel="stylesheet" href="{{ url_for('static', filename='QuranTraining/css/styles.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='QuranTraining/css/home.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='QuranTraining/css/surah_choice.css') }}">
 
     <title>QuranTraining | {{ title }}</title>
 </head>
@@ -24,11 +25,6 @@
         <div class="navbg"></div>
         <div class="floating-menu">
             <div class="preferences">
-                <div class="streak">
-                    <h2>STREAK</h2>
-                    <p class="current-streak">current streak : ? days</p>
-                    <p class="longest-streak">longest streak : ? days</p>
-                </div>
                 <div id="toggle-theme" class="menu-btn hover-cursor-event" onclick="toggleTheme()">Toggle Dark/Light Theme</div>
                 <div id="del-data" class="menu-btn hover-cursor-event" onclick="deleteUserData()">Delete your data</div>
             </div>
