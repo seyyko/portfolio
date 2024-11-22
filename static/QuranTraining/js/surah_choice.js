@@ -104,6 +104,105 @@ surahForm.addEventListener('submit', function(event) {
 });
 
 
+function slide(sliderBg) {
+    const slider = document.querySelector(`.${sliderBg.classList[1]}`);
+    if (slider.classList.contains("active")) {
+        slider.classList.remove("active");
+        if (slider.classList.contains('text-slider')) {
+            document.querySelector(".hafs").classList.remove("active");
+            document.querySelector(".warsh").classList.remove("active");
+            document.body.classList.remove("warsh-visible");
+            localStorage.setItem("sliderChoice", "hafs");
+        } else{
+            document.body.classList.remove("fr");
+            localStorage.setItem("language", "en");
+        }
+    } else{
+        slider.classList.add("active");
+        if (slider.classList.contains('text-slider')) {
+            document.querySelector(".hafs").classList.add("active");
+            document.querySelector(".warsh").classList.add("active");
+            document.body.classList.add("warsh-visible");
+            localStorage.setItem("sliderChoice", "warsh");
+        } else{
+            document.body.classList.add("fr");
+            localStorage.setItem("language", "fr");
+        }
+    }
+}
+
+const sliderButton = document.querySelector(".slider-button");
+const sliderContainer = document.querySelector(".slider-container");
+let currentValue = parseInt(localStorage.getItem("verse_position")) || 0;
+
+function updateSliderPosition() {
+    const positions = {
+        '-1': '0px',
+        '0': '60px',
+        '1': '120px'
+    };
+
+    sliderButton.style.transform = `translateY(-50%) translateX(${positions[currentValue]})`;
+    localStorage.setItem("verse_position", currentValue);
+}
+
+function nextSliderValue() {
+    currentValue = currentValue === 1 ? -1 : currentValue + 1;
+    updateSliderPosition();
+}
+
+sliderContainer.addEventListener("click", nextSliderValue);
+
+updateSliderPosition();
+
+function getSliderValue() {
+    return currentValue;
+}
+
+function loadSliderChoice() {
+    const savedChoiceText = localStorage.getItem("sliderChoice");
+    const sliderText = document.querySelector(`.text-slider`);
+
+    const savedChoiceLang = localStorage.getItem("language");
+    const sliderLang = document.querySelector(`.language-slider`);
+
+    const savedStatus = localStorage.getItem("surah_container_status");
+
+    const savedPosition = localStorage.getItem("verse_position") || 0;
+
+    if (savedChoiceText === "warsh") {
+        sliderText.classList.add("active");
+        document.querySelector(".hafs").classList.add("active");
+        document.querySelector(".warsh").classList.add("active");
+        document.body.classList.add("warsh-visible");
+    } else {
+        sliderText.classList.remove("active");
+        document.querySelector(".hafs").classList.remove("active");
+        document.querySelector(".warsh").classList.remove("active");
+        document.body.classList.remove("warsh-visible");
+    }
+
+    if (savedChoiceLang === "fr") {
+        sliderLang.classList.add("active");
+        document.body.classList.add("fr");
+    } else{
+        sliderLang.classList.remove("active");
+        document.body.classList.remove("fr");
+    }
+
+    if (savedStatus === "open") {
+        titleSurahContainer.classList.remove('opened-form');
+        randomSurahSection.classList.remove('opened-form');
+        surahContainer.style.transform = "translateY(calc(-500px))";
+        titleSurahContainer.innerHTML = "Click and Select Surahs to Memorize";
+    } else{
+        titleSurahContainer.classList.add('opened-form');
+        randomSurahSection.classList.add('opened-form');
+        surahContainer.style.transform = "translateY(0)";
+        titleSurahContainer.innerHTML = "Click again to hide";
+    }
+}
+
 let history = [];
 let currentIndex = -1;
 
@@ -130,7 +229,10 @@ function generateRandomVerse() {
     }
 
     const randomSurah = selectedSurahsDict[generateRandomNumber(0, selectedSurahsDict.length - 1)];
-    const randomVerseIndex = generateRandomNumber(0, randomSurah["versets"].length - 1);
+    const totalVerses = randomSurah["versets"].length;
+
+    const randomVerseIndex = generateWeightedRandomVerseIndex(totalVerses, currentValue);
+
     const randomVerse = randomSurah["versets"][randomVerseIndex];
 
     history.push({ surah: randomSurah, verse: randomVerse, verseIndex: randomVerseIndex });
@@ -138,6 +240,32 @@ function generateRandomVerse() {
 
     updateDisplayedVerse();
 }
+
+function generateWeightedRandomVerseIndex(totalVerses, position) {
+    const weights = [];
+    for (let i = 0; i < totalVerses; i++) {
+        switch (position) {
+            case -1:
+                weights.push(totalVerses - i);
+                break;
+            case 0:
+                weights.push(Math.max(0, totalVerses / 2 - Math.abs(totalVerses / 2 - i)));
+                break;
+            case 1:
+                weights.push(i + 1);
+                break;
+            default:
+                weights.push(1);
+        }
+    }
+
+    const cumulativeWeights = weights.map((sum => value => (sum += value))(0));
+    const totalWeight = cumulativeWeights[cumulativeWeights.length - 1];
+    const randomValue = Math.random() * totalWeight;
+
+    return cumulativeWeights.findIndex(weight => randomValue < weight);
+}
+
 
 function updateDisplayedVerse() {
     const verseDiv = document.querySelector('.verse-display');
@@ -192,7 +320,7 @@ function showAnswer() {
 
             <h3>Following verses</h3>
         `);
-        for (let i = verseIndex + 1; i < Math.min(verseIndex + 4, surah.versets.length); i++) {
+        for (let i = verseIndex + 1; i < Math.min(verseIndex + 5, surah.versets.length); i++) {
             nextVerses.push(`
                 <div class="verse-group">
                     <p class="verse-text-ar verse-text-hafs">${i + 1} - ${surah.versets[i].text_hafs}</p>
@@ -233,75 +361,6 @@ function clearHistory() {
     history = [];
     currentIndex = -1;
     updateDisplayedVerse();
-}
-
-function slide(sliderBg) {
-    const slider = document.querySelector(`.${sliderBg.classList[1]}`);
-    if (slider.classList.contains("active")) {
-        slider.classList.remove("active");
-        if (slider.classList.contains('text-slider')) {
-            document.querySelector(".hafs").classList.remove("active");
-            document.querySelector(".warsh").classList.remove("active");
-            document.body.classList.remove("warsh-visible");
-            localStorage.setItem("sliderChoice", "hafs");
-        } else{
-            document.body.classList.remove("fr");
-            localStorage.setItem("language", "en");
-        }
-    } else{
-        slider.classList.add("active");
-        if (slider.classList.contains('text-slider')) {
-            document.querySelector(".hafs").classList.add("active");
-            document.querySelector(".warsh").classList.add("active");
-            document.body.classList.add("warsh-visible");
-            localStorage.setItem("sliderChoice", "warsh");
-        } else{
-            document.body.classList.add("fr");
-            localStorage.setItem("language", "fr");
-        }
-    }
-}
-
-function loadSliderChoice() {
-    const savedChoiceText = localStorage.getItem("sliderChoice");
-    const sliderText = document.querySelector(`.text-slider`);
-
-    const savedChoiceLang = localStorage.getItem("language");
-    const sliderLang = document.querySelector(`.language-slider`);
-
-    const savedStatus = localStorage.getItem("surah_container_status");
-
-    if (savedChoiceText === "warsh") {
-        sliderText.classList.add("active");
-        document.querySelector(".hafs").classList.add("active");
-        document.querySelector(".warsh").classList.add("active");
-        document.body.classList.add("warsh-visible");
-    } else {
-        sliderText.classList.remove("active");
-        document.querySelector(".hafs").classList.remove("active");
-        document.querySelector(".warsh").classList.remove("active");
-        document.body.classList.remove("warsh-visible");
-    }
-
-    if (savedChoiceLang === "fr") {
-        sliderLang.classList.add("active");
-        document.body.classList.add("fr");
-    } else{
-        sliderLang.classList.remove("active");
-        document.body.classList.remove("fr");
-    }
-
-    if (savedStatus === "open") {
-        titleSurahContainer.classList.remove('opened-form');
-        randomSurahSection.classList.remove('opened-form');
-        surahContainer.style.transform = "translateY(calc(-500px))";
-        titleSurahContainer.innerHTML = "Click and Select Surahs to Memorize";
-    } else{
-        titleSurahContainer.classList.add('opened-form');
-        randomSurahSection.classList.add('opened-form');
-        surahContainer.style.transform = "translateY(0)";
-        titleSurahContainer.innerHTML = "Click again to hide";
-    }
 }
 
 document.addEventListener("DOMContentLoaded", loadSliderChoice);
