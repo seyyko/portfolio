@@ -17,7 +17,7 @@ Features
 Installation
 
 1. **Clone the repository**:
-   git clone https://github.com/username/portfolio.git
+   git clone https://github.com/seyyko/portfolio.git
    cd portfolio
 
 2. **Create a virtual environment**:
