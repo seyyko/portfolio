@@ -1,26 +1,20 @@
 Portfolio and Web Projects with Flask
 
-Welcome to my GitHub repository! This project contains my **portfolio** as well as other projects I've worked on during my studies and learning journey. It's a dynamic website built with **Flask**, a lightweight yet powerful Python framework (because who doesn't love a good challenge?).
+Welcome to my GitHub repository! This project contains my **portfolio** as well as other projects I've worked on during my studies and learning journey. It's a dynamic website built with **Flask**, a lightweight yet powerful Python framework.
 
 About
 
 This repository contains several sections:
 
-- **Portfolio**: A showcase of my skills and professional achievements. Try not to be too impressed.
+- **Portfolio**: A showcase of my skills and professional achievements.
 - **Web Projects**: Various projects I’ve built, including interactive web apps, APIs, and technical demos. Don’t worry, some of them might actually work.
-- **Flask Website**: The site architecture is built with **Flask**, using features like Jinja templates, route management, and database integration (because who needs a simple HTML page anyway?).
+- **Flask Website**: The site architecture is built with **Flask**, using features like Jinja templates, route management.
 
 Features
 
-Here are some of the amazing features (prepare to be blown away):
-
-- **Dynamic Homepage**: An overview of my portfolio and featured projects. You may or may not find it life-changing.
 - **Project Details**: Each project has its own dedicated page with detailed information and links to live demos or GitHub repositories. You’re welcome.
-- **Contact Form**: A contact feature to reach me directly through the site. Please, no spam.
 
 Installation
-
-If you’re brave enough to run this project locally, here’s how to do it:
 
 1. **Clone the repository**:
    git clone https://github.com/username/portfolio.git
@@ -31,7 +25,8 @@ If you’re brave enough to run this project locally, here’s how to do it:
 
 3. **Activate the virtual environment**:
    - On Windows:
-     venv\Scripts\activate
+     venv\Scripts\activate.bat (cmd)
+     venv\Scripts\Activate.ps1 (powershell)
    - On macOS/Linux:
      source venv/bin/activate
 
@@ -45,18 +40,13 @@ If you’re brave enough to run this project locally, here’s how to do it:
 
 Technologies Used
 
-- **Flask**: A lightweight Python web framework (because who needs the complexity of Django?).
+- **Flask**: A lightweight Python web framework.
 - **Jinja2**: A template engine for rendering dynamic HTML. It’s like magic, but with code.
-- **SQLite/MySQL/PostgreSQL** (depending on your setup): The database where all the magic happens.
 - **HTML/CSS/JavaScript**: For structure, styling, and making sure the website doesn’t look like it was made in 1999.
-
-Contributing
-
-Feel free to fork this repo, create a branch, and submit a **pull request**. Just be warned, I have high standards, and no one likes a messy PR.
 
 Authors
 
-- **Your Name** – Lead developer (or "Flask wizard," depending on who you ask).
+- **Seyyko** – Lead developer (or "Flask wizard," depending on who you ask).
 
 License
 
