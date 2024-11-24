@@ -269,11 +269,12 @@ function generateWeightedRandomVerseIndex(totalVerses, position) {
 function updateDisplayedVerse() {
     const verseDiv = document.querySelector('.verse-display');
     const nextButton = document.querySelector('.next-verse');
+    const currentVerse = gettext('Current verse');
 
     if (currentIndex >= 0 && currentIndex < history.length) {
         const current = history[currentIndex];
         verseDiv.innerHTML = `
-            <h3>Current verse</h3>
+            <h3>${currentVerse}</h3>
 
             <div class="verse-group">
                 <p class="current-verse verse-text-ar verse-text-hafs">${current.verse.text_hafs}</p>
@@ -302,9 +303,12 @@ function showAnswer() {
         const surah = current.surah;
         let verseIndex = current.verseIndex;
 
+        const currentVerse = gettext('Current verse');
+        const followingVerse = gettext('Following verses');
+
         let nextVerses = [];
         nextVerses.push(`
-            <h3>${gettext('Current verse')}</h3>
+            <h3>${currentVerse}</h3>
 
             <div class="verse-group">
                 <p class="current-verse verse-text-ar verse-text-hafs">${verseIndex + 1} - ${surah.versets[verseIndex].text_hafs}</p>
@@ -313,7 +317,7 @@ function showAnswer() {
                 <p class="verse-translation verse-text-fr"><em>${surah.versets[verseIndex].text}</em></p>
             </div>
 
-            <h3>${gettext('Following verses')}</h3>
+            <h3>${followingVerse}</h3>
         `);
         for (let i = verseIndex + 1; i < Math.min(verseIndex + 5, surah.versets.length); i++) {
             nextVerses.push(`

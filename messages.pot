@@ -1,18 +1,17 @@
-# French translations for PROJECT.
+# Translations template for PROJECT.
 # Copyright (C) 2024 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
 #
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-11-24 12:09+0100\n"
-"PO-Revision-Date: 2024-11-23 23:24+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language: fr\n"
-"Language-Team: fr <LL@li.org>\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -20,101 +19,101 @@ msgstr ""
 
 #: QuranTraining/templates/base.html:28 QuranTraining/templates/base.html:94
 msgid "Toggle Dark/Light Theme"
-msgstr "Basculer thème sombre/clair"
+msgstr ""
 
 #: QuranTraining/templates/base.html:29 QuranTraining/templates/base.html:91
 msgid "Delete your data"
-msgstr "Supprimer vos données"
+msgstr ""
 
 #: QuranTraining/templates/base.html:39 QuranTraining/templates/base.html:92
 msgid "Features"
-msgstr "Fonctionnalités"
+msgstr ""
 
 #: QuranTraining/templates/base.html:42 QuranTraining/templates/base.html:93
 msgid "About"
-msgstr "À propos"
+msgstr ""
 
 #: QuranTraining/templates/base.html:76 QuranTraining/templates/home.html:28
 #: static/QuranTraining/js/surah_choice.js:21
 #: static/QuranTraining/js/surah_choice.js:198
 msgid "Click and Select Surahs to Memorize"
-msgstr "Cliquez et Sélectionnez les sourates à mémoriser"
+msgstr ""
 
 #: QuranTraining/templates/base.html:77 QuranTraining/templates/home.html:34
 msgid "Translation"
-msgstr "Traduction"
+msgstr ""
 
 #: QuranTraining/templates/base.html:78 QuranTraining/templates/home.html:42
 msgid "Recitation type"
-msgstr "Type de récitation"
+msgstr ""
 
 #: QuranTraining/templates/base.html:79 QuranTraining/templates/home.html:50
 msgid "Random part"
-msgstr "Partie aléatoire"
+msgstr ""
 
 #: QuranTraining/templates/base.html:80 QuranTraining/templates/home.html:53
 msgid "start"
-msgstr "début"
+msgstr ""
 
 #: QuranTraining/templates/base.html:81 QuranTraining/templates/home.html:54
 msgid "middle"
-msgstr "milieu"
+msgstr ""
 
 #: QuranTraining/templates/base.html:82 QuranTraining/templates/home.html:55
 msgid "end"
-msgstr "fin"
+msgstr ""
 
 #: QuranTraining/templates/base.html:83 QuranTraining/templates/home.html:65
 msgid "clear"
-msgstr "effacer"
+msgstr ""
 
 #: QuranTraining/templates/base.html:84 QuranTraining/templates/home.html:66
 msgid "previous"
-msgstr "précédent"
+msgstr ""
 
 #: QuranTraining/templates/base.html:85 QuranTraining/templates/home.html:67
 #: static/QuranTraining/js/surah_choice.js:304
 msgid "generate"
-msgstr "générer"
+msgstr ""
 
 #: QuranTraining/templates/base.html:86 QuranTraining/templates/home.html:71
 #: static/QuranTraining/js/surah_choice.js:306
 msgid "No verses to display."
-msgstr "Aucun verset à afficher."
+msgstr ""
 
 #: QuranTraining/templates/base.html:87
 #: static/QuranTraining/js/surah_choice.js:27
 #: static/QuranTraining/js/surah_choice.js:203
 msgid "Click again to hide"
-msgstr "Cliquez à nouveau pour masquer"
+msgstr ""
 
 #: QuranTraining/templates/base.html:88
 #: static/QuranTraining/js/surah_choice.js:236
 msgid "No surahs selected."
-msgstr "Aucune sourate sélectionnée."
+msgstr ""
 
 #: QuranTraining/templates/base.html:89
 #: static/QuranTraining/js/surah_choice.js:299
 msgid "Show answer"
-msgstr "Afficher la suite"
+msgstr ""
 
 #: QuranTraining/templates/base.html:90
 #: static/QuranTraining/js/surah_choice.js:304
 msgid "Next"
-msgstr "Suivant"
+msgstr ""
 
 #: QuranTraining/templates/base.html:95
 #: static/QuranTraining/js/surah_choice.js:282
 #: static/QuranTraining/js/surah_choice.js:316
 msgid "Current verse"
-msgstr "Verset actuel"
+msgstr ""
 
 #: QuranTraining/templates/base.html:96
 #: static/QuranTraining/js/surah_choice.js:317
 msgid "Following verses"
-msgstr "Versets suivant"
+msgstr ""
 
 #: QuranTraining/templates/home.html:24
 msgid "Submit"
-msgstr "Envoyer"
+msgstr ""
 
