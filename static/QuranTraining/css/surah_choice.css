@@ -11,7 +11,7 @@ body{
 
     display: flex; flex-direction: column;
     align-items: center; justify-content: center;
-    
+
     width: 100%; min-height: 400px;
     margin-top: 20px;
     padding-block: 50px;
@@ -127,6 +127,7 @@ body{
     top: 10px;
     left: 0;
     transform: scale(.8);
+}
 
 .language-preferences,
 .text-preferences,
