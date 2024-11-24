@@ -3,6 +3,10 @@ const surahContainer = document.getElementById('surah');
 const surahForm = document.querySelector('.surah-form');
 const randomSurahSection = document.getElementById("training");
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 789f2bc3c997aa3cc67363ab08a3d6aa11b2f02d
 function changeBtnBg(checkbox) {
     const label = checkbox.closest('label');
 
@@ -18,13 +22,21 @@ function toggleSurahChoice() {
         titleSurahContainer.classList.remove('opened-form');
         randomSurahSection.classList.remove('opened-form');
         surahContainer.style.transform = "translateY(calc(-500px))";
+<<<<<<< HEAD
         titleSurahContainer.innerHTML = gettext("Click and Select Surahs to Memorize");
+=======
+        titleSurahContainer.innerHTML = "Click and Select Surahs to Memorize";
+>>>>>>> 789f2bc3c997aa3cc67363ab08a3d6aa11b2f02d
         localStorage.setItem('surah_container_status', 'open');
     } else{
         titleSurahContainer.classList.add('opened-form');
         randomSurahSection.classList.add('opened-form');
         surahContainer.style.transform = "translateY(0)";
+<<<<<<< HEAD
         titleSurahContainer.innerHTML = gettext("Click again to hide");
+=======
+        titleSurahContainer.innerHTML = "Click again to hide";
+>>>>>>> 789f2bc3c997aa3cc67363ab08a3d6aa11b2f02d
         localStorage.setItem('surah_container_status', 'close');
     }
 }
@@ -193,12 +205,20 @@ function loadSliderChoice() {
         titleSurahContainer.classList.remove('opened-form');
         randomSurahSection.classList.remove('opened-form');
         surahContainer.style.transform = "translateY(calc(-500px))";
+<<<<<<< HEAD
         titleSurahContainer.innerHTML = gettext("Click and Select Surahs to Memorize");
+=======
+        titleSurahContainer.innerHTML = "Click and Select Surahs to Memorize";
+>>>>>>> 789f2bc3c997aa3cc67363ab08a3d6aa11b2f02d
     } else{
         titleSurahContainer.classList.add('opened-form');
         randomSurahSection.classList.add('opened-form');
         surahContainer.style.transform = "translateY(0)";
+<<<<<<< HEAD
         titleSurahContainer.innerHTML = gettext("Click again to hide");
+=======
+        titleSurahContainer.innerHTML = "Click again to hide";
+>>>>>>> 789f2bc3c997aa3cc67363ab08a3d6aa11b2f02d
     }
 }
 
@@ -223,7 +243,11 @@ function updateSelectedSurahs() {
 
 function generateRandomVerse() {
     if (selectedSurahsDict.length === 0) {
+<<<<<<< HEAD
         alert(gettext('No surahs selected.'));
+=======
+        alert('No surahs selected.');
+>>>>>>> 789f2bc3c997aa3cc67363ab08a3d6aa11b2f02d
         return;
     }
 
@@ -285,14 +309,28 @@ function updateDisplayedVerse() {
 
         const button = document.createElement("button");
         button.className = "verse-btn show-answer hover-cursor-event uppercase";
+<<<<<<< HEAD
         button.textContent = gettext("Show answer");
+=======
+        button.textContent = "Show answer";
+>>>>>>> 789f2bc3c997aa3cc67363ab08a3d6aa11b2f02d
         button.onclick = showAnswer;
 
         verseDiv.appendChild(button);
         
+<<<<<<< HEAD
         nextButton.innerHTML = currentIndex >= history.length - 1 ? gettext("generate") : gettext("Next");
     } else {
         verseDiv.innerHTML = "<p>" + gettext('No verses to display.') + "</p>";
+=======
+        if (currentIndex >= history.length - 1) {
+            nextButton.innerHTML = "Generate";
+        } else {
+            nextButton.innerHTML = "Next";
+        }
+    } else {
+        verseDiv.innerHTML = "<p>No verses to display.</p>";
+>>>>>>> 789f2bc3c997aa3cc67363ab08a3d6aa11b2f02d
     }
 }
 
@@ -304,7 +342,11 @@ function showAnswer() {
 
         let nextVerses = [];
         nextVerses.push(`
+<<<<<<< HEAD
             <h3>${gettext('Current verse')}</h3>
+=======
+            <h3>Current verse</h3>
+>>>>>>> 789f2bc3c997aa3cc67363ab08a3d6aa11b2f02d
 
             <div class="verse-group">
                 <p class="current-verse verse-text-ar verse-text-hafs">${verseIndex + 1} - ${surah.versets[verseIndex].text_hafs}</p>
@@ -313,7 +355,11 @@ function showAnswer() {
                 <p class="verse-translation verse-text-fr"><em>${surah.versets[verseIndex].text}</em></p>
             </div>
 
+<<<<<<< HEAD
             <h3>${gettext('Following verses')}</h3>
+=======
+            <h3>Following verses</h3>
+>>>>>>> 789f2bc3c997aa3cc67363ab08a3d6aa11b2f02d
         `);
         for (let i = verseIndex + 1; i < Math.min(verseIndex + 5, surah.versets.length); i++) {
             nextVerses.push(`
