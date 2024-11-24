@@ -14,9 +14,11 @@ body{
 
     width: 100%; min-height: 400px;
     margin-top: 20px;
-    padding-block: 50px;
+    padding-block-end: 50px;
 
-    background: var(--background-tertiary);
+    overflow: hidden;
+
+    background: var(--background-primary);
 
     font-size: clamp(12px, 3vw, 20px);
 
@@ -31,7 +33,7 @@ body{
 
         top: 0; left: 50%;
         transform: translate(-50%, -50%) rotate(45deg);
-        width: 50px; height: 50px;
+        width: 40px; height: 40px;
         
         background-color: var(--background-primary);
 
@@ -53,6 +55,16 @@ body{
 
     display: flex; flex-wrap: wrap;
     justify-content: space-evenly;
+}
+
+.verse-display-container{
+    width: 100%;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+
+    transform: translateY(-400px);
+
+    transition: transform .3s ease;
 }
 
 .verse-btn{
@@ -117,16 +129,48 @@ body{
 
 
 .verse-preferences{
-    padding-block: 50px;
-    display: flex; flex-direction: column;
-    justify-content: space-around; align-items: center;
-    width: 100%; width: 300px;
-    /* background-color: red; */
+    width: 100%; height: 480px;
+    background-color: var(--background-quaternary);
+    transform: translateY(-400px);
+    margin-bottom: 50px;
 
-    /* position: absolute; */
-    top: 10px;
-    left: 0;
-    transform: scale(.8);
+    transition: transform .3s ease;
+}
+.all-preferences{
+    display: flex; flex-wrap: wrap;
+    justify-content: space-around; align-items: center;
+    width: 100%; height: 400px;
+    gap: 20px;
+}
+.title-verses-preferences{
+    --title-verse-preferences-y: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: center; align-items: center;
+    background-color: var(--background-tertiary);
+    font-size: clamp(16px, 3vw, 24px);
+
+    position: relative;
+
+    &::before{
+        content: '';
+        position: absolute;
+
+        top: var(--title-verse-preferences-y); left: 50%;
+        transform: translate(-50%, -50%) rotate(45deg);
+        width: 40px; height: 40px;
+
+        background-color: var(--background-tertiary);
+
+        z-index: -1;
+
+        transition: top .3s ease;
+    }
+}
+
+.opened-preferences-container{
+    transform: translateY(0);
+    --title-verse-preferences-y: 0%;
 }
 
 .language-preferences,
@@ -134,12 +178,7 @@ body{
 .verse-part-preferences{
     display: flex; flex-direction: column;
     align-items: center; justify-content: center;
-    margin-block: 20px;
-}
-
-.verse-part-preferences{
-    width: 100%;
-    margin-top: 20px;
+    width: 250px;
 }
 .slider-bg{
     --slider-width: 37.5px;
@@ -226,4 +265,10 @@ body{
 .fr{
     --fr-text: block;
     --en-text: none;
+}
+
+@media screen and (max-width: 750px) {
+    .all-preferences{
+        transform: scale(.7);
+    }
 }

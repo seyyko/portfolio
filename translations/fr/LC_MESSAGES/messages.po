@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-24 12:09+0100\n"
+"POT-Creation-Date: 2024-11-24 19:07+0100\n"
 "PO-Revision-Date: 2024-11-23 23:24+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fr\n"
@@ -18,101 +18,107 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.16.0\n"
 
-#: QuranTraining/templates/base.html:28 QuranTraining/templates/base.html:94
+#: QuranTraining/templates/base.html:28 QuranTraining/templates/base.html:93
 msgid "Toggle Dark/Light Theme"
 msgstr "Basculer thème sombre/clair"
 
-#: QuranTraining/templates/base.html:29 QuranTraining/templates/base.html:91
+#: QuranTraining/templates/base.html:29 QuranTraining/templates/base.html:90
 msgid "Delete your data"
 msgstr "Supprimer vos données"
 
-#: QuranTraining/templates/base.html:39 QuranTraining/templates/base.html:92
+#: QuranTraining/templates/base.html:38 QuranTraining/templates/base.html:91
 msgid "Features"
 msgstr "Fonctionnalités"
 
-#: QuranTraining/templates/base.html:42 QuranTraining/templates/base.html:93
+#: QuranTraining/templates/base.html:41 QuranTraining/templates/base.html:92
 msgid "About"
 msgstr "À propos"
 
-#: QuranTraining/templates/base.html:76 QuranTraining/templates/home.html:28
-#: static/QuranTraining/js/surah_choice.js:21
-#: static/QuranTraining/js/surah_choice.js:198
+#: QuranTraining/templates/base.html:75 QuranTraining/templates/home.html:28
+#: static/QuranTraining/js/surah_choice.js:24
+#: static/QuranTraining/js/surah_choice.js:222
 msgid "Click and Select Surahs to Memorize"
 msgstr "Cliquez et Sélectionnez les sourates à mémoriser"
 
-#: QuranTraining/templates/base.html:77 QuranTraining/templates/home.html:34
+#: QuranTraining/templates/base.html:76 QuranTraining/templates/home.html:35
 msgid "Translation"
 msgstr "Traduction"
 
-#: QuranTraining/templates/base.html:78 QuranTraining/templates/home.html:42
+#: QuranTraining/templates/base.html:77 QuranTraining/templates/home.html:43
 msgid "Recitation type"
 msgstr "Type de récitation"
 
-#: QuranTraining/templates/base.html:79 QuranTraining/templates/home.html:50
+#: QuranTraining/templates/base.html:78 QuranTraining/templates/home.html:51
 msgid "Random part"
 msgstr "Partie aléatoire"
 
-#: QuranTraining/templates/base.html:80 QuranTraining/templates/home.html:53
+#: QuranTraining/templates/base.html:79 QuranTraining/templates/home.html:54
 msgid "start"
 msgstr "début"
 
-#: QuranTraining/templates/base.html:81 QuranTraining/templates/home.html:54
+#: QuranTraining/templates/base.html:80 QuranTraining/templates/home.html:55
 msgid "middle"
 msgstr "milieu"
 
-#: QuranTraining/templates/base.html:82 QuranTraining/templates/home.html:55
+#: QuranTraining/templates/base.html:81 QuranTraining/templates/home.html:56
 msgid "end"
 msgstr "fin"
 
-#: QuranTraining/templates/base.html:83 QuranTraining/templates/home.html:65
+#: QuranTraining/templates/base.html:82 QuranTraining/templates/home.html:69
 msgid "clear"
 msgstr "effacer"
 
-#: QuranTraining/templates/base.html:84 QuranTraining/templates/home.html:66
+#: QuranTraining/templates/base.html:83 QuranTraining/templates/home.html:70
 msgid "previous"
 msgstr "précédent"
 
-#: QuranTraining/templates/base.html:85 QuranTraining/templates/home.html:67
-#: static/QuranTraining/js/surah_choice.js:304
+#: QuranTraining/templates/base.html:84 QuranTraining/templates/home.html:71
+#: static/QuranTraining/js/surah_choice.js:323
 msgid "generate"
 msgstr "générer"
 
-#: QuranTraining/templates/base.html:86 QuranTraining/templates/home.html:71
-#: static/QuranTraining/js/surah_choice.js:306
+#: QuranTraining/templates/base.html:85 QuranTraining/templates/home.html:75
+#: static/QuranTraining/js/surah_choice.js:325
 msgid "No verses to display."
 msgstr "Aucun verset à afficher."
 
-#: QuranTraining/templates/base.html:87
-#: static/QuranTraining/js/surah_choice.js:27
-#: static/QuranTraining/js/surah_choice.js:203
+#: QuranTraining/templates/base.html:86
+#: static/QuranTraining/js/surah_choice.js:30
+#: static/QuranTraining/js/surah_choice.js:46
+#: static/QuranTraining/js/surah_choice.js:217
 msgid "Click again to hide"
 msgstr "Cliquez à nouveau pour masquer"
 
-#: QuranTraining/templates/base.html:88
-#: static/QuranTraining/js/surah_choice.js:236
+#: QuranTraining/templates/base.html:87
+#: static/QuranTraining/js/surah_choice.js:255
 msgid "No surahs selected."
 msgstr "Aucune sourate sélectionnée."
 
-#: QuranTraining/templates/base.html:89
-#: static/QuranTraining/js/surah_choice.js:299
+#: QuranTraining/templates/base.html:88
+#: static/QuranTraining/js/surah_choice.js:318
 msgid "Show answer"
 msgstr "Afficher la suite"
 
-#: QuranTraining/templates/base.html:90
-#: static/QuranTraining/js/surah_choice.js:304
+#: QuranTraining/templates/base.html:89
+#: static/QuranTraining/js/surah_choice.js:323
 msgid "Next"
 msgstr "Suivant"
 
-#: QuranTraining/templates/base.html:95
-#: static/QuranTraining/js/surah_choice.js:282
-#: static/QuranTraining/js/surah_choice.js:316
+#: QuranTraining/templates/base.html:94
+#: static/QuranTraining/js/surah_choice.js:301
+#: static/QuranTraining/js/surah_choice.js:335
 msgid "Current verse"
 msgstr "Verset actuel"
 
-#: QuranTraining/templates/base.html:96
-#: static/QuranTraining/js/surah_choice.js:317
+#: QuranTraining/templates/base.html:95
+#: static/QuranTraining/js/surah_choice.js:336
 msgid "Following verses"
 msgstr "Versets suivant"
+
+#: QuranTraining/templates/base.html:96 QuranTraining/templates/home.html:60
+#: static/QuranTraining/js/surah_choice.js:40
+msgid "Click to modify preferences"
+msgstr "Cliquez pour modifier les préférences"
 
 #: QuranTraining/templates/home.html:24
 msgid "Submit"

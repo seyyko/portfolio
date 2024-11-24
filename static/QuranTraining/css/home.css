@@ -18,6 +18,8 @@
     position: relative;
 
     background-color: var(--background-tertiary);
+    font-size: clamp(16px, 3vw, 24px);
+
     text-align: center;
 
     z-index: 2;

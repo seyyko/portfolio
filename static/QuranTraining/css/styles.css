@@ -203,6 +203,10 @@ a{
     will-change: transform;
 }
 
+.prevent-from-select{
+    user-select: none;
+}
+
 /* Navbar Styles */
 
 #navbar{
@@ -281,12 +285,6 @@ a{
     min-width: 200px;
 
     align-items: center; justify-content: space-evenly;
-}
-
-.streak{
-    h2{
-        text-align: center;
-    }
 }
 
 .menu-btn{

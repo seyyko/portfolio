@@ -1,7 +1,10 @@
 const titleSurahContainer = document.querySelector('.title-surah-choice');
+const titleVersesPreferences = document.querySelector('.title-verses-preferences');
+const versePreferencesContainer = document.querySelector('.verse-preferences');
 const surahContainer = document.getElementById('surah');
 const surahForm = document.querySelector('.surah-form');
 const randomSurahSection = document.getElementById("training");
+const verseDisplayContainer = document.querySelector(".verse-display-container");
 
 function changeBtnBg(checkbox) {
     const label = checkbox.closest('label');
@@ -19,13 +22,29 @@ function toggleSurahChoice() {
         randomSurahSection.classList.remove('opened-form');
         surahContainer.style.transform = "translateY(calc(-500px))";
         titleSurahContainer.innerHTML = gettext("Click and Select Surahs to Memorize");
-        localStorage.setItem('surah_container_status', 'open');
+        localStorage.setItem('surah_container_status', 'close');
     } else{
         titleSurahContainer.classList.add('opened-form');
         randomSurahSection.classList.add('opened-form');
         surahContainer.style.transform = "translateY(0)";
         titleSurahContainer.innerHTML = gettext("Click again to hide");
-        localStorage.setItem('surah_container_status', 'close');
+        localStorage.setItem('surah_container_status', 'open');
+    }
+}
+
+function toggleVersePreferences() {
+    if (versePreferencesContainer.classList.contains('opened-preferences-container')) {
+        versePreferencesContainer.classList.remove('opened-preferences-container');
+        titleVersesPreferences.classList.remove('opened-preferences-container');
+        verseDisplayContainer.style.transform = "translateY(-400px)";
+        titleVersesPreferences.innerHTML = gettext("Click to modify preferences");
+        localStorage.setItem('verses_preferences_status', 'close');
+    } else{
+        versePreferencesContainer.classList.add('opened-preferences-container');
+        titleVersesPreferences.classList.add('opened-preferences-container');
+        verseDisplayContainer.style.transform = "translateY(0px)";
+        titleVersesPreferences.innerHTML = gettext("Click again to hide");
+        localStorage.setItem('verses_preferences_status', 'open');
     }
 }
 
@@ -167,8 +186,6 @@ function loadSliderChoice() {
 
     const savedStatus = localStorage.getItem("surah_container_status");
 
-    const savedPosition = localStorage.getItem("verse_position") || 0;
-
     if (savedChoiceText === "warsh") {
         sliderText.classList.add("active");
         document.querySelector(".hafs").classList.add("active");
@@ -189,16 +206,18 @@ function loadSliderChoice() {
         document.body.classList.remove("fr");
     }
 
+    console.log(savedStatus)
+
     if (savedStatus === "open") {
-        titleSurahContainer.classList.remove('opened-form');
-        randomSurahSection.classList.remove('opened-form');
-        surahContainer.style.transform = "translateY(calc(-500px))";
-        titleSurahContainer.innerHTML = gettext("Click and Select Surahs to Memorize");
-    } else{
         titleSurahContainer.classList.add('opened-form');
         randomSurahSection.classList.add('opened-form');
         surahContainer.style.transform = "translateY(0)";
         titleSurahContainer.innerHTML = gettext("Click again to hide");
+    } else{
+        titleSurahContainer.classList.remove('opened-form');
+        randomSurahSection.classList.remove('opened-form');
+        surahContainer.style.transform = "translateY(calc(-500px))";
+        titleSurahContainer.innerHTML = gettext("Click and Select Surahs to Memorize");
     }
 }
 
@@ -339,8 +358,6 @@ function showAnswer() {
 }
 
 function nextVerse() {
-    const nextButton = document.querySelector('.next-verse');
-
     if (currentIndex < history.length - 1) {
         currentIndex++;
         updateDisplayedVerse();

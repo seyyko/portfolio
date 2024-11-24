@@ -30,8 +30,7 @@
             </div>
         </div>
         <ul class="navlist">
-            <li class="logo">
-
+            <li class="logo prevent-from-select">
                 <a href="{{ url_for('quran_app.home') }}" class="logo-content hover-cursor-event">Quran Training</a>
             </li>
             <ul class="sublist">
@@ -54,7 +53,7 @@
     <header>
         <div class="bg">
             <div class="circles">
-                <h1 class="header-text fadein-ltr" style="font-family: 'Cinzel Decorative'">السلام عليكم ورحمة الله وبركاته</h1>
+                <h1 class="header-text fadein-ltr prevent-from-select" style="font-family: 'Cinzel Decorative'">السلام عليكم ورحمة الله وبركاته</h1>
                 <div class="circle c1"></div>
                 <div class="circle c2"></div>
                 <div class="circle c3"></div>
@@ -93,7 +92,8 @@
                 "About": "{{ _('About') }}",
                 "Toggle Dark/Light Theme": "{{ _('Toggle Dark/Light Theme') }}",
                 "Current verse": "{{ _('Current verse') }}",
-                "Following verses": "{{ _('Following verses') }}"
+                "Following verses": "{{ _('Following verses') }}",
+                "Click to modify preferences": "{{ _('Click to modify preferences') }}"
             };
             return translations[msgid] || msgid;
         };
