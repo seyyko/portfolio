@@ -18,10 +18,7 @@
     position: relative;
 
     background-color: var(--background-tertiary);
-<<<<<<< HEAD
     text-align: center;
-=======
->>>>>>> 789f2bc3c997aa3cc67363ab08a3d6aa11b2f02d
 
     z-index: 2;
 
@@ -69,11 +66,7 @@
     display: flex;
     align-items: center;
 
-<<<<<<< HEAD
     background-color: var(--background-tertiary);
-=======
-    background-color: var(--background-secondary);
->>>>>>> 789f2bc3c997aa3cc67363ab08a3d6aa11b2f02d
     color: var(--text-color);
 
     width: 15vw; min-width: 120px;
@@ -114,13 +107,8 @@
 button {
     width: 50px; height: 50px;
 
-<<<<<<< HEAD
     background-color: var(--background-secondary);
     color: var(--text-color);
-=======
-    background-color: var(--alt-bg);
-    color: var(--background-tertiary);
->>>>>>> 789f2bc3c997aa3cc67363ab08a3d6aa11b2f02d
 
     border: none;
     border-radius: 15px;
@@ -157,29 +145,14 @@ button {
 }
 
 .surah-btn.selected {
-<<<<<<< HEAD
     background-color: var(--background-secondary);
-=======
-    background-color: var(--alt-bg);
-    color: var(--background-secondary);
-}
-
-.surah-btn:hover,
-.surah-btn.selected:hover,
-button:hover{
-    background-color: var(--background-tertiary);
->>>>>>> 789f2bc3c997aa3cc67363ab08a3d6aa11b2f02d
     color: var(--text-color);
 }
 
 .surah-btn:active,
 .surah-btn.selected:active,
 button:active{
-<<<<<<< HEAD
     background-color: var(--background-tertiary);
-=======
-    background-color: var(--background-secondary);
->>>>>>> 789f2bc3c997aa3cc67363ab08a3d6aa11b2f02d
     color: var(--text-color);
 }
 
