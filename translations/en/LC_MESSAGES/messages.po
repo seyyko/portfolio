@@ -105,3 +105,11 @@ msgstr "Generate"
 #: static/QuranTraining/js/surah_choice.js:304
 msgid "Next"
 msgstr "Next"
+
+#: static/QuranTraining/js/surah_choice.js:307
+msgid "Current verse"
+msgstr "Current verse"
+
+#: static/QuranTraining/js/surah_choice.js:316
+msgid "Following verses"
+msgstr "Following verses"
