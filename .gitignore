@@ -1,0 +1,9 @@
+.env/
+
+gunicorn_config.py
+
+__pycache__/
+*.pyc
+
+.vscode/
+*.log

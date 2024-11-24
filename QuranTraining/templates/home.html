@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section id="surah">
+    <form method="POST" class="surah-form">
+        <div id="surah-container" class="scroll-cursor-event">
+            {% for surah in surahs %}
+                <label class="surah-btn hover-cursor-event">
+                    <input class="surah-checkbox" type="checkbox" name="surah" value="{{ surah }}" onclick="changeBtnBg(this)">
+                    <div class="surah-name">
+                        <p class="surah-name-index">{{ loop.index }}.</p>
+                        <p class="surah-name-text">{{ surah }}</p>
+                    </div>
+                </label>
+            {% endfor %}
+        </div>
+        <div class="button-container">
+            <div class="select-btn">
+                <button type="button" class="hover-cursor-event select-all" onclick="selectAllCheckboxes()">+</button>
+                <button type="button" class="hover-cursor-event clear-all" onclick="deselectAllCheckboxes()">x</button>
+            </div>
+            <div class="submit-btn">
+                <button type="submit" class="hover-cursor-event submit uppercase">{{ _('Submit') }}</button>
+            </div>
+        </div>
+    </form>
+    <h1 class="title-surah-choice hover-cursor-event" onclick="toggleSurahChoice()">{{ _('Click and Select Surahs to Memorize') }}</h1>
+
+    <section id="training" class="training">
+
+        <div class="verse-preferences">
+            <div class="language-preferences">
+                <p>{{ _('Translation') }}</p>
+                <div class="slider-bg language-slider hover-cursor-event" onclick="slide(this)">
+                    <div class="language-slider slider"></div>
+                    <div class="switch-btn en">en</div>
+                    <div class="switch-btn fr">fr</div>
+                </div>
+            </div>
+            <div class="text-preferences">
+                <p>{{ _('Recitation type') }}</p>
+                <div class="slider-bg text-slider hover-cursor-event" onclick="slide(this)">
+                    <div class="text-slider slider"></div>
+                    <div class="switch-btn hafs">hafs</div>
+                    <div class="switch-btn warsh">warsh</div>
+                </div>
+            </div>
+            <div class="verse-part-preferences">
+                <p>{{ _('Random part') }}</p>
+                <div class="slider-container hover-cursor-event">
+                    <div class="slider-button"></div>
+                    <div class="slider-label label-start">{{ _('start') }}</div>
+                    <div class="slider-label label-middle">{{ _('middle') }}</div>
+                    <div class="slider-label label-end">{{ _('end') }}</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="surah-container">
+            <h1>Surah selected :</h1>
+            <div class="selected-surahs"> </div>
+        </div> -->
+        <div class="verse-btn-box">
+            <button class="verse-btn hover-cursor-event clear-history uppercase" onclick="clearHistory()">{{ _('clear') }}</button>
+            <button class="verse-btn hover-cursor-event previous-verse uppercase" onclick="previousVerse()">{{ _('previous') }}</button>
+            <button class="verse-btn hover-cursor-event next-verse uppercase" onclick="nextVerse()">{{ _('generate') }}</button>
+        </div>
+    
+        <div class="verse-display">
+            <p>{{ _('No verses to display.') }}</p>
+        </div>
+
+    </section>
+</section>
+{% endblock %}
