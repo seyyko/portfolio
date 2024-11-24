@@ -11,20 +11,12 @@ body{
 
     display: flex; flex-direction: column;
     align-items: center; justify-content: center;
-
-<<<<<<< HEAD
+    
     width: 100%; min-height: 400px;
     margin-top: 20px;
     padding-block: 50px;
 
     background: var(--background-tertiary);
-=======
-    width: 100%;
-    margin-top: 20px;
-    padding-block: 50px;
-
-    background: var(--background-secondary);
->>>>>>> 789f2bc3c997aa3cc67363ab08a3d6aa11b2f02d
 
     font-size: clamp(12px, 3vw, 20px);
 
@@ -126,8 +118,6 @@ body{
 
 .verse-preferences{
     padding-block: 50px;
-    
-<<<<<<< HEAD
     display: flex; flex-direction: column;
     justify-content: space-around; align-items: center;
     width: 100%; width: 300px;
@@ -137,28 +127,18 @@ body{
     top: 10px;
     left: 0;
     transform: scale(.8);
-=======
-    display: flex;
-    justify-content: space-around; align-items: center;
-    flex-wrap: wrap;
-    width: 100%; max-width: 800px;
->>>>>>> 789f2bc3c997aa3cc67363ab08a3d6aa11b2f02d
-}
 
 .language-preferences,
 .text-preferences,
 .verse-part-preferences{
     display: flex; flex-direction: column;
     align-items: center; justify-content: center;
-<<<<<<< HEAD
     margin-block: 20px;
-=======
 }
 
 .verse-part-preferences{
     width: 100%;
     margin-top: 20px;
->>>>>>> 789f2bc3c997aa3cc67363ab08a3d6aa11b2f02d
 }
 .slider-bg{
     --slider-width: 37.5px;
@@ -167,13 +147,8 @@ body{
     --color-label-in: var(--alt-bg);
     --color-label-out: var(--background-tertiary);
 
-<<<<<<< HEAD
     background-color: var(--background-secondary);
     color: var(--text-color);
-=======
-    background-color: var(--alt-bg);
-    color: var(--background-tertiary);
->>>>>>> 789f2bc3c997aa3cc67363ab08a3d6aa11b2f02d
 
     display: flex;
     position: relative;
@@ -184,11 +159,7 @@ body{
         width: var(--slider-width); height: 37.5px;
         border-radius: 20px;
 
-<<<<<<< HEAD
         background-color: var(--background-quaternary);
-=======
-        background-color: var(--menu-close-color);
->>>>>>> 789f2bc3c997aa3cc67363ab08a3d6aa11b2f02d
 
         position: absolute;
         top: 50%;
@@ -211,40 +182,23 @@ body{
 .slider-container {
     position: relative;
     height: 60px;
-<<<<<<< HEAD
     background-color: var(--background-secondary);
-=======
-    background-color: var(--alt-bg);
->>>>>>> 789f2bc3c997aa3cc67363ab08a3d6aa11b2f02d
     border-radius: 30px;
 
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 10px;
-
-<<<<<<< HEAD
     padding: 32px 10px;
-=======
-    padding: 5px;
->>>>>>> 789f2bc3c997aa3cc67363ab08a3d6aa11b2f02d
 }
 
 .slider-button {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-<<<<<<< HEAD
-
     width: 50px; height: 50px;
     border-radius: 50%;
     background-color: var(--background-quaternary);
-=======
-    width: 50px;
-    height: 50px;
-    background-color: var(--menu-close-color);
-    border-radius: 50%;
->>>>>>> 789f2bc3c997aa3cc67363ab08a3d6aa11b2f02d
     transition: transform 0.3s ease;
 }
 
@@ -253,11 +207,7 @@ body{
     text-align: center;
     font-size: 14px;
     font-weight: bold;
-<<<<<<< HEAD
     color: var(--text-color);
-=======
-    color: var(--background-tertiary);
->>>>>>> 789f2bc3c997aa3cc67363ab08a3d6aa11b2f02d
     z-index: 1;
 }
 
