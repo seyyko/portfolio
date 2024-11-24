@@ -25,14 +25,8 @@
         <div class="navbg"></div>
         <div class="floating-menu">
             <div class="preferences">
-<<<<<<< HEAD
                 <div id="toggle-theme" class="menu-btn hover-cursor-event" onclick="toggleTheme()">{{ _('Toggle Dark/Light Theme') }}</div>
-<div id="del-data" class="menu-btn hover-cursor-event" onclick="deleteUserData()">{{ _('Delete your data') }}</div>
-
-=======
-                <div id="toggle-theme" class="menu-btn hover-cursor-event" onclick="toggleTheme()">Toggle Dark/Light Theme</div>
-                <div id="del-data" class="menu-btn hover-cursor-event" onclick="deleteUserData()">Delete your data</div>
->>>>>>> 789f2bc3c997aa3cc67363ab08a3d6aa11b2f02d
+                <div id="del-data" class="menu-btn hover-cursor-event" onclick="deleteUserData()">{{ _('Delete your data') }}</div>
             </div>
         </div>
         <ul class="navlist">
@@ -42,17 +36,10 @@
             </li>
             <ul class="sublist">
                 <li class="features">
-<<<<<<< HEAD
                     <a href="{{ url_for('quran_app.home') }}#features" class="features-content uppercase underline-hover-animation hover-cursor-event">{{ _('Features') }}</a>
                 </li>
                 <li class="about">
                     <a href="{{ url_for('quran_app.about') }}" class="about-content uppercase underline-hover-animation hover-cursor-event">{{ _('About') }}</a>
-=======
-                    <a href="{{ url_for('quran_app.home') }}#features" class="features-content uppercase underline-hover-animation hover-cursor-event">Features</a>
-                </li>
-                <li class="about">
-                    <a href="{{ url_for('quran_app.about') }}" class="about-content uppercase underline-hover-animation hover-cursor-event">about</a>
->>>>>>> 789f2bc3c997aa3cc67363ab08a3d6aa11b2f02d
                 </li>
                 <li class="menu">
                     <div class="menu-logo hover-cursor-event" onclick="toggleMenu()">
@@ -83,7 +70,6 @@
     <script src="{{ url_for('static', filename='QuranTraining/js/main.js') }}"></script>
     <script src="{{ url_for('static', filename='QuranTraining/js/surah_choice.js') }}"></script>
 
-<<<<<<< HEAD
     <script>
         var gettext = function(msgid) {
             var translations = {
@@ -110,8 +96,5 @@
             return translations[msgid] || msgid;
         };
     </script>
-
-=======
->>>>>>> 789f2bc3c997aa3cc67363ab08a3d6aa11b2f02d
 </body>
 </html>
