@@ -286,7 +286,6 @@ function updateDisplayedVerse() {
         const button = document.createElement("button");
         button.className = "verse-btn show-answer hover-cursor-event uppercase";
         button.textContent = gettext("Show answer");
-        button.textContent = "Show answer";
         button.onclick = showAnswer;
 
         verseDiv.appendChild(button);
