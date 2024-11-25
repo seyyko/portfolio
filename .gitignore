@@ -1,9 +1,11 @@
 .env/
+venv/
 
 gunicorn_config.py
 
 __pycache__/
 *.pyc
+*.pyo
 
 .vscode/
 *.log
