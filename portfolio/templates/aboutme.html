@@ -1,25 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% extends 'portfolio-base.html' %}
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="{{ url_for('static', filename='portfolio/css/styles.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='portfolio/css/aboutme.css') }}">
-
-    <title>Portfolio | About Me</title>
-</head>
-<body>
-    <nav id="navbar">
-        <div class="left-box">
-            <a href="{{ url_for('portfolio_app.index') }}">home</a>
-            <a href="{{ url_for('portfolio_app.aboutme') }}">about</a>
-        </div>
-    </nav>
+{% block content %}
 
     <main id="aboutme">
         <section class="aboutme">
@@ -40,5 +21,5 @@
             </div>
         </section>
     </main>
-</body>
-</html>
+
+{% endblock %}

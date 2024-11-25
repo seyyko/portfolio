@@ -13,8 +13,8 @@ with open(file_path, 'r', encoding='utf-8') as file:
 
 @portfolio_app.route('/')
 def index():
-    return render_template('index.html', projects=data['projects'])
+    return render_template('index.html', projects=data['projects'], title="Home")
 
 @portfolio_app.route('/aboutme')
 def aboutme():
-    return render_template('aboutme.html')
+    return render_template('aboutme.html', title="About Me")
