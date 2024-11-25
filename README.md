@@ -34,6 +34,8 @@ Installation
    pip install -r requirements.txt
 
 5. **Run the Flask app**:
+   flask --app run run
+   or python run.py
    The app will be available at http://127.0.0.1:5000/. If it’s not, well, it’s probably your fault.
 
 Technologies Used
