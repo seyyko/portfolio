@@ -9,7 +9,7 @@ quran_app = Blueprint('quran_app', __name__,
 surahs = []
 
 sys.stdout.reconfigure(encoding='utf-8')
-file_path = os.path.join(os.path.dirname(__file__), 'quran_updated.json')
+file_path = os.path.join(os.path.dirname(__file__), 'quran.json')
 
 with open(file_path, 'r', encoding='utf-8') as file:
     quran = json.load(file)
