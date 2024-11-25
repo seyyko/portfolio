@@ -81,6 +81,25 @@ scrollElements.forEach((element) => {
   });
 });
 
+function attachHoverEvents() {
+  const hoverElements = document.querySelectorAll('.hover-cursor-event');
+
+  hoverElements.forEach((element) => {
+      element.addEventListener('mouseenter', () => {
+          isScrolling = currentCursor.classList.contains('scroll-state');
+          currentCursor.classList.remove('scroll-state');
+          currentCursor.classList.add('hovering');
+      });
+
+      element.addEventListener('mouseleave', () => {
+          currentCursor.classList.remove('hovering');
+          if (isScrolling) {
+              currentCursor.classList.add('scroll-state');
+          }
+      });
+  });
+}
+
 
 requestAnimationFrame(updateCursor);
 

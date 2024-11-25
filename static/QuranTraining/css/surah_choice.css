@@ -93,6 +93,7 @@ body{
     .verse-group{
         padding: 10px;
         width: 100%;
+        position: relative;
     }
     & p {
         width: 100%;
@@ -249,6 +250,40 @@ body{
     font-weight: bold;
     color: var(--text-color);
     z-index: 1;
+}
+
+.current-verse-color-change{
+    background-color: var(--background-secondary);
+}
+
+.offset-anchor{
+    position: absolute;
+    top: -30vh;
+}
+.btn-goto-verse{
+    margin-bottom: 100px;
+}
+.scroll-up{
+    position: fixed;
+    bottom: 10px; left: 50%;
+    transform: translateX(-50%); 
+    width: 70px; height: 70px;
+
+    border-radius: 50%;
+    background-color: var(--background-secondary);
+    font-size: xx-large; font-weight: bold;
+    font-family: 'Harmattan';
+    
+    display: flex;
+    justify-content: center; align-items: center;
+
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .4s ease;
+}
+.anchor-visible{
+    opacity: 1;
+    visibility: visible;
 }
 
 .active{

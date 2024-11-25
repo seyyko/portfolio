@@ -223,6 +223,7 @@ function loadSliderChoice() {
 
 let history = [];
 let currentIndex = -1;
+let anwserShowed = false;
 
 function generateRandomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -304,49 +305,67 @@ function updateDisplayedVerse() {
         `;
 
         const button = document.createElement("button");
-        button.className = "verse-btn show-answer hover-cursor-event uppercase";
         button.textContent = gettext("Show answer");
+        button.className = "verse-btn show-answer hover-cursor-event uppercase";
         button.onclick = showAnswer;
-
+        
         verseDiv.appendChild(button);
+        attachHoverEvents();
 
         nextButton.innerHTML = currentIndex >= history.length - 1 ? gettext("generate") : gettext("Next");
     } else {
         verseDiv.innerHTML = "<p>" + gettext('No verses to display.') + "</p>";
     }
+    anwserShowed = false;
 }
 
 function showAnswer() {
-    if (currentIndex >= 0 && currentIndex < history.length) {
+    if (currentIndex >= 0 && currentIndex < history.length && !anwserShowed) {
         const current = history[currentIndex];
         const surah = current.surah;
         let verseIndex = current.verseIndex;
 
         const currentVerse = gettext('Current verse');
-        const followingVerse = gettext('Following verses');
+        const fullSurah = gettext('Full surah');
+        const goToVerse = gettext('Go to verse');
 
         let nextVerses = [];
         nextVerses.push(`
             <h3>${currentVerse}</h3>
 
-            <div class="verse-group">
+            <div id="current-verse" class="verse-group">
                 <p class="current-verse verse-text-ar verse-text-hafs">${verseIndex + 1} - ${surah.versets[verseIndex].text_hafs}</p>
                 <p class="current-verse verse-text-ar verse-text-warsh">${verseIndex + 1} - ${surah.versets[verseIndex].text_warsh}</p>
                 <p class="verse-translation verse-text-en"><em>${surah.versets[verseIndex].text_en}</em></p>
                 <p class="verse-translation verse-text-fr"><em>${surah.versets[verseIndex].text}</em></p>
             </div>
 
-            <h3>${followingVerse}</h3>
+            <a class="btn-goto-verse menu-btn hover-cursor-event" href="#verse-${verseIndex + 1}">${goToVerse}</a>
+
+            <h3>${fullSurah}</h3>
         `);
-        for (let i = verseIndex + 1; i < Math.min(verseIndex + 5, surah.versets.length); i++) {
-            nextVerses.push(`
-                <div class="verse-group">
-                    <p class="verse-text-ar verse-text-hafs">${i + 1} - ${surah.versets[i].text_hafs}</p>
-                    <p class="verse-text-ar verse-text-warsh">${i + 1} - ${surah.versets[i].text_warsh}</p>
-                    <p class="verse-translation verse-text-en"><em>${surah.versets[i].text_en}</em></p>
-                    <p class="verse-translation verse-text-fr"><em>${surah.versets[i].text}</em></p>
-                </div>
-            `);
+        for (let i = 1; i <= surah.versets.length; i++) {
+            if (i == verseIndex + 1){
+                nextVerses.push(`
+                    <div class="verse-group current-verse-color-change">
+                        <div id="verse-${i}" class="offset-anchor"></div>
+                        <p class="verse-text-ar verse-text-hafs">${i} - ${surah.versets[i - 1].text_hafs}</p>
+                        <p class="verse-text-ar verse-text-warsh">${i} - ${surah.versets[i - 1].text_warsh}</p>
+                        <p class="verse-translation verse-text-en"><em>${surah.versets[i - 1].text_en}</em></p>
+                        <p class="verse-translation verse-text-fr"><em>${surah.versets[i - 1].text}</em></p>
+                    </div>
+                `);
+            } else{
+                nextVerses.push(`
+                    <div class="verse-group">
+                        <div id="verse-${i}" class="offset-anchor"></div>
+                        <p class="verse-text-ar verse-text-hafs">${i} - ${surah.versets[i - 1].text_hafs}</p>
+                        <p class="verse-text-ar verse-text-warsh">${i} - ${surah.versets[i - 1].text_warsh}</p>
+                        <p class="verse-translation verse-text-en"><em>${surah.versets[i - 1].text_en}</em></p>
+                        <p class="verse-translation verse-text-fr"><em>${surah.versets[i - 1].text}</em></p>
+                    </div>
+                `);
+            }
         }
 
         const verseDiv = document.querySelector('.verse-display');
@@ -354,6 +373,9 @@ function showAnswer() {
             <h1 class="surah-fullname">${surah.nom_phonetique} (${surah.nom})</h1>
             ${nextVerses.join('')}
         `;
+        attachHoverEvents();
+
+        anwserShowed = true;
     }
 }
 
@@ -378,5 +400,50 @@ function clearHistory() {
     currentIndex = -1;
     updateDisplayedVerse();
 }
+
+const scrollUpButton = document.querySelector('.scroll-up');
+const targetDiv = document.querySelector('.verse-display');
+
+window.addEventListener('scroll', () => {
+    const targetPosition = targetDiv.getBoundingClientRect().top + window.scrollY;
+    const currentScroll = window.scrollY;
+
+    if (currentScroll > targetPosition) {
+        scrollUpButton.classList.add('anchor-visible');
+    } else {
+        scrollUpButton.classList.remove('anchor-visible');
+    }
+});
+
+document.addEventListener('keydown', function(event) {
+    switch (event.key) {
+        case 'ArrowRight':
+            nextVerse();
+            break;
+        case 'ArrowLeft':
+            previousVerse();
+            break;
+        case 'Backspace':
+            event.preventDefault();
+            clearHistory();
+            break;
+        case 'ArrowUp': {
+            event.preventDefault();
+            const scrollUpAnchor = document.querySelector('.scroll-up');
+            if (scrollUpAnchor) scrollUpAnchor.click();
+            break;
+        }
+        case 'ArrowDown': {
+            event.preventDefault();
+            if (!anwserShowed) {
+                showAnswer();
+            } else{
+                const gotoVerseAnchor = document.querySelector('.btn-goto-verse');
+                if (gotoVerseAnchor) gotoVerseAnchor.click();
+            }
+            break;
+        }
+    }
+});
 
 document.addEventListener("DOMContentLoaded", loadSliderChoice);
