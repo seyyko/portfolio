@@ -35,7 +35,7 @@ function updateParallax() {
   const y = (window.innerHeight - mouseY) / 100;
 
   circles.forEach((circle, index) => {
-    const speed = index + 1;
+    const speed = index + 2;
     circle.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
   });
 }

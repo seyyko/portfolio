@@ -301,11 +301,6 @@ a{
     font-family: 'Tajawal';
 
     transition: all .4s ease;
-
-    &:hover{
-        background-color: var(--background-tertiary);
-        color: var(--alt-bg);
-    }
 }
 
 .logo-content{
