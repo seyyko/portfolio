@@ -22,21 +22,27 @@ Installation
    cd portfolio`
 
 3. **Create a virtual environment**:
-   python3 -m venv venv
+   
+   `python3 -m venv venv`
 
-4. **Activate the virtual environment**:
+5. **Activate the virtual environment**:
+   
    - On Windows:
-     - venv\Scripts\activate.bat (cmd)
-     - venv\Scripts\Activate.ps1 (powershell)
+     
+     - `venv\Scripts\activate.bat (cmd)`
+     - `venv\Scripts\Activate.ps1 (powershell)`
    - On macOS/Linux:
-     source venv/bin/activate
+     
+     `source venv/bin/activate`
 
-5. **Install the dependencies**:
-   pip install -r requirements.txt
+7. **Install the dependencies**:
+   
+   `pip install -r requirements.txt`
 
-6. **Run the Flask app**:
-   flask --app run run
-   or python run.py
+9. **Run the Flask app**:
+    
+   `flask --app run run`
+   or `python run.py`
    The app will be available at http://127.0.0.1:5000/. If it’s not, well, it’s probably your fault.
 
 Technologies Used
