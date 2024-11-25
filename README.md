@@ -25,8 +25,8 @@ Installation
 
 3. **Activate the virtual environment**:
    - On Windows:
-     venv\Scripts\activate.bat (cmd)
-     venv\Scripts\Activate.ps1 (powershell)
+     - venv\Scripts\activate.bat (cmd)
+     - venv\Scripts\Activate.ps1 (powershell)
    - On macOS/Linux:
      source venv/bin/activate
 
