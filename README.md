@@ -17,8 +17,8 @@ Features
 Installation
 
 1. **Clone the repository**:
-   git clone https://github.com/seyyko/portfolio.git
-   cd portfolio
+   `git clone https://github.com/seyyko/portfolio.git
+   cd portfolio`
 
 2. **Create a virtual environment**:
    python3 -m venv venv
