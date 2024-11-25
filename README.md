@@ -17,23 +17,24 @@ Features
 Installation
 
 1. **Clone the repository**:
+   
    `git clone https://github.com/seyyko/portfolio.git
    cd portfolio`
 
-2. **Create a virtual environment**:
+3. **Create a virtual environment**:
    python3 -m venv venv
 
-3. **Activate the virtual environment**:
+4. **Activate the virtual environment**:
    - On Windows:
      - venv\Scripts\activate.bat (cmd)
      - venv\Scripts\Activate.ps1 (powershell)
    - On macOS/Linux:
      source venv/bin/activate
 
-4. **Install the dependencies**:
+5. **Install the dependencies**:
    pip install -r requirements.txt
 
-5. **Run the Flask app**:
+6. **Run the Flask app**:
    flask --app run run
    or python run.py
    The app will be available at http://127.0.0.1:5000/. If it’s not, well, it’s probably your fault.
