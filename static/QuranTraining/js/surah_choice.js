@@ -527,7 +527,9 @@ function playSong(button) {
         if (currentAudio.paused) {
             currentAudio.play();
         } else {
-            button.innerHTML = "🔊";
+            document.querySelectorAll('.play-audio').forEach(el => {
+                el.innerHTML = "🔊";
+            })
             currentAudio.pause();
             currentAudio.currentTime = 0;
             currentAudio = null;
