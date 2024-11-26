@@ -317,7 +317,7 @@ function updateDisplayedVerse() {
         verseDiv.innerHTML = `
             <h3>${currentVerse}</h3>
 
-            <div class="verse-group versePos-${surah.versets[verseIndex - 1].position_ds_sourate}">
+            <div class="verse-group versePos-${surah.versets[verseIndex].position_ds_sourate - 1}">
                 <p class="current-verse verse-text-ar verse-text-hafs"><button class="hover-cursor-event play-audio" onclick="playSong(this)"></button> ${current.verse.text_hafs}</p>
                 <p class="current-verse verse-text-ar verse-text-warsh"><button class="hover-cursor-event play-audio" onclick="playSong(this)"></button> ${current.verse.text_warsh}</p>
                 <p class="verse-translation verse-text-en"><em>${current.verse.text_en}</em></p>
@@ -354,7 +354,7 @@ function showAnswer() {
         nextVerses.push(`
             <h3>${currentVerse}</h3>
 
-            <div id="current-verse" class="verse-group versePos-${surah.versets[verseIndex - 1].position_ds_sourate}">
+            <div id="current-verse" class="verse-group versePos-${surah.versets[verseIndex].position_ds_sourate - 1}">
                 <p class="current-verse verse-text-ar verse-text-hafs"><button class="hover-cursor-event play-audio" onclick="playSong(this)"></button> ${verseIndex + 1} - ${surah.versets[verseIndex].text_hafs}</p>
                 <p class="current-verse verse-text-ar verse-text-warsh"><button class="hover-cursor-event play-audio" onclick="playSong(this)"></button> ${verseIndex + 1} - ${surah.versets[verseIndex].text_warsh}</p>
                 <p class="verse-translation verse-text-en"><em>${surah.versets[verseIndex].text_en}</em></p>
