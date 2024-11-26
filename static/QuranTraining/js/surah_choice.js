@@ -220,16 +220,16 @@ function loadSliderChoice() {
         titleSurahContainer.innerHTML = gettext("Click and Select Surahs to Memorize");
     }
 
-    if (savedStatusPreferences == "close"){
-        versePreferencesContainer.classList.remove('opened-preferences-container');
-        titleVersesPreferences.classList.remove('opened-preferences-container');
-        verseDisplayContainer.style.transform = "translateY(-400px)";
-        titleVersesPreferences.innerHTML = gettext("Click to modify preferences");
-    } else{
+    if (savedStatusPreferences == "open"){
         versePreferencesContainer.classList.add('opened-preferences-container');
         titleVersesPreferences.classList.add('opened-preferences-container');
         verseDisplayContainer.style.transform = "translateY(0px)";
         titleVersesPreferences.innerHTML = gettext("Click again to hide");
+    } else{
+        versePreferencesContainer.classList.remove('opened-preferences-container');
+        titleVersesPreferences.classList.remove('opened-preferences-container');
+        verseDisplayContainer.style.transform = "translateY(-400px)";
+        titleVersesPreferences.innerHTML = gettext("Click to modify preferences");
     }
 
     const savedReciter = localStorage.getItem('selectedReciter');
@@ -318,8 +318,8 @@ function updateDisplayedVerse() {
             <h3>${currentVerse}</h3>
 
             <div class="verse-group versePos-${surah.versets[verseIndex - 1].position_ds_sourate}">
-                <p class="current-verse verse-text-ar verse-text-hafs"><button id="play-audio" class="hover-cursor-event" onclick="playSong(this)"></button> ${current.verse.text_hafs}</p>
-                <p class="current-verse verse-text-ar verse-text-warsh"><button id="play-audio" class="hover-cursor-event" onclick="playSong(this)"></button> ${current.verse.text_warsh}</p>
+                <p class="current-verse verse-text-ar verse-text-hafs"><button class="hover-cursor-event play-audio" onclick="playSong(this)"></button> ${current.verse.text_hafs}</p>
+                <p class="current-verse verse-text-ar verse-text-warsh"><button class="hover-cursor-event play-audio" onclick="playSong(this)"></button> ${current.verse.text_warsh}</p>
                 <p class="verse-translation verse-text-en"><em>${current.verse.text_en}</em></p>
                 <p class="verse-translation verse-text-fr"><em>${current.verse.text}</em></p>
             </div>
@@ -355,8 +355,8 @@ function showAnswer() {
             <h3>${currentVerse}</h3>
 
             <div id="current-verse" class="verse-group versePos-${surah.versets[verseIndex - 1].position_ds_sourate}">
-                <p class="current-verse verse-text-ar verse-text-hafs"><button id="play-audio" class="hover-cursor-event" onclick="playSong(this)"></button> ${verseIndex + 1} - ${surah.versets[verseIndex].text_hafs}</p>
-                <p class="current-verse verse-text-ar verse-text-warsh"><button id="play-audio" class="hover-cursor-event" onclick="playSong(this)"></button> ${verseIndex + 1} - ${surah.versets[verseIndex].text_warsh}</p>
+                <p class="current-verse verse-text-ar verse-text-hafs"><button class="hover-cursor-event play-audio" onclick="playSong(this)"></button> ${verseIndex + 1} - ${surah.versets[verseIndex].text_hafs}</p>
+                <p class="current-verse verse-text-ar verse-text-warsh"><button class="hover-cursor-event play-audio" onclick="playSong(this)"></button> ${verseIndex + 1} - ${surah.versets[verseIndex].text_warsh}</p>
                 <p class="verse-translation verse-text-en"><em>${surah.versets[verseIndex].text_en}</em></p>
                 <p class="verse-translation verse-text-fr"><em>${surah.versets[verseIndex].text}</em></p>
             </div>
@@ -370,8 +370,8 @@ function showAnswer() {
                 nextVerses.push(`
                     <div class="verse-group current-verse-color-change versePos-${surah.versets[i - 1].position_ds_sourate - 1}">
                         <div id="verse-${i}" class="offset-anchor"></div>
-                        <p class="verse-text-ar verse-text-hafs"><button id="play-audio" class="hover-cursor-event" onclick="playSong(this)"></button> ${i} - ${surah.versets[i - 1].text_hafs}</p>
-                        <p class="verse-text-ar verse-text-warsh"><button id="play-audio" class="hover-cursor-event" onclick="playSong(this)"></button> ${i} - ${surah.versets[i - 1].text_warsh}</p>
+                        <p class="verse-text-ar verse-text-hafs"><button class="hover-cursor-event play-audio" onclick="playSong(this)"></button> ${i} - ${surah.versets[i - 1].text_hafs}</p>
+                        <p class="verse-text-ar verse-text-warsh"><button class="hover-cursor-event play-audio" onclick="playSong(this)"></button> ${i} - ${surah.versets[i - 1].text_warsh}</p>
                         <p class="verse-translation verse-text-en"><em>${surah.versets[i - 1].text_en}</em></p>
                         <p class="verse-translation verse-text-fr"><em>${surah.versets[i - 1].text}</em></p>
                     </div>
@@ -380,8 +380,8 @@ function showAnswer() {
                 nextVerses.push(`
                     <div class="verse-group versePos-${surah.versets[i - 1].position_ds_sourate - 1}">
                         <div id="verse-${i}" class="offset-anchor"></div>
-                        <p class="verse-text-ar verse-text-hafs"><button id="play-audio" class="hover-cursor-event" onclick="playSong(this)"></button> ${i} - ${surah.versets[i - 1].text_hafs}</p>
-                        <p class="verse-text-ar verse-text-warsh"><button id="play-audio" class="hover-cursor-event" onclick="playSong(this)"></button> ${i} - ${surah.versets[i - 1].text_warsh}</p>
+                        <p class="verse-text-ar verse-text-hafs"><button class="hover-cursor-event play-audio" onclick="playSong(this)"></button> ${i} - ${surah.versets[i - 1].text_hafs}</p>
+                        <p class="verse-text-ar verse-text-warsh"><button class="hover-cursor-event play-audio" onclick="playSong(this)"></button> ${i} - ${surah.versets[i - 1].text_warsh}</p>
                         <p class="verse-translation verse-text-en"><em>${surah.versets[i - 1].text_en}</em></p>
                         <p class="verse-translation verse-text-fr"><em>${surah.versets[i - 1].text}</em></p>
                     </div>

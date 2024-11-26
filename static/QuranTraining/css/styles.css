@@ -8,7 +8,6 @@
 
 body{
     overflow-x: hidden;
-
 }
 
 /* Theme variables */
@@ -27,6 +26,25 @@ body{
     --menu-close-color: rgb(231, 46, 151);
 }
 
+.play-audio{
+    --invert-value: 1;
+    position: relative;
+    top: -10px;
+
+    background-image: url("../../assets/icon/volumeUp.svg");
+    background-size: cover;
+    width: 8vw; height: 8vw;
+    max-width: 60px; max-height: 60px;
+
+    margin-left: 3vw;
+    border-radius: 0;
+    filter: invert(var(--invert-value));
+    background-color: transparent;
+    &:active{
+        background-color: transparent;
+    }
+}
+
 /* Light mode variables (activated via .light-mode) */
 .light-mode {
 
@@ -41,7 +59,7 @@ body{
     --cursor-middle-color: rgb(233, 39, 116);
     --alt-bg: rgb(2,0,36);
 
-
+    --invert-value: 0;
 }
 
 body{
