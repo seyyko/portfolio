@@ -109,7 +109,7 @@ surahForm.addEventListener('submit', function(event) {
     })
     .then(response => response.json())
     .then(data => {
-        console.log('Success');
+        // console.log('Success');
 
         selectedSurahsDict = data.selected_surahs;
         localStorage.setItem('selected_surahs_dict', JSON.stringify(selectedSurahsDict));
@@ -186,6 +186,8 @@ function loadSliderChoice() {
 
     const savedStatus = localStorage.getItem("surah_container_status");
 
+    const savedStatusPreferences = localStorage.getItem("verses_preferences_status");
+
     if (savedChoiceText === "warsh") {
         sliderText.classList.add("active");
         document.querySelector(".hafs").classList.add("active");
@@ -206,8 +208,6 @@ function loadSliderChoice() {
         document.body.classList.remove("fr");
     }
 
-    console.log(savedStatus)
-
     if (savedStatus === "open") {
         titleSurahContainer.classList.add('opened-form');
         randomSurahSection.classList.add('opened-form');
@@ -218,6 +218,25 @@ function loadSliderChoice() {
         randomSurahSection.classList.remove('opened-form');
         surahContainer.style.transform = "translateY(calc(-500px))";
         titleSurahContainer.innerHTML = gettext("Click and Select Surahs to Memorize");
+    }
+
+    if (savedStatusPreferences == "close"){
+        versePreferencesContainer.classList.remove('opened-preferences-container');
+        titleVersesPreferences.classList.remove('opened-preferences-container');
+        verseDisplayContainer.style.transform = "translateY(-400px)";
+        titleVersesPreferences.innerHTML = gettext("Click to modify preferences");
+    } else{
+        versePreferencesContainer.classList.add('opened-preferences-container');
+        titleVersesPreferences.classList.add('opened-preferences-container');
+        verseDisplayContainer.style.transform = "translateY(0px)";
+        titleVersesPreferences.innerHTML = gettext("Click again to hide");
+    }
+
+    const savedReciter = localStorage.getItem('selectedReciter');
+    if (savedReciter) {
+        const select = document.getElementById('reciter');
+        select.value = savedReciter;
+        // console.log(`Reciter restored: ${savedReciter}`);
     }
 }
 
@@ -293,12 +312,14 @@ function updateDisplayedVerse() {
 
     if (currentIndex >= 0 && currentIndex < history.length) {
         const current = history[currentIndex];
+        const surah = current.surah;
+        let verseIndex = current.verseIndex;
         verseDiv.innerHTML = `
             <h3>${currentVerse}</h3>
 
-            <div class="verse-group">
-                <p class="current-verse verse-text-ar verse-text-hafs">${current.verse.text_hafs}</p>
-                <p class="current-verse verse-text-ar verse-text-warsh">${current.verse.text_warsh}</p>
+            <div class="verse-group versePos-${surah.versets[verseIndex - 1].position_ds_sourate}">
+                <p class="current-verse verse-text-ar verse-text-hafs"><button id="play-audio" class="hover-cursor-event" onclick="playSong(this)"></button> ${current.verse.text_hafs}</p>
+                <p class="current-verse verse-text-ar verse-text-warsh"><button id="play-audio" class="hover-cursor-event" onclick="playSong(this)"></button> ${current.verse.text_warsh}</p>
                 <p class="verse-translation verse-text-en"><em>${current.verse.text_en}</em></p>
                 <p class="verse-translation verse-text-fr"><em>${current.verse.text}</em></p>
             </div>
@@ -333,9 +354,9 @@ function showAnswer() {
         nextVerses.push(`
             <h3>${currentVerse}</h3>
 
-            <div id="current-verse" class="verse-group">
-                <p class="current-verse verse-text-ar verse-text-hafs">${verseIndex + 1} - ${surah.versets[verseIndex].text_hafs}</p>
-                <p class="current-verse verse-text-ar verse-text-warsh">${verseIndex + 1} - ${surah.versets[verseIndex].text_warsh}</p>
+            <div id="current-verse" class="verse-group versePos-${surah.versets[verseIndex - 1].position_ds_sourate}">
+                <p class="current-verse verse-text-ar verse-text-hafs"><button id="play-audio" class="hover-cursor-event" onclick="playSong(this)"></button> ${verseIndex + 1} - ${surah.versets[verseIndex].text_hafs}</p>
+                <p class="current-verse verse-text-ar verse-text-warsh"><button id="play-audio" class="hover-cursor-event" onclick="playSong(this)"></button> ${verseIndex + 1} - ${surah.versets[verseIndex].text_warsh}</p>
                 <p class="verse-translation verse-text-en"><em>${surah.versets[verseIndex].text_en}</em></p>
                 <p class="verse-translation verse-text-fr"><em>${surah.versets[verseIndex].text}</em></p>
             </div>
@@ -347,20 +368,20 @@ function showAnswer() {
         for (let i = 1; i <= surah.versets.length; i++) {
             if (i == verseIndex + 1){
                 nextVerses.push(`
-                    <div class="verse-group current-verse-color-change">
+                    <div class="verse-group current-verse-color-change versePos-${surah.versets[i - 1].position_ds_sourate - 1}">
                         <div id="verse-${i}" class="offset-anchor"></div>
-                        <p class="verse-text-ar verse-text-hafs">${i} - ${surah.versets[i - 1].text_hafs}</p>
-                        <p class="verse-text-ar verse-text-warsh">${i} - ${surah.versets[i - 1].text_warsh}</p>
+                        <p class="verse-text-ar verse-text-hafs"><button id="play-audio" class="hover-cursor-event" onclick="playSong(this)"></button> ${i} - ${surah.versets[i - 1].text_hafs}</p>
+                        <p class="verse-text-ar verse-text-warsh"><button id="play-audio" class="hover-cursor-event" onclick="playSong(this)"></button> ${i} - ${surah.versets[i - 1].text_warsh}</p>
                         <p class="verse-translation verse-text-en"><em>${surah.versets[i - 1].text_en}</em></p>
                         <p class="verse-translation verse-text-fr"><em>${surah.versets[i - 1].text}</em></p>
                     </div>
                 `);
             } else{
                 nextVerses.push(`
-                    <div class="verse-group">
+                    <div class="verse-group versePos-${surah.versets[i - 1].position_ds_sourate - 1}">
                         <div id="verse-${i}" class="offset-anchor"></div>
-                        <p class="verse-text-ar verse-text-hafs">${i} - ${surah.versets[i - 1].text_hafs}</p>
-                        <p class="verse-text-ar verse-text-warsh">${i} - ${surah.versets[i - 1].text_warsh}</p>
+                        <p class="verse-text-ar verse-text-hafs"><button id="play-audio" class="hover-cursor-event" onclick="playSong(this)"></button> ${i} - ${surah.versets[i - 1].text_hafs}</p>
+                        <p class="verse-text-ar verse-text-warsh"><button id="play-audio" class="hover-cursor-event" onclick="playSong(this)"></button> ${i} - ${surah.versets[i - 1].text_warsh}</p>
                         <p class="verse-translation verse-text-en"><em>${surah.versets[i - 1].text_en}</em></p>
                         <p class="verse-translation verse-text-fr"><em>${surah.versets[i - 1].text}</em></p>
                     </div>
@@ -445,5 +466,66 @@ document.addEventListener('keydown', function(event) {
         }
     }
 });
+
+function saveReciter() {
+    const select = document.getElementById('reciter');
+    const selectedReciter = select.value;
+    localStorage.setItem('selectedReciter', selectedReciter);
+    // console.log(`Reciter saved: ${selectedReciter}`); 
+}
+
+let currentAudio = null;
+let currentSource = ''; 
+
+function playSong(button) {
+    const verseGroup = button.closest('.verse-group');
+    if (!verseGroup) return;
+
+    const reciter = document.getElementById('reciter').value;
+
+    const verseClass = Array.from(verseGroup.classList).find(cls => cls.startsWith('versePos-'));
+    if (!verseClass) return;
+    const verseNumber = verseClass.replace('versePos-', '');
+
+    const current = history[currentIndex];
+    const surah = current.surah;
+    const verseData = surah.versets[verseNumber];
+
+    if (!verseData[reciter]) {
+        console.error(`No audio files found for the narrator : ${reciter}`);
+        return;
+    }
+
+    const newSource = verseData[reciter];
+
+    if (currentAudio === null || currentSource === '') {
+        currentAudio = new Audio(newSource);
+        currentSource = newSource;
+        currentAudio.play();
+        currentAudio.addEventListener('ended', () => {
+            currentAudio = null;
+            currentSource = '';
+        });
+    } else if (currentSource !== newSource) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+        currentAudio = new Audio(newSource);
+        currentSource = newSource;
+        currentAudio.play();
+        currentAudio.addEventListener('ended', () => {
+            currentAudio = null;
+            currentSource = '';
+        });
+    } else {
+        if (currentAudio.paused) {
+            currentAudio.play();
+        } else {
+            currentAudio.pause();
+            currentAudio.currentTime = 0;
+            currentAudio = null;
+            currentSource = '';
+        }
+    }
+}
 
 document.addEventListener("DOMContentLoaded", loadSliderChoice);

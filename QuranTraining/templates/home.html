@@ -32,31 +32,56 @@
     <section id="training" class="training">
 
         <div class="verse-preferences">
-            <div class="all-preferences">
-                <div class="language-preferences">
-                    <p>{{ _('Translation') }}</p>
-                    <div class="slider-bg language-slider hover-cursor-event prevent-from-select" onclick="slide(this)">
-                        <div class="language-slider slider"></div>
-                        <div class="switch-btn en">en</div>
-                        <div class="switch-btn fr">fr</div>
+            <div class="preferences-container">
+                <div class="all-preferences">
+                    <div class="language-preferences">
+                        <p>{{ _('Translation') }}</p>
+                        <div class="slider-bg language-slider hover-cursor-event prevent-from-select" onclick="slide(this)">
+                            <div class="language-slider slider"></div>
+                            <div class="switch-btn en">en</div>
+                            <div class="switch-btn fr">fr</div>
+                        </div>
+                    </div>
+                    <div class="text-preferences">
+                        <p>{{ _('Recitation type') }}</p>
+                        <div class="slider-bg text-slider hover-cursor-event prevent-from-select" onclick="slide(this)">
+                            <div class="text-slider slider"></div>
+                            <div class="switch-btn hafs">hafs</div>
+                            <div class="switch-btn warsh">warsh</div>
+                        </div>
+                    </div>
+                    <div class="verse-part-preferences">
+                        <p>{{ _('Random part') }}</p>
+                        <div class="slider-container hover-cursor-event prevent-from-select">
+                            <div class="slider-button"></div>
+                            <div class="slider-label label-start">{{ _('start') }}</div>
+                            <div class="slider-label label-middle">{{ _('middle') }}</div>
+                            <div class="slider-label label-end">{{ _('end') }}</div>
+                        </div>
                     </div>
                 </div>
-                <div class="text-preferences">
-                    <p>{{ _('Recitation type') }}</p>
-                    <div class="slider-bg text-slider hover-cursor-event prevent-from-select" onclick="slide(this)">
-                        <div class="text-slider slider"></div>
-                        <div class="switch-btn hafs">hafs</div>
-                        <div class="switch-btn warsh">warsh</div>
-                    </div>
-                </div>
-                <div class="verse-part-preferences">
-                    <p>{{ _('Random part') }}</p>
-                    <div class="slider-container hover-cursor-event prevent-from-select">
-                        <div class="slider-button"></div>
-                        <div class="slider-label label-start">{{ _('start') }}</div>
-                        <div class="slider-label label-middle">{{ _('middle') }}</div>
-                        <div class="slider-label label-end">{{ _('end') }}</div>
-                    </div>
+                <div class="reciter-container">
+                    <label for="reciter">Choose a reciter:</label>
+                    <select name="reciter" id="reciter" onchange="saveReciter()">
+                        <option value="abdulbasitmurattal">Abdul Basit Murattal</option>
+                        <option value="abdullahbasfar">Abdullah Basfar</option>
+                        <option value="abdurrahmaansudais">Abdurrahman Sudais</option>
+                        <option value="abdulsamad">Abdul Samad</option>
+                        <option value="shaatree">Shaatree</option>
+                        <option value="ahmedajamy">Ahmed Ajamy</option>
+                        <option value="alafasy">Mishary Alafasy</option>
+                        <option value="hanirifai">Hani Rifai</option>
+                        <option value="husary">Husary</option>
+                        <option value="husarymujawwad">Husary Mujawwad</option>
+                        <option value="hudhaify">Hudhaify</option>
+                        <option value="ibrahimakhbar">Ibrahim Akbar</option>
+                        <option value="mahermuaiqly">Maher Al Muaiqly</option>
+                        <option value="minshawi">Minshawi</option>
+                        <option value="minshawimujawwad">Minshawi Mujawwad</option>
+                        <option value="muhammadayyoub">Muhammad Ayyoub</option>
+                        <option value="muhammadjibreel">Muhammad Jibreel</option>
+                        <option value="saoodshuraym">Saood Shuraym</option>
+                    </select>
                 </div>
             </div>
             <div class="title-verses-preferences hover-cursor-event" onclick="toggleVersePreferences()">
