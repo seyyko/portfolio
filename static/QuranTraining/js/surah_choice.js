@@ -502,9 +502,11 @@ function playSong(button) {
         currentAudio = new Audio(newSource);
         currentSource = newSource;
         currentAudio.play();
+        button.style.backgroundImage = 'url("/static/assets/icon/volumeDown.svg")';
         currentAudio.addEventListener('ended', () => {
             currentAudio = null;
             currentSource = '';
+            button.style.backgroundImage = 'url("/static/assets/icon/volumeUp.svg")';
         });
     } else if (currentSource !== newSource) {
         currentAudio.pause();
@@ -512,14 +514,20 @@ function playSong(button) {
         currentAudio = new Audio(newSource);
         currentSource = newSource;
         currentAudio.play();
+        document.querySelectorAll('.play-audio').forEach(el => {
+            el.style.backgroundImage = 'url("/static/assets/icon/volumeUp.svg")';
+        })
+        button.style.backgroundImage = 'url("/static/assets/icon/volumeDown.svg")';
         currentAudio.addEventListener('ended', () => {
             currentAudio = null;
             currentSource = '';
+            button.style.backgroundImage = 'url("/static/assets/icon/volumeUp.svg")';
         });
     } else {
         if (currentAudio.paused) {
             currentAudio.play();
         } else {
+            button.style.backgroundImage = 'url("/static/assets/icon/volumeUp.svg")';
             currentAudio.pause();
             currentAudio.currentTime = 0;
             currentAudio = null;
