@@ -139,10 +139,6 @@ if (currentTheme === 'light') {
 function toggleTheme() {
     document.documentElement.classList.toggle('light-mode');
     const theme = document.documentElement.classList.contains('light-mode') ? 'light' : 'dark';
-    const playBtn = document.querySelectorAll(".play-audio");
-    playBtn.forEach(el => {
-      el.classList.toggle('light-mode');
-    });
     localStorage.setItem('theme', theme);
 }
 

@@ -318,8 +318,8 @@ function updateDisplayedVerse() {
             <h3>${currentVerse}</h3>
 
             <div class="verse-group versePos-${surah.versets[verseIndex].position_ds_sourate - 1}">
-                <p class="current-verse verse-text-ar verse-text-hafs"><button class="hover-cursor-event play-audio" onclick="playSong(this)"></button> ${current.verse.text_hafs}</p>
-                <p class="current-verse verse-text-ar verse-text-warsh"><button class="hover-cursor-event play-audio" onclick="playSong(this)"></button> ${current.verse.text_warsh}</p>
+                <p class="current-verse verse-text-ar verse-text-hafs"><button class="hover-cursor-event play-audio" onclick="playSong(this)">🔊</button> ${current.verse.text_hafs}</p>
+                <p class="current-verse verse-text-ar verse-text-warsh"><button class="hover-cursor-event play-audio" onclick="playSong(this)">🔊</button> ${current.verse.text_warsh}</p>
                 <p class="verse-translation verse-text-en"><em>${current.verse.text_en}</em></p>
                 <p class="verse-translation verse-text-fr"><em>${current.verse.text}</em></p>
             </div>
@@ -355,8 +355,8 @@ function showAnswer() {
             <h3>${currentVerse}</h3>
 
             <div id="current-verse" class="verse-group versePos-${surah.versets[verseIndex].position_ds_sourate - 1}">
-                <p class="current-verse verse-text-ar verse-text-hafs"><button class="hover-cursor-event play-audio" onclick="playSong(this)"></button> ${verseIndex + 1} - ${surah.versets[verseIndex].text_hafs}</p>
-                <p class="current-verse verse-text-ar verse-text-warsh"><button class="hover-cursor-event play-audio" onclick="playSong(this)"></button> ${verseIndex + 1} - ${surah.versets[verseIndex].text_warsh}</p>
+                <p class="current-verse verse-text-ar verse-text-hafs"><button class="hover-cursor-event play-audio" onclick="playSong(this)">🔊</button> ${verseIndex + 1} - ${surah.versets[verseIndex].text_hafs}</p>
+                <p class="current-verse verse-text-ar verse-text-warsh"><button class="hover-cursor-event play-audio" onclick="playSong(this)">🔊</button> ${verseIndex + 1} - ${surah.versets[verseIndex].text_warsh}</p>
                 <p class="verse-translation verse-text-en"><em>${surah.versets[verseIndex].text_en}</em></p>
                 <p class="verse-translation verse-text-fr"><em>${surah.versets[verseIndex].text}</em></p>
             </div>
@@ -370,8 +370,8 @@ function showAnswer() {
                 nextVerses.push(`
                     <div class="verse-group current-verse-color-change versePos-${surah.versets[i - 1].position_ds_sourate - 1}">
                         <div id="verse-${i}" class="offset-anchor"></div>
-                        <p class="verse-text-ar verse-text-hafs"><button class="hover-cursor-event play-audio" onclick="playSong(this)"></button> ${i} - ${surah.versets[i - 1].text_hafs}</p>
-                        <p class="verse-text-ar verse-text-warsh"><button class="hover-cursor-event play-audio" onclick="playSong(this)"></button> ${i} - ${surah.versets[i - 1].text_warsh}</p>
+                        <p class="verse-text-ar verse-text-hafs"><button class="hover-cursor-event play-audio" onclick="playSong(this)">🔊</button> ${i} - ${surah.versets[i - 1].text_hafs}</p>
+                        <p class="verse-text-ar verse-text-warsh"><button class="hover-cursor-event play-audio" onclick="playSong(this)">🔊</button> ${i} - ${surah.versets[i - 1].text_warsh}</p>
                         <p class="verse-translation verse-text-en"><em>${surah.versets[i - 1].text_en}</em></p>
                         <p class="verse-translation verse-text-fr"><em>${surah.versets[i - 1].text}</em></p>
                     </div>
@@ -380,8 +380,8 @@ function showAnswer() {
                 nextVerses.push(`
                     <div class="verse-group versePos-${surah.versets[i - 1].position_ds_sourate - 1}">
                         <div id="verse-${i}" class="offset-anchor"></div>
-                        <p class="verse-text-ar verse-text-hafs"><button class="hover-cursor-event play-audio" onclick="playSong(this)"></button> ${i} - ${surah.versets[i - 1].text_hafs}</p>
-                        <p class="verse-text-ar verse-text-warsh"><button class="hover-cursor-event play-audio" onclick="playSong(this)"></button> ${i} - ${surah.versets[i - 1].text_warsh}</p>
+                        <p class="verse-text-ar verse-text-hafs"><button class="hover-cursor-event play-audio" onclick="playSong(this)">🔊</button> ${i} - ${surah.versets[i - 1].text_hafs}</p>
+                        <p class="verse-text-ar verse-text-warsh"><button class="hover-cursor-event play-audio" onclick="playSong(this)">🔊</button> ${i} - ${surah.versets[i - 1].text_warsh}</p>
                         <p class="verse-translation verse-text-en"><em>${surah.versets[i - 1].text_en}</em></p>
                         <p class="verse-translation verse-text-fr"><em>${surah.versets[i - 1].text}</em></p>
                     </div>
@@ -502,11 +502,11 @@ function playSong(button) {
         currentAudio = new Audio(newSource);
         currentSource = newSource;
         currentAudio.play();
-        button.style.backgroundImage = 'url("/static/assets/icon/volumeDown.svg")';
+        button.innerHTML = "🔇";
         currentAudio.addEventListener('ended', () => {
             currentAudio = null;
             currentSource = '';
-            button.style.backgroundImage = 'url("/static/assets/icon/volumeUp.svg")';
+            button.innerHTML = "🔊";
         });
     } else if (currentSource !== newSource) {
         currentAudio.pause();
@@ -515,19 +515,19 @@ function playSong(button) {
         currentSource = newSource;
         currentAudio.play();
         document.querySelectorAll('.play-audio').forEach(el => {
-            el.style.backgroundImage = 'url("/static/assets/icon/volumeUp.svg")';
+            el.innerHTML = "🔊";
         })
-        button.style.backgroundImage = 'url("/static/assets/icon/volumeDown.svg")';
+        button.innerHTML = "🔇";
         currentAudio.addEventListener('ended', () => {
             currentAudio = null;
             currentSource = '';
-            button.style.backgroundImage = 'url("/static/assets/icon/volumeUp.svg")';
+            button.innerHTML = "🔊";
         });
     } else {
         if (currentAudio.paused) {
             currentAudio.play();
         } else {
-            button.style.backgroundImage = 'url("/static/assets/icon/volumeUp.svg")';
+            button.innerHTML = "🔊";
             currentAudio.pause();
             currentAudio.currentTime = 0;
             currentAudio = null;
