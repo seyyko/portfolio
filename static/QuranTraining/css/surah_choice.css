@@ -130,7 +130,7 @@ body{
 .play-audio{
     font-size: xx-large;
     background-color: transparent;
-    margin-left: 40px;
+    margin-left: 1vw;
     &:active{
         background-color: transparent;
     }
