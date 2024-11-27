@@ -37,11 +37,12 @@ function updateParallax() {
 }
 
 document.addEventListener('mousemove', (e) => {
-  mouseX = e.pageX;
-  mouseY = e.pageY;
+  mouseX = e.clientX;
+  mouseY = e.clientY;
 
   updateParallax();
 });
+
 
 let isScrolling = false;
 
