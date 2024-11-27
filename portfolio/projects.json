@@ -8,7 +8,7 @@
                     "url": "quran_app.home",
                     "description": "A web application to help with memorizing Quran verses.",
                     "technologies": ["Flask", "Python", "HTML", "CSS"],
-                    "status": "In Progress"
+                    "status": "Completed"
                 },
                 {
                     "name": "Portfolio",
