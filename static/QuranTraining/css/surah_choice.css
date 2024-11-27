@@ -157,7 +157,7 @@ body{
     flex: 7;
     display: flex; flex-direction: column;
     align-items: center; justify-content: center;
-    font-size: clamp(12px, 2vw, 14px);
+    font-size: clamp(10px, 2vw, 16px);
     select {
         background-color: var(--background-secondary);
         color: var(--text-color);
@@ -295,9 +295,12 @@ body{
     width: 70px; height: 70px;
 
     border-radius: 50%;
-    background-color: var(--background-secondary);
+    background-color: var(--alt-bg);
+    color: var(--background-primary);
     font-size: xx-large; font-weight: bold;
     font-family: 'Harmattan';
+
+    z-index: 1;
     
     display: flex;
     justify-content: center; align-items: center;

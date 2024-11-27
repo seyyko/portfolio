@@ -6,7 +6,7 @@
     <form method="POST" class="surah-form">
         <div id="surah-container" class="scroll-cursor-event">
             {% for surah in surahs %}
-                <label class="surah-btn hover-cursor-event">
+                <label class="surah-btn hover-cursor-event prevent-from-select">
                     <input class="surah-checkbox" type="checkbox" name="surah" value="{{ surah }}" onclick="changeBtnBg(this)">
                     <div class="surah-name">
                         <p class="surah-name-index">{{ loop.index }}.</p>
@@ -61,7 +61,7 @@
                     </div>
                 </div>
                 <div class="reciter-container">
-                    <label for="reciter">Choose a reciter:</label>
+                    <p>{{ _('Choose a reciter :') }}</p>
                     <select name="reciter" id="reciter" onchange="saveReciter()">
                         <option value="abdulbasitmurattal">Abdul Basit Murattal</option>
                         <option value="abdullahbasfar">Abdullah Basfar</option>
@@ -109,5 +109,41 @@
 </section>
 
 <a class="scroll-up hover-cursor-event uppercase prevent-from-select" href="#verse-display">↑</a>
+
+<section id="features">
+    <h1>{{ _('Features') }}</h1>
+    <div class="features-container">
+      <div class="feature-card hover-cursor-event">
+        <h3>{{ _('Language Translation') }}</h3>
+        <p>{{ _('Switch between English and French using Flask-Babel for a localized experience.') }}</p>
+      </div>
+  
+      <div class="feature-card hover-cursor-event">
+        <h3>{{ _('Keyboard Shortcuts') }}</h3>
+        <p>{{ _('Use shortcuts like <b>Escape</b> to toggle the menu or <b>Arrow keys</b> to navigate between verses.') }}</p>
+      </div>
+  
+      <div class="feature-card hover-cursor-event">
+        <h3>{{ _('Dark / Light Theme') }}</h3>
+        <p>{{ _('Switch between dark and light themes for comfortable reading.') }}</p>
+      </div>
+  
+      <div class="feature-card hover-cursor-event">
+        <h3>{{ _('Choose Random Part') }}</h3>
+        <p>{{ _('Start reading from the beginning, middle, or end of a surah randomly.') }}</p>
+      </div>
+  
+      <div class="feature-card hover-cursor-event">
+        <h3>{{ _('Choose Reciter') }}</h3>
+        <p>{{ _('Change the reciter to listen to your preferred voice.') }}</p>
+      </div>
+  
+      <div class="feature-card hover-cursor-event">
+        <h3>{{ _('Hafs/Warsh Text Variation') }}</h3>
+        <p>{{ _('Switch between Hafs and Warsh to view different text variations of the Quran.') }}</p>
+    </div>    
+    </div>
+  </section>
+  
 
 {% endblock %}

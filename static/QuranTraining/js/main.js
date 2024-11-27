@@ -1,5 +1,3 @@
-// constant nightmares - aka the stuff we have to deal with.
-
 const navBar = document.getElementById('navbar');
 const menuBtn = document.querySelector('.menu');
 const upperLayer = document.querySelector('.upper-layer');
@@ -13,8 +11,6 @@ const currentCursor = document.querySelector('.currentCursor');
 const hoverElements = document.querySelectorAll('.hover-cursor-event');
 const scrollElements = document.querySelectorAll('.scroll-cursor-event');
 
-
-// all cursor-related stuff
 let mouseX = 0, mouseY = 0;
 let trackerX = 0, trackerY = 0;
 
@@ -28,19 +24,18 @@ function updateCursor() {
   requestAnimationFrame(updateCursor);
 }
 
-
-// a boring parallax trick
 function updateParallax() {
-  const x = (window.innerWidth - mouseX) / 100;
-  const y = (window.innerHeight - mouseY) / 100;
+  if (window.innerWidth > 750) {
+    const x = (window.innerWidth - mouseX) / 100;
+    const y = (window.innerHeight - mouseY) / 100;
 
-  circles.forEach((circle, index) => {
-    const speed = index + 2;
-    circle.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
-  });
+    circles.forEach((circle, index) => {
+      const speed = index + 2;
+      circle.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
+    });
+  }
 }
 
-// Listen to every move the user makes. Because we're attentive like that.
 document.addEventListener('mousemove', (e) => {
   mouseX = e.pageX;
   mouseY = e.pageY;
@@ -48,8 +43,6 @@ document.addEventListener('mousemove', (e) => {
   updateParallax();
 });
 
-
-// finally, some good interaction with the user
 let isScrolling = false;
 
 hoverElements.forEach((element) => {
@@ -103,8 +96,6 @@ function attachHoverEvents() {
 
 requestAnimationFrame(updateCursor);
 
-
-// theme-related crap
 const currentTheme = localStorage.getItem('theme');
 
 function changeMenuBg(color) {
@@ -118,8 +109,6 @@ document.addEventListener('keydown', function(event) {
     }
 });
 
-
-// close your eyes till line 102, to keep your sanity.
 function toggleMenu() {
     if (menuBtn.classList.contains('menu-opened')) {
         menuBtn.classList.remove('menu-opened');

@@ -19,7 +19,7 @@ for surah in quran["sourates"]:
 
 @quran_app.route('/', methods=["GET", "POST"])
 def home():
-    return render_template('home.html', title='Home', surahs=surahs)
+    return render_template('home.html', surahs=surahs)
 
 
 @quran_app.route('/submit-surahs', methods=['POST'])
@@ -32,7 +32,3 @@ def submit_surahs():
                 selected_surahs[j] = quran["sourates"][i]
     
     return jsonify({'message': 'Data received and saved successfully', 'selected_surahs': selected_surahs}), 200
-
-@quran_app.route('/about')
-def about():
-    return render_template('about.html', title='About')
