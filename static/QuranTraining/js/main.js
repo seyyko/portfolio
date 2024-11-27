@@ -144,9 +144,9 @@ function toggleTheme() {
 
 
 function deleteUserData() {
-    if (confirm("Are you sure you want to delete all your data? This action cannot be undone.")) {
+    if (confirm(gettext("Are you sure you want to delete all your data? This action cannot be undone."))) {
         localStorage.clear();
-        alert("All your data has been deleted.");
+        alert(gettext("All your data has been deleted."));
         location.reload();
     }
 }
