@@ -448,6 +448,37 @@ header{
     top: var(--y);
 }
 
+footer {
+    z-index: 1;
+    padding: 20px;
+    position: relative;
+    background-color: var(--background-tertiary);
+}
+
+.footer-content {
+    padding-block: 20px;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    font-family: 'Montserrat';
+    font-weight: 100;
+    ul {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    li{
+        margin: 20px;
+        a{
+            width: 100%; height: 100%;
+        }
+    }
+}
+
+.footer-link{
+    font-weight: 400;
+
+}
+  
+
 @media (max-width: 768px) {
     *, body{
         cursor: default;
