@@ -1,19 +1,30 @@
-const navBar = document.getElementById('navbar');
+// theme
+const currentTheme = localStorage.getItem('theme');
+// cursor
+const tracker = document.querySelector('.tracker');
+const currentCursor = document.querySelector('.currentCursor');
+// navbar
+const navbar = document.getElementById('navbar');
 const menuBtn = document.querySelector('.menu');
 const upperLayer = document.querySelector('.upper-layer');
 const lowerLayer = document.querySelector('.lower-layer');
-
+// header
 const floatingMenu = document.querySelector('.floating-menu');
 const circles = document.querySelectorAll('.circle');
 
-const tracker = document.querySelector('.tracker');
-const currentCursor = document.querySelector('.currentCursor');
-const hoverElements = document.querySelectorAll('.hover-cursor-event');
-const scrollElements = document.querySelectorAll('.scroll-cursor-event');
 
-let mouseX = 0, mouseY = 0;
-let trackerX = 0, trackerY = 0;
+let mouseX = 0, 
+    mouseY = 0, 
+  trackerX = 0, 
+  trackerY = 0;
+let isScrolling = false;
 
+
+// Utility functions
+
+/**
+ * Updates custom cursor position.
+ */
 function updateCursor() {
   trackerX += (mouseX - trackerX) * 0.2;
   trackerY += (mouseY - trackerY) * 0.2;
@@ -24,119 +35,139 @@ function updateCursor() {
   requestAnimationFrame(updateCursor);
 }
 
+/**
+ * Updates the parallax effect on circles (header).
+ */
 function updateParallax() {
-  if (window.innerWidth > 750) {
-    const x = (window.innerWidth - mouseX) / 100;
-    const y = (window.innerHeight - mouseY) / 100;
-
-    circles.forEach((circle, index) => {
-      const speed = index + 2;
-      circle.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
-    });
+  if (window.innerWidth < 768) { // No parallax effect on mobile.
+    return
   }
-}
+  const x = (window.innerWidth - mouseX) / 100;
+  const y = (window.innerHeight - mouseY) / 100;
 
-document.addEventListener('mousemove', (e) => {
-  mouseX = e.clientX;
-  mouseY = e.clientY;
-
-  updateParallax();
-});
-
-
-let isScrolling = false;
-
-hoverElements.forEach((element) => {
-  element.addEventListener('mouseenter', () => {
-    isScrolling = currentCursor.classList.contains('scroll-state');
-    currentCursor.classList.remove('scroll-state');
-    currentCursor.classList.add('hovering');
-  });
-
-  element.addEventListener('mouseleave', () => {
-    currentCursor.classList.remove('hovering');
-    if (isScrolling) {
-      currentCursor.classList.add('scroll-state');
-    }
-  });
-});
-
-scrollElements.forEach((element) => {
-  element.addEventListener('mouseenter', () => {
-    if (!currentCursor.classList.contains('hovering')) {
-      currentCursor.classList.add('scroll-state');
-    }
-    isScrolling = true;
-  });
-
-  element.addEventListener('mouseleave', () => {
-    currentCursor.classList.remove('scroll-state');
-    isScrolling = false;
-  });
-});
-
-function attachHoverEvents() {
-  const hoverElements = document.querySelectorAll('.hover-cursor-event');
-
-  hoverElements.forEach((element) => {
-      element.addEventListener('mouseenter', () => {
-          isScrolling = currentCursor.classList.contains('scroll-state');
-          currentCursor.classList.remove('scroll-state');
-          currentCursor.classList.add('hovering');
-      });
-
-      element.addEventListener('mouseleave', () => {
-          currentCursor.classList.remove('hovering');
-          if (isScrolling) {
-              currentCursor.classList.add('scroll-state');
-          }
-      });
+  circles.forEach((circle, index) => {
+    const speed = index + 2; // Each circle has its own speed.
+    circle.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
   });
 }
 
-
-requestAnimationFrame(updateCursor);
-
-const currentTheme = localStorage.getItem('theme');
-
-function changeMenuBg(color) {
+/**
+ * Changes the color of the menu logo.
+ * @param {string} color - css color.
+ */
+function changeMenuLogoColor(color) {
     upperLayer.style.background = color;
     lowerLayer.style.background = color;
 }
 
-document.addEventListener('keydown', function(event) {
-    if (event.key === 'Escape') {
-        toggleMenu();
-    }
-});
-
+/**
+ * Switch the state of the navbar.
+ */
 function toggleMenu() {
-    if (menuBtn.classList.contains('menu-opened')) {
-        menuBtn.classList.remove('menu-opened');
-        changeMenuBg("var(--background-tertiary)");
-        navBar.style.transform = "translateY(calc(-100vh + 80px))";
-    } else{
-        menuBtn.classList.add('menu-opened');
-        changeMenuBg("var(--menu-close-color)");
-        navBar.style.transform = "translateY(-20vh)";
-    }
+  const isOpened = menuBtn.classList.toggle('opened-menu');
+  const color = isOpened ? "var(--menu-close-color)" : "var(--background-tertiary)";
+  const transform = isOpened ? "translateY(-20vh)" : "translateY(calc(-100vh + 80px))";
+
+  changeMenuLogoColor(color);
+  navbar.style.transform = transform;
 }
 
-if (currentTheme === 'light') {
-    document.documentElement.classList.add('light-mode');
-}
-
+/**
+ * Switch the theme (light/dark).
+ */
 function toggleTheme() {
     document.documentElement.classList.toggle('light-mode');
     const theme = document.documentElement.classList.contains('light-mode') ? 'light' : 'dark';
     localStorage.setItem('theme', theme);
 }
 
-
+/**
+ * Deletes all user data (localStorage).
+ */
 function deleteUserData() {
-    if (confirm(gettext("Are you sure you want to delete all your data? This action cannot be undone."))) {
-        localStorage.clear();
-        alert(gettext("All your data has been deleted."));
-        location.reload();
-    }
+  const confirmationMessage = gettext("Are you sure you want to delete all your data? This action cannot be undone.");
+  const successMessage = gettext("All your data has been deleted.");
+
+  if (confirm(confirmationMessage)) {
+    localStorage.clear();
+    alert(successMessage);
+    location.reload();
+  }
 }
+
+/**
+ * Attaches "mouseenter" and "mouseleave" events to the given elements.
+ */
+function attachCursorEvents() {
+  const hoverElements = document.querySelectorAll('.hover-cursor-event');
+  const scrollElements = document.querySelectorAll('.scroll-cursor-event');
+  
+  hoverElements.forEach((element) => {
+      element.addEventListener('mouseenter', handleHoverEnter);
+      element.addEventListener('mouseleave', handleHoverLeave);
+  });
+  scrollElements.forEach((element) => {
+    element.addEventListener('mouseenter', handleScrollEnter);
+    element.addEventListener('mouseleave', handleScrollLeave);
+});
+}
+
+// Handlers for hoverable elements
+function handleHoverEnter() {
+  isScrolling = currentCursor.classList.contains('scroll-state');
+  currentCursor.classList.remove('scroll-state');
+  currentCursor.classList.add('hovering');
+}
+function handleHoverLeave() {
+  currentCursor.classList.remove('hovering');
+  if (isScrolling) {
+      currentCursor.classList.add('scroll-state');
+  }
+}
+
+// Handlers for scrollable elements
+function handleScrollEnter() {
+  if (!currentCursor.classList.contains('hovering')) {
+      currentCursor.classList.add('scroll-state');
+  }
+  isScrolling = true;
+}
+function handleScrollLeave() {
+  currentCursor.classList.remove('scroll-state');
+  isScrolling = false;
+}
+
+/**
+* Tracks mouse position and triggers the parallax update.
+* 
+* @param {MouseEvent} event - The mousemove event.
+*/
+function handleMouseMove(event) {
+  mouseX = event.clientX;
+  mouseY = event.clientY;
+
+  updateParallax();
+}
+
+/**
+* Handles key press events. Toggles the menu when "Escape" is pressed.
+* 
+* @param {KeyboardEvent} event - The keydown event.
+*/
+function handleKeyPress(event) {
+  if (event.key === 'Escape') {
+      toggleMenu();
+  }
+}
+
+//Handles global events for mouse movement and key presses.
+function initializeGlobalEventListeners() {
+  document.addEventListener('mousemove', handleMouseMove);
+  document.addEventListener('keydown', handleKeyPress);
+}
+
+attachCursorEvents();
+requestAnimationFrame(updateCursor);
+initializeGlobalEventListeners();
+
+if (currentTheme === 'light') document.documentElement.classList.add('light-mode');

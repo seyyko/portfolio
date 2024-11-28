@@ -159,7 +159,6 @@ button:active{
 }
 
 #features {
-  margin-top: -400px;
   padding: 20px;
   padding-bottom: 100px;
   background-color: var(--background-secondary);

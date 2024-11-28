@@ -45,18 +45,18 @@
     <nav id="navbar">
         <div class="navbg"></div>
         <div class="floating-menu">
-            <div class="preferences">
-                <div id="toggle-theme" class="menu-btn hover-cursor-event prevent-from-select" onclick="toggleTheme()">{{ _('Toggle Dark/Light Theme') }}</div>
-                <div id="del-data" class="menu-btn hover-cursor-event prevent-from-select" onclick="deleteUserData()">{{ _('Delete your data') }}</div>
+            <div class="navbar-preferences">
+                <button id="toggle-theme" class="menu-btn hover-cursor-event prevent-from-select" onclick="toggleTheme()">{{ _('Toggle Dark/Light Theme') }}</button>
+                <button id="del-data" class="menu-btn hover-cursor-event prevent-from-select" onclick="deleteUserData()">{{ _('Delete your data') }}</button>
             </div>
         </div>
         <ul class="navlist">
             <li class="logo prevent-from-select">
-                <a href="{{ url_for('quran_app.home') }}" class="logo-content hover-cursor-event">Quran TraininG</a>
+                <a href="{{ url_for('quran_app.home') }}" class="hover-cursor-event">Quran TraininG</a>
             </li>
             <ul class="sublist">
                 <li class="features">
-                    <a href="{{ url_for('quran_app.home') }}#features" class="features-content uppercase underline-hover-animation hover-cursor-event">{{ _('Features') }}</a>
+                    <a href="{{ url_for('quran_app.home') }}#features" class="uppercase underline-hover-animation hover-cursor-event">{{ _('Features') }}</a>
                 </li>
                 <li class="menu">
                     <div class="menu-logo hover-cursor-event" onclick="toggleMenu()">
@@ -68,8 +68,8 @@
         </ul>
     </nav>
 
-    <header>
-        <div class="bg">
+    <header id="header">
+        <div class="header-bg">
             <div class="circles">
                 <h1 class="header-text fadein-ltr prevent-from-select">السلام عليكم ورحمة الله وبركاته</h1>
                 <div class="circle c1"></div>
@@ -84,8 +84,8 @@
         {% endblock %}
     </main>
 
-    <footer>
-        <div class="footer-content">
+    <footer id="footer">
+        <div class="footer-container">
             <ul>
                 <li><a href="https://github.com/seyyko" class="hover-cursor-event footer-link" target="_blank">GitHub</a></li>
                 <li><a href="mailto:hchamrouk.pro@gmail.com" class="hover-cursor-event footer-link">Email</a></li>
@@ -94,10 +94,10 @@
         </div>
     </footer>
 
-    <script src="{{ url_for('static', filename='QuranTraining/js/main.js') }}"></script>
-    <script src="{{ url_for('static', filename='QuranTraining/js/surah_choice.js') }}"></script>
-
-    <script>
+    <script src="{{ url_for('static', filename='QuranTraining/js/main.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='QuranTraining/js/surah_choice.js') }}" defer></script>
+    <script defer>
+        // translate text with flask-babel
         var gettext = function(msgid) {
             var translations = {
                 "Click and Select Surahs to Memorize": "{{ _('Click and Select Surahs to Memorize') }}",
@@ -129,5 +129,6 @@
             return translations[msgid] || msgid;
         };
     </script>
+    
 </body>
 </html>
