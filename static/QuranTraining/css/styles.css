@@ -159,6 +159,8 @@ a{
 
     background-color: var(--cursor-middle-color);
 
+    opacity: .6;
+
     transition: width .2s ease, height .2s ease;
 }
 
