@@ -91,6 +91,9 @@ a{
 }
 
 /* css 'functions' */
+.cinzelDecorative{
+    font-family: 'Cinzel Decorative';
+}
 .uppercase{
     text-transform: uppercase;
 }
@@ -326,8 +329,6 @@ a{
     display: flex;
     justify-content: center; align-items: center;
 
-    font-family: 'Cinzel Decorative';
-    font-weight: 100;
     font-size: clamp(12px, 4vw, 120px);
 
     border-radius: 15px;

@@ -1,0 +1,78 @@
+/* <div id="loading-screen cinzelDecorative">
+        <div class="first-text">
+            <h1 class="first-letter">Q</h1>
+            <h1 class="next-letters">uran</h1>
+        </div>
+        <div class="second-text">
+            <h1 class="first-letter">T</h1>
+            <h1 class="next-letters">raininG</h1>
+        </div>
+    </div> */
+
+
+@keyframes slideToShowAll {
+    from{
+        transform: translateX(-300px) scaleX(0);
+    }
+    to{
+        transform: translateX(0px) scaleX(1);
+    }
+}
+
+#loading-screen{
+    --pseudo-content-width: 400px;
+    --first-letter-width: 45px;
+
+    width: 100%; height: 100vh;
+    position: fixed;
+    background-color: var(--background-primary);
+    z-index: 99999;
+    opacity: 1; visibility: visible;
+
+    display: flex;
+    align-items: center;
+
+    font-size: xx-large;
+}
+.ls-text-container{
+    width: 100%; height: 40%;
+    display: flex;
+    justify-content: center; align-items: center;
+    flex-wrap: wrap;
+}
+.first-text, .second-text{
+    height: 80px;
+    display: flex;
+    justify-content: center; align-items: center;
+    position: relative;
+    &::after{
+        content: '';
+        width: var(--pseudo-content-width); height: 100%;
+        background-color: var(--background-primary);
+        position: absolute;
+        left: calc(var(--first-letter-width) - var(--pseudo-content-width));
+        z-index: -1;
+    }
+}
+.first-text{
+    margin-right: 20px;
+    z-index: 2;
+}
+.second-text{
+    z-index: 1;
+}
+.first-letter{
+    /* background-color: red; */
+    width: var(--first-letter-width);
+    display: flex;
+    justify-content: center; align-items: center;
+}
+/* .first-text .first-letter{
+    transform: translateX(350%);
+} */
+.next-letters{
+    /* background-color: blue; */
+    z-index: -2;
+    transform: translateX(-300px);
+    animation: slideToShowAll 1s ease-in-out forwards;
+}

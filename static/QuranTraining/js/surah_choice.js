@@ -1,55 +1,62 @@
-// Function to send data to Flask for compression
-function storeCompressedData(key, data) {
-    // If data is an object or an array, convert it to JSON
-    const dataToSend = typeof data === 'string' ? data : JSON.stringify(data);
+const compressionWorker = new Worker('/static/QuranTraining/js/compressionWorker.js');
 
-    fetch('compress', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ data: dataToSend })
-    })
-    .then(response => response.json())
-    .then(result => {
-        if (result.result) {
-            console.log("Compression complete !");
-            localStorage.setItem(key, result.result);
-        } else {
-            console.error('Compression error:', result.error);
+function storeCompressedData(key, data) {
+    compressionWorker.postMessage({ action: 'compress', key, data });
+    compressionWorker.onmessage = function (e) {
+        if (e.data.key === key) {
+            if (e.data.result) {
+                console.log("Compression complete !");
+                localStorage.setItem(key, e.data.result);
+            } else {
+                console.error('Compression error:', e.data.error);
+            }
         }
-    })
-    .catch(error => {
-        console.error('Error sending to Flask:', error);
-    });
+    };
 }
 
-// Function to send data to Flask for decompression
 function getDecompressedData(key, callback) {
     const compressedData = localStorage.getItem(key);
 
-    fetch('decompress', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ data: compressedData })
-    })
-    .then(response => response.json())
-    .then(result => {
-        if (result.result) {
-            callback(result.result);
-        } else {
-            console.error('Compression error:', result.error);
-            callback(null);
+    if (!compressedData) {
+        stopLoading(); 
+        console.log("nothing to decompress !");
+        return;
+    }
+
+    compressionWorker.postMessage({ action: 'decompress', key, data: compressedData });
+    compressionWorker.onmessage = function (e) {
+        if (e.data.key === key) {
+            if (e.data.result) {
+                console.log("Decompression complete !");
+                stopLoading();
+                callback(e.data.result);
+            } else {
+                console.error('Decompression error:', e.data.error);
+                callback(null);
+            }
         }
-    })
-    .catch(error => {
-        console.error('Error sending to Flask:', error);
-        callback(null);
-    });
+    };
 }
 
+function stopLoading() {
+    document.getElementById('loading-screen').style.display = "none";
+}
+
+function getLocalStorageSize() {
+    let totalSize = 0;
+
+    for (let key in localStorage) {
+        if (localStorage.hasOwnProperty(key)) {
+            const value = localStorage[key];
+            totalSize += key.length + value.length;
+        }
+    }
+
+    console.log(`The total size of localStorage is approximately ${totalSize} bytes.`);
+    return totalSize;
+}
+
+getLocalStorageSize();
 
 // surah selection
 const surahContainer = document.getElementById('surah');
@@ -71,24 +78,8 @@ let currentValue = parseInt(localStorage.getItem("verse_position")) || 0;
 let selectedSurahsDict;
 
 getDecompressedData('selected_surahs_dict', (result) => {
-    let selectedSurahsDict = result;
+    selectedSurahsDict = result;
 });
-
-function getLocalStorageSize() {
-    let totalSize = 0;
-
-    for (let key in localStorage) {
-        if (localStorage.hasOwnProperty(key)) {
-            const value = localStorage[key];
-            totalSize += key.length + value.length;
-        }
-    }
-
-    console.log(`The total size of localStorage is about ${totalSize} bytes.`);
-    return totalSize;
-}
-getLocalStorageSize();
-// console.log(localStorage.getItem('selected_surahs_dict'));
 
 let history = [];
 let currentIndex = -1;

@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Harmattan:wght@400;500;600;700&family=Montserrat:wght@100..900&family=Tajawal:wght@200;300;400;500;700;800;900&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="{{ url_for('static', filename='QuranTraining/css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='QuranTraining/css/loading_screen.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='QuranTraining/css/home.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='QuranTraining/css/surah_choice.css') }}">
 
@@ -40,6 +41,23 @@
 </head>
 <body>
 
+    <section id="loading-screen" class="cinzelDecorative">
+        <div class="ls-text-container">
+            <div class="first-text">
+                <h1 class="first-letter">Q</h1>
+                <h1 class="next-letters">uran</h1>
+            </div>
+            <div class="second-text">
+                <h1 class="first-letter">T</h1>
+                <h1 class="next-letters">raininG</h1>
+            </div>
+        </div>
+    </section>
+
+    <section id="notify-user">
+        
+    </section>
+
     <div class="cursor">
         <div class="tracker"></div>
         <div class="currentCursor"></div>
@@ -55,7 +73,7 @@
         </div>
         <ul class="navlist">
             <li class="logo prevent-from-select">
-                <a href="{{ url_for('quran_app.home') }}" class="hover-cursor-event">Quran TraininG</a>
+                <a href="{{ url_for('quran_app.home') }}" class="hover-cursor-event cinzelDecorative">Quran TraininG</a>
             </li>
             <ul class="sublist">
                 <li class="features">
@@ -74,7 +92,7 @@
     <header id="header">
         <div class="header-bg">
             <div class="circles">
-                <h1 class="header-text fadein-ltr prevent-from-select">السلام عليكم ورحمة الله وبركاته</h1>
+                <h1 class="header-text fadein-ltr prevent-from-select cinzelDecorative">السلام عليكم ورحمة الله وبركاته</h1>
                 <div class="circle c1"></div>
                 <div class="circle c2"></div>
                 <div class="circle c3"></div>
