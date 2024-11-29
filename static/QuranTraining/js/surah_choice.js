@@ -75,6 +75,23 @@ getDecompressedData('selected_surahs_dict', (result) => {
     selectedSurahsDict = result || [];
 });
 
+function getLocalStorageSize() {
+    let totalSize = 0;
+
+    for (let key in localStorage) {
+        if (localStorage.hasOwnProperty(key)) {
+            const value = localStorage[key];
+            totalSize += key.length + value.length;
+        }
+    }
+
+    console.log(`La taille totale de localStorage est d'environ ${totalSize} octets.`);
+    return totalSize;
+}
+
+getLocalStorageSize();
+
+
 console.log(selectedSurahsDict);
 console.log(localStorage.getItem('selected_surahs_dict'));
 
