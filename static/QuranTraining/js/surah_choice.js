@@ -8,7 +8,7 @@ function storeCompressedData(key, data) {
             if (e.data.result) {
                 localStorage.setItem(key, e.data.result);
             } else {
-                console.error('Erreur de compression:', e.data.error);
+                // console.error('Erreur de compression:', e.data.error);
             }
         }
     };
@@ -24,7 +24,7 @@ function getDecompressedData(key, callback) {
             if (e.data.result) {
                 callback(e.data.result);
             } else {
-                console.error('Erreur de décompression:', e.data.error);
+                // console.error('Erreur de décompression:', e.data.error);
                 callback(null);
             }
         }
