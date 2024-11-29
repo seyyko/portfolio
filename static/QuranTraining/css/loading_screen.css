@@ -9,6 +9,9 @@
         </div>
     </div> */
 
+body.block-scroll {
+    overflow: hidden;
+}
 
 @keyframes slideToShowAll {
     from{
@@ -16,6 +19,20 @@
     }
     to{
         transform: translateX(0px) scaleX(1);
+    }
+}
+
+@keyframes disapear {
+    0%{
+        visibility: visible;
+        opacity: 1;
+    }
+    99%{
+        visibility: visible;
+    }
+    100%{
+        visibility: hidden;
+        opacity: 0;
     }
 }
 
@@ -33,6 +50,8 @@
     align-items: center;
 
     font-size: xx-large;
+
+    animation: disapear 1s 2s forwards;
 }
 .ls-text-container{
     width: 100%; height: 40%;
@@ -74,5 +93,5 @@
     /* background-color: blue; */
     z-index: -2;
     transform: translateX(-300px);
-    animation: slideToShowAll 1s ease-in-out forwards;
+    animation: slideToShowAll 2s ease-in-out forwards;
 }

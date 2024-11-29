@@ -1,53 +1,25 @@
-const compressionWorker = new Worker('/static/QuranTraining/js/compressionWorker.js');
 
-function storeCompressedData(key, data) {
-    compressionWorker.postMessage({ action: 'compress', key, data });
-    compressionWorker.onmessage = function (e) {
-        if (e.data.key === key) {
-            if (e.data.result) {
-                console.log("Compression complete !");
-                localStorage.setItem(key, e.data.result);
-            } else {
-                console.error('Compression error:', e.data.error);
-            }
-        }
-    };
+function storeDataDirectly(key, data) {
+    storeData(key, data)
+        .then(() => console.log(`Data for ${key} stored in IndexedDB.`))
+        .catch((error) => console.error('Error storing data in IndexedDB:', error));
 }
 
-function getDecompressedData(key, callback) {
-    const compressedData = localStorage.getItem(key);
-
-    if (!compressedData) {
-        stopLoading(); 
-        console.log("nothing to decompress !");
-        return;
-    }
-
-    compressionWorker.postMessage({ action: 'decompress', key, data: compressedData });
-    compressionWorker.onmessage = function (e) {
-        if (e.data.key === key) {
-            if (e.data.result) {
-                console.log("Decompression complete !");
-                stopLoading();
-                activate();
-                callback(e.data.result);
-            } else {
-                console.error('Decompression error:', e.data.error);
+function getDataDirectly(key, callback) {
+    getData(key)
+        .then((data) => {
+            if (!data) {
+                console.log("No data found in IndexedDB.");
                 callback(null);
+                return;
             }
-        }
-    };
-}
-
-function stopLoading() {
-    document.getElementById('loading-screen').style.display = "none";
-}
-
-function activate() {
-    document.querySelector('.next-verse').disabled = false
-}
-function disable() {
-    document.querySelector('.next-verse').disabled = true;
+            console.log("Data retrieval complete!");
+            callback(data);
+        })
+        .catch((error) => {
+            console.error('Error retrieving data from IndexedDB:', error);
+            callback(null);
+        });
 }
 
 function getLocalStorageSize() {
@@ -83,10 +55,11 @@ const scrollUpButton = document.querySelector('.scroll-up');
 const targetDiv = document.querySelector('.verse-display');
 
 let currentValue = parseInt(localStorage.getItem("verse_position")) || 0;
-let selectedSurahsDict;
+let selectedSurahsDict = null; // Initialisée à null
 
-getDecompressedData('selected_surahs_dict', (result) => {
-    selectedSurahsDict = result;
+getDataDirectly('selected_surahs_dict', (result) => {
+    selectedSurahsDict = result || {}; // Charger ou initialiser comme un objet vide
+    console.log("Data loaded globally:", selectedSurahsDict);
 });
 
 let history = [];
@@ -577,8 +550,7 @@ function submitSurahs(selectedSurahs) {
     .then(response => response.json())
     .then(data => {
         selectedSurahsDict = data.selected_surahs;
-        selectedSurahsDict.length > 0 ? activate() : disable();
-        storeCompressedData('selected_surahs_dict', selectedSurahsDict);
+        storeDataDirectly('selected_surahs_dict', selectedSurahsDict);
     })
     .catch((error) => console.error('Error:', error));
 }

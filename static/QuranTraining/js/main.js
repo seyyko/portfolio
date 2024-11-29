@@ -7,6 +7,26 @@ if (clientVersion !== serverVersion) {
     console.log('LocalStorage has been reset to match server version.');
 }
 
+/**
+ * Clears all data from IndexedDB.
+ * @returns {Promise<void>} Resolves when all data has been cleared.
+ */
+function clearIndexedDB() {
+  return openDatabase().then((db) => {
+      return new Promise((resolve, reject) => {
+          const transaction = db.transaction(db.objectStoreNames, 'readwrite');
+          transaction.oncomplete = () => resolve();
+          transaction.onerror = (event) => reject(event.target.error);
+
+          // Delete all objects in each store
+          for (const storeName of db.objectStoreNames) {
+              const store = transaction.objectStore(storeName);
+              store.clear();
+          }
+      });
+  });
+}
+
 // theme
 const currentTheme = localStorage.getItem('theme');
 // cursor
@@ -91,16 +111,39 @@ function toggleTheme() {
 }
 
 /**
- * Deletes all user data (localStorage).
+ * Prevents scrolling when loading animation is on
+ */
+function preventScrollingWhenLoading() {
+  const loadingScreen = document.getElementById('loading-screen');
+
+    document.body.classList.add('block-scroll');
+
+    loadingScreen.addEventListener('animationend', () => {
+        document.body.classList.remove('block-scroll');
+  });
+}
+
+/**
+ * Deletes all user data (localStorage and IndexedDB).
  */
 function deleteUserData() {
   const confirmationMessage = gettext("Are you sure you want to delete all your data? This action cannot be undone.");
   const successMessage = gettext("All your data has been deleted.");
 
   if (confirm(confirmationMessage)) {
-    localStorage.clear();
-    alert(successMessage);
-    location.reload();
+      // Clear localStorage
+      localStorage.clear();
+
+      // Clear all data from IndexedDB
+      clearIndexedDB()
+          .then(() => {
+              alert(successMessage);
+              location.reload();
+          })
+          .catch((error) => {
+              console.error("Error clearing IndexedDB:", error);
+              alert(gettext("An error occurred while deleting your data."));
+          });
   }
 }
 
@@ -180,3 +223,4 @@ requestAnimationFrame(updateCursor);
 initializeGlobalEventListeners();
 
 if (currentTheme === 'light') document.documentElement.classList.add('light-mode');
+document.addEventListener("DOMContentLoaded", preventScrollingWhenLoading);
