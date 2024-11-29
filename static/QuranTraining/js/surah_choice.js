@@ -1,34 +1,62 @@
-const compressionWorker = new Worker('/static/QuranTraining/js/compressionWorker.js');
-
+// Function to send data to Flask for compression
 function storeCompressedData(key, data) {
-    compressionWorker.postMessage({ action: 'compress', key, data });
+    // If data is an object or array, convert it to a JSON string
+    const dataToSend = typeof data === 'string' ? data : JSON.stringify(data);
 
-    compressionWorker.onmessage = function (e) {
-        if (e.data.key === key) {
-            if (e.data.result) {
-                localStorage.setItem(key, e.data.result);
-            } else {
-                // console.error('Erreur de compression:', e.data.error);
-            }
+    // Send a POST request to the Flask 'compress' endpoint
+    fetch('compress', {
+        method: 'POST',  // HTTP method for sending data
+        headers: {
+            'Content-Type': 'application/json'  // Indicate that the request body is in JSON format
+        },
+        body: JSON.stringify({ data: dataToSend })  // Send the data as JSON in the body of the request
+    })
+    .then(response => response.json())  // Parse the response as JSON
+    .then(result => {
+        if (result.result) {
+            // If the compression is successful, log a success message and store the compressed data in localStorage
+            console.log("Compression completed!");
+            localStorage.setItem(key, result.result);
+        } else {
+            // If there was an error during compression, log the error message
+            console.error('Compression error:', result.error);
         }
-    };
+    })
+    .catch(error => {
+        // Log any errors that occurred during the fetch request
+        console.error('Error sending data to Flask:', error);
+    });
 }
 
+// Function to send data to Flask for decompression
 function getDecompressedData(key, callback) {
+    // Retrieve the compressed data from localStorage using the provided key
     const compressedData = localStorage.getItem(key);
 
-    compressionWorker.postMessage({ action: 'decompress', key, data: compressedData });
-
-    compressionWorker.onmessage = function (e) {
-        if (e.data.key === key) {
-            if (e.data.result) {
-                callback(e.data.result);
-            } else {
-                // console.error('Erreur de décompression:', e.data.error);
-                callback(null);
-            }
+    // Send a POST request to the Flask 'decompress' endpoint
+    fetch('decompress', {
+        method: 'POST',  // HTTP method for sending data
+        headers: {
+            'Content-Type': 'application/json'  // Indicate that the request body is in JSON format
+        },
+        body: JSON.stringify({ data: compressedData })  // Send the compressed data as JSON in the body of the request
+    })
+    .then(response => response.json())  // Parse the response as JSON
+    .then(result => {
+        if (result.result) {
+            // If the decompression is successful, pass the decompressed data to the callback function
+            callback(result.result);
+        } else {
+            // If there was an error during decompression, log the error message and pass null to the callback
+            console.error('Decompression error:', result.error);
+            callback(null);
         }
-    };
+    })
+    .catch(error => {
+        // Log any errors that occurred during the fetch request
+        console.error('Error sending data to Flask:', error);
+        callback(null);  // In case of an error, pass null to the callback
+    });
 }
 
 // surah selection
@@ -53,6 +81,9 @@ let selectedSurahsDict;
 getDecompressedData('selected_surahs_dict', (result) => {
     selectedSurahsDict = result || [];
 });
+
+console.log(selectedSurahsDict);
+console.log(localStorage.getItem('selected_surahs_dict'));
 
 let history = [];
 let currentIndex = -1;
