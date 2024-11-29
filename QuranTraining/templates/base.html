@@ -33,6 +33,9 @@
 
     <meta name="description" content="QuranTraining is an open-source application designed to assist with memorizing Quranic surahs." />
 
+    <script src="{{ url_for('static', filename='QuranTraining/js/main.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='QuranTraining/js/surah_choice.js') }}" defer></script>
+
     <title>QuranTraining</title>
 </head>
 <body>
@@ -94,9 +97,7 @@
         </div>
     </footer>
 
-    <script src="{{ url_for('static', filename='QuranTraining/js/main.js') }}" defer></script>
-    <script src="{{ url_for('static', filename='QuranTraining/js/surah_choice.js') }}" defer></script>
-    <script defer>
+    <script>
         // translate text with flask-babel
         var gettext = function(msgid) {
             var translations = {

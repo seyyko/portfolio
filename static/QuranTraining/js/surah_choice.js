@@ -1,3 +1,36 @@
+const compressionWorker = new Worker('/static/QuranTraining/js/compressionWorker.js');
+
+function storeCompressedData(key, data) {
+    compressionWorker.postMessage({ action: 'compress', key, data });
+
+    compressionWorker.onmessage = function (e) {
+        if (e.data.key === key) {
+            if (e.data.result) {
+                localStorage.setItem(key, e.data.result);
+            } else {
+                console.error('Erreur de compression:', e.data.error);
+            }
+        }
+    };
+}
+
+function getDecompressedData(key, callback) {
+    const compressedData = localStorage.getItem(key);
+
+    compressionWorker.postMessage({ action: 'decompress', key, data: compressedData });
+
+    compressionWorker.onmessage = function (e) {
+        if (e.data.key === key) {
+            if (e.data.result) {
+                callback(e.data.result);
+            } else {
+                console.error('Erreur de décompression:', e.data.error);
+                callback(null);
+            }
+        }
+    };
+}
+
 // surah selection
 const surahContainer = document.getElementById('surah');
 const surahForm = document.querySelector('.surah-form');
@@ -15,7 +48,11 @@ const scrollUpButton = document.querySelector('.scroll-up');
 const targetDiv = document.querySelector('.verse-display');
 
 let currentValue = parseInt(localStorage.getItem("verse_position")) || 0;
-let selectedSurahsDict = JSON.parse(localStorage.getItem('selected_surahs_dict')) || [];
+let selectedSurahsDict;
+
+getDecompressedData('selected_surahs_dict', (result) => {
+    selectedSurahsDict = result || [];
+});
 
 let history = [];
 let currentIndex = -1;
@@ -505,7 +542,7 @@ function submitSurahs(selectedSurahs) {
     .then(response => response.json())
     .then(data => {
         selectedSurahsDict = data.selected_surahs;
-        localStorage.setItem('selected_surahs_dict', JSON.stringify(selectedSurahsDict));
+        storeCompressedData('selected_surahs_dict', selectedSurahsDict);
     })
     .catch((error) => console.error('Error:', error));
 }
