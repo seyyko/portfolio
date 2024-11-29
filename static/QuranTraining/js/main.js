@@ -1,4 +1,4 @@
-const serverVersion = '2.0'; // Version provenant du serveur
+const serverVersion = '2.1'; // Version provenant du serveur
 const clientVersion = localStorage.getItem('localStorageVersion');
 
 if (clientVersion !== serverVersion) {

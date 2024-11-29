@@ -1,14 +1,3 @@
-/* <div id="loading-screen cinzelDecorative">
-        <div class="first-text">
-            <h1 class="first-letter">Q</h1>
-            <h1 class="next-letters">uran</h1>
-        </div>
-        <div class="second-text">
-            <h1 class="first-letter">T</h1>
-            <h1 class="next-letters">raininG</h1>
-        </div>
-    </div> */
-
 body.block-scroll {
     overflow: hidden;
 }
@@ -52,6 +41,14 @@ body.block-scroll {
     font-size: xx-large;
 
     animation: disapear 1s 2s forwards;
+    p {
+        font-family: 'Montserrat';
+        font-weight: 100;
+        font-size: 12px;
+        position: absolute;
+        bottom: 20px; left: 50%;
+        transform: translateX(-50%);
+    }
 }
 .ls-text-container{
     width: 100%; height: 40%;
