@@ -1,6 +1,5 @@
 from flask import render_template, request, redirect, url_for, jsonify, Blueprint
-import json, sys, os
-import lz4.frame
+import json, sys, os, lz4.frame
 
 
 quran_app = Blueprint('quran_app', __name__, 
