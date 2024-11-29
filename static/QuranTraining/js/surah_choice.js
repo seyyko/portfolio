@@ -75,9 +75,6 @@ getDecompressedData('selected_surahs_dict', (result) => {
     selectedSurahsDict = result || [];
 });
 
-console.log(selectedSurahsDict);
-console.log(localStorage.getItem('selected_surahs_dict'));
-
 let history = [];
 let currentIndex = -1;
 let anwserShowed = false;
