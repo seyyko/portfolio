@@ -29,6 +29,7 @@ function getDecompressedData(key, callback) {
             if (e.data.result) {
                 console.log("Decompression complete !");
                 stopLoading();
+                activate();
                 callback(e.data.result);
             } else {
                 console.error('Decompression error:', e.data.error);
@@ -40,6 +41,13 @@ function getDecompressedData(key, callback) {
 
 function stopLoading() {
     document.getElementById('loading-screen').style.display = "none";
+}
+
+function activate() {
+    document.querySelector('.next-verse').disabled = false
+}
+function disable() {
+    document.querySelector('.next-verse').disabled = true;
 }
 
 function getLocalStorageSize() {
@@ -569,6 +577,7 @@ function submitSurahs(selectedSurahs) {
     .then(response => response.json())
     .then(data => {
         selectedSurahsDict = data.selected_surahs;
+        selectedSurahsDict.length > 0 ? activate() : disable();
         storeCompressedData('selected_surahs_dict', selectedSurahsDict);
     })
     .catch((error) => console.error('Error:', error));
