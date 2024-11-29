@@ -1,5 +1,6 @@
 from flask import render_template, request, redirect, url_for, jsonify, Blueprint
-import json, sys, os, lz4.frame
+import json, sys, os
+import zstandard as zstd
 
 
 quran_app = Blueprint('quran_app', __name__, 
@@ -21,7 +22,7 @@ for surah in quran["sourates"]:
 def home():
     return render_template('home.html', surahs=surahs)
 
-# Fonction de compression avec LZ4 et optimisations
+
 @quran_app.route('/compress', methods=['POST'])
 def compress_data():
     data = request.json.get('data')
@@ -30,12 +31,14 @@ def compress_data():
         return jsonify({"error": "Aucune donnée fournie"}), 400
 
     try:
-        # Si les données ne sont pas déjà une chaîne, les sérialiser en JSON
+        # If the data is not already a string, serialize it to JSON
         if not isinstance(data, str):
-            data = json.dumps(data, separators=(',', ':'))  # Retirer les espaces inutiles
+            data = json.dumps(data, separators=(',', ':')) # Remove unnecessary spaces
 
-        compressed = lz4.frame.compress(data.encode('utf-8'), compression_level=4)
-        compressed_base64 = compressed.hex()  # Utilisation du format Hex pour le stockage
+        # Zstandard compression
+        compressor = zstd.ZstdCompressor(level=4)  # Choose a fast compression level (level 4 is often a good compromise)
+        compressed = compressor.compress(data.encode('utf-8'))
+        compressed_base64 = compressed.hex()  # Hex format for storage
 
         return jsonify({"result": compressed_base64})
 
@@ -43,7 +46,6 @@ def compress_data():
         return jsonify({"error": f"Erreur lors de la compression : {str(e)}"}), 500
 
 
-# Route pour décompresser des données
 @quran_app.route('/decompress', methods=['POST'])
 def decompress_data():
     compressed_data = request.json.get('data')
@@ -52,13 +54,17 @@ def decompress_data():
         return jsonify({"error": "Aucune donnée fournie"}), 400
 
     try:
-        # Conversion hex en bytes pour la décompression
+        # Hex to byte conversion for decompression
         compressed_bytes = bytes.fromhex(compressed_data)
-        decompressed = lz4.frame.decompress(compressed_bytes).decode('utf-8')
+
+        # Decompression with Zstandard
+        decompressor = zstd.ZstdDecompressor()
+        decompressed = decompressor.decompress(compressed_bytes).decode('utf-8')
+
         try:
             result = json.loads(decompressed)
         except json.JSONDecodeError:
-            result = decompressed  # Si ce n'était pas du JSON, retourner la chaîne brute
+            result = decompressed
 
         return jsonify({"result": result})
 
