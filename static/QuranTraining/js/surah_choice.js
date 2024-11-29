@@ -3,27 +3,23 @@ function storeCompressedData(key, data) {
     // If data is an object or array, convert it to a JSON string
     const dataToSend = typeof data === 'string' ? data : JSON.stringify(data);
 
-    // Send a POST request to the Flask 'compress' endpoint
     fetch('compress', {
-        method: 'POST',  // HTTP method for sending data
+        method: 'POST',
         headers: {
-            'Content-Type': 'application/json'  // Indicate that the request body is in JSON format
+            'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ data: dataToSend })  // Send the data as JSON in the body of the request
+        body: JSON.stringify({ data: dataToSend })
     })
-    .then(response => response.json())  // Parse the response as JSON
+    .then(response => response.json()) // Parse the response as JSON
     .then(result => {
         if (result.result) {
-            // If the compression is successful, log a success message and store the compressed data in localStorage
             console.log("Compression completed!");
             localStorage.setItem(key, result.result);
         } else {
-            // If there was an error during compression, log the error message
             console.error('Compression error:', result.error);
         }
     })
     .catch(error => {
-        // Log any errors that occurred during the fetch request
         console.error('Error sending data to Flask:', error);
     });
 }
@@ -33,31 +29,28 @@ function getDecompressedData(key, callback) {
     // Retrieve the compressed data from localStorage using the provided key
     const compressedData = localStorage.getItem(key);
 
-    // Send a POST request to the Flask 'decompress' endpoint
     fetch('decompress', {
-        method: 'POST',  // HTTP method for sending data
+        method: 'POST',
         headers: {
-            'Content-Type': 'application/json'  // Indicate that the request body is in JSON format
+            'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ data: compressedData })  // Send the compressed data as JSON in the body of the request
+        body: JSON.stringify({ data: compressedData })
     })
-    .then(response => response.json())  // Parse the response as JSON
+    .then(response => response.json())
     .then(result => {
         if (result.result) {
-            // If the decompression is successful, pass the decompressed data to the callback function
             callback(result.result);
         } else {
-            // If there was an error during decompression, log the error message and pass null to the callback
             console.error('Decompression error:', result.error);
             callback(null);
         }
     })
     .catch(error => {
-        // Log any errors that occurred during the fetch request
         console.error('Error sending data to Flask:', error);
-        callback(null);  // In case of an error, pass null to the callback
+        callback(null);
     });
 }
+
 
 // surah selection
 const surahContainer = document.getElementById('surah');
