@@ -1,4 +1,3 @@
-// compressionWorker.js
 importScripts('https://cdn.rawgit.com/pieroxy/lz-string/1.4.4/libs/lz-string.min.js');
 
 self.onmessage = function (e) {
@@ -10,7 +9,7 @@ self.onmessage = function (e) {
             const compressedData = LZString.compress(typeof data === 'string' ? data : JSON.stringify(data));
             self.postMessage({ key, result: compressedData });
         } catch (error) {
-            self.postMessage({ key, error: 'Compression échouée : ' + error.message });
+            self.postMessage({ key, error: 'Compression failed: ' + error.message });
         }
     } else if (action === 'decompress') {
         try {
@@ -19,9 +18,9 @@ self.onmessage = function (e) {
             const result = decompressedData ? JSON.parse(decompressedData) : null;
             self.postMessage({ key, result });
         } catch (error) {
-            self.postMessage({ key, error: 'Décompression échouée : ' + error.message });
+            self.postMessage({ key, error: 'Decompression failed: ' + error.message });
         }
     } else {
-        self.postMessage({ key, error: 'Action inconnue' });
+        self.postMessage({ key, error: 'Unknown action' });
     }
 };

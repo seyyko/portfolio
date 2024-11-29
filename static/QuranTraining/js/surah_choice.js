@@ -1,54 +1,39 @@
-// Function to send data to Flask for compression
-function storeCompressedData(key, data) {
-    // If data is an object or array, convert it to a JSON string
-    const dataToSend = typeof data === 'string' ? data : JSON.stringify(data);
+// Create two workers: one for compression, one for decompression
+const compressionWorker = new Worker('/static/QuranTraining/js/compressionWorker.js');
+const decompressionWorker = new Worker('/static/QuranTraining/js/compressionWorker.js');
 
-    fetch('compress', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ data: dataToSend })
-    })
-    .then(response => response.json()) // Parse the response as JSON
-    .then(result => {
-        if (result.result) {
-            console.log("Compression completed!");
-            localStorage.setItem(key, result.result);
-        } else {
-            console.error('Compression error:', result.error);
+// Store compressed data
+function storeCompressedData(key, data) {
+    compressionWorker.postMessage({ action: 'compress', key, data });
+
+    compressionWorker.onmessage = function (e) {
+        if (e.data.key === key) {
+            if (e.data.result) {
+                console.log("Compression finished!");
+                localStorage.setItem(key, e.data.result);
+            } else {
+                console.error('Compression error:', e.data.error);
+            }
         }
-    })
-    .catch(error => {
-        console.error('Error sending data to Flask:', error);
-    });
+    };
 }
 
-// Function to send data to Flask for decompression
+// Get decompressed data
 function getDecompressedData(key, callback) {
-    // Retrieve the compressed data from localStorage using the provided key
     const compressedData = localStorage.getItem(key);
 
-    fetch('decompress', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ data: compressedData })
-    })
-    .then(response => response.json())
-    .then(result => {
-        if (result.result) {
-            callback(result.result);
-        } else {
-            console.error('Decompression error:', result.error);
-            callback(null);
+    decompressionWorker.postMessage({ action: 'decompress', key, data: compressedData });
+
+    decompressionWorker.onmessage = function (e) {
+        if (e.data.key === key) {
+            if (e.data.result) {
+                callback(e.data.result);
+            } else {
+                console.error('Decompression error:', e.data.error);
+                callback(null);
+            }
         }
-    })
-    .catch(error => {
-        console.error('Error sending data to Flask:', error);
-        callback(null);
-    });
+    };
 }
 
 
