@@ -1,3 +1,12 @@
+const serverVersion = '2.0'; // Version provenant du serveur
+const clientVersion = localStorage.getItem('localStorageVersion');
+
+if (clientVersion !== serverVersion) {
+    localStorage.clear();
+    localStorage.setItem('localStorageVersion', serverVersion);
+    console.log('LocalStorage has been reset to match server version.');
+}
+
 // theme
 const currentTheme = localStorage.getItem('theme');
 // cursor
