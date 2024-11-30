@@ -23,7 +23,13 @@ Installation
 
 3. **Create a virtual environment**:
    
-   `python3 -m venv venv`
+    - On Windows:
+    
+       - `python -m venv venv`
+       
+   - On macOS/Linux:
+     
+      - `python3 -m venv venv`
 
 5. **Activate the virtual environment**:
    
