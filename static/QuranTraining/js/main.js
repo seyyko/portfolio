@@ -1,5 +1,6 @@
-const serverVersion = '2.2'; // Version provenant du serveur
+const serverVersion = '2.3'; // server version
 const clientVersion = localStorage.getItem('localStorageVersion');
+document.getElementById("appVersion").innerHTML += serverVersion;
 
 if (clientVersion !== serverVersion) {
     localStorage.clear();
@@ -216,6 +217,7 @@ function handleKeyPress(event) {
 function initializeGlobalEventListeners() {
   document.addEventListener('mousemove', handleMouseMove);
   document.addEventListener('keydown', handleKeyPress);
+  document.addEventListener("DOMContentLoaded", preventScrollingWhenLoading);
 }
 
 attachCursorEvents();
@@ -223,4 +225,6 @@ requestAnimationFrame(updateCursor);
 initializeGlobalEventListeners();
 
 if (currentTheme === 'light') document.documentElement.classList.add('light-mode');
-document.addEventListener("DOMContentLoaded", preventScrollingWhenLoading);
+document.querySelectorAll(".soon p").forEach(element => {
+  element.innerHTML = gettext("available soon");
+});

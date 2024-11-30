@@ -159,35 +159,44 @@ button:active{
 }
 
 #features {
-  padding: 20px;
-  padding-bottom: 100px;
-  background-color: var(--background-secondary);
-  h1{
-    width: 100%;
-    text-align: center;
-    margin-bottom: 50px;
-  }
+    padding: 20px;
+    padding-bottom: 100px;
+    background-color: var(--background-secondary);
+    h1{
+        position: relative;
+        width: max-content;
+        margin-inline: auto;
+        margin-bottom: 50px;
+        p {
+            position: absolute;
+            width: 30px;
+            top: 0; right: calc(-30px - 10px);
+            font-size: 14px;
+        }
+    }
 }
 
 .features-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 25px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
 }
 .feature-card {
-  background-color: var(--background-tertiary);
-  border-radius: 10px;
-  box-shadow: 0 2px 10px var(--background-secondary);
+    position: relative;
 
-  text-align: center;
-  padding: 20px;
-  width: 380px; max-width: 95%;
+    background-color: var(--background-tertiary);
+    border-radius: 10px;
+    box-shadow: 0 2px 10px var(--background-secondary);
 
-  transition: transform 0.3s, box-shadow 0.1s;
+    text-align: center;
+    padding: 20px;
+    width: 380px; max-width: 95%;
+
+    transition: transform 0.3s, box-shadow 0.1s;
 }
 .feature-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 4px 15px var(--background-tertiary);
-  background-color: var(--background-quaternary);
+    transform: translateY(-10px);
+    box-shadow: 0 4px 15px var(--background-tertiary);
+    background-color: var(--background-quaternary);
 }
