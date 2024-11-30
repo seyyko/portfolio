@@ -31,6 +31,7 @@ Installation
      
      - `venv\Scripts\activate.bat (cmd)`
      - `venv\Scripts\Activate.ps1 (powershell)`
+       
    - On macOS/Linux:
      
      `source venv/bin/activate`
@@ -44,17 +45,13 @@ Installation
    `flask --app run run`
    or `python run.py`
    
-   The app will be available at http://127.0.0.1:5000/. If it’s not, well, it’s probably your fault.
+   The app will be available at http://127.0.0.1:5000/ (*and at your IP Address*). If it’s not, well, it’s probably your fault.
 
 Technologies Used
 
 - **Flask**: A lightweight Python web framework.
 - **Jinja2**: A template engine for rendering dynamic HTML. It’s like magic, but with code.
 - **HTML/CSS/JavaScript**: For structure, styling, and making sure the website doesn’t look like it was made in 1999.
-
-Authors
-
-- **Seyyko** – Lead developer (or "Flask wizard," depending on who you ask).
 
 License
 
