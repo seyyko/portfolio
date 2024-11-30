@@ -1,9 +1,12 @@
 from flask import Flask, request, Response
-from portfolio.app import portfolio_app
-from QuranTraining.app import quran_app
-import logging
 from flask_babel import Babel, _
 from flask_sitemap import Sitemap
+
+from portfolio.app import portfolio_app
+from QuranTraining.app import quran_app
+
+import logging
+
 
 logging.basicConfig(level=logging.DEBUG)
 app = Flask(__name__)

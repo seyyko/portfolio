@@ -2,14 +2,14 @@ from flask import render_template, request, redirect, url_for, jsonify, Blueprin
 import json, sys, os
 
 
+sys.stdout.reconfigure(encoding='utf-8')
 quran_app = Blueprint('quran_app', __name__, 
                       static_folder='../static/QuranTraining', 
                       template_folder='templates')
+file_path = os.path.join(os.path.dirname(__file__), 'quran.json')
+
 
 surahs = []
-
-sys.stdout.reconfigure(encoding='utf-8')
-file_path = os.path.join(os.path.dirname(__file__), 'quran.json')
 
 with open(file_path, 'r', encoding='utf-8') as file:
     quran = json.load(file)
@@ -19,7 +19,7 @@ for surah in quran["sourates"]:
 
 @quran_app.route('/', methods=["GET", "POST"])
 def home():
-    return render_template('home.html', surahs=surahs)
+    return render_template('home.html', surahs=surahs, lang=request.accept_languages.best_match(['en', 'fr']))
 
 @quran_app.route('/submit-surahs', methods=['POST'])
 def submit_surahs():

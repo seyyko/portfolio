@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ lang }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,9 +9,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Harmattan:wght@400;500;600;700&family=Montserrat:wght@100..900&family=Tajawal:wght@200;300;400;500;700;800;900&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="{{ url_for('static', filename='QuranTraining/css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='QuranTraining/css/custom_cursor.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='QuranTraining/css/loading_screen.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='QuranTraining/css/navbar.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='QuranTraining/css/home.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='QuranTraining/css/surah_choice.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='QuranTraining/css/surah_handler.css') }}">
 
     <link rel="apple-touch-icon" sizes="57x57" href="{{ url_for('static', filename='assets/icons/QuranTraining/apple-icon-57x57.png') }}">
     <link rel="apple-touch-icon" sizes="60x60" href="{{ url_for('static', filename='assets/icons/QuranTraining/apple-icon-60x60.png') }}">
@@ -36,11 +38,16 @@
 
     <script src="{{ url_for('static', filename='QuranTraining/js/indexedDBHandler.js') }}"></script>
     <script src="{{ url_for('static', filename='QuranTraining/js/main.js') }}" defer></script>
-    <script src="{{ url_for('static', filename='QuranTraining/js/surah_choice.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='QuranTraining/js/surahHandler.js') }}" defer></script>
 
     <title>QuranTraining</title>
 </head>
 <body>
+
+    <div class="cursor">
+        <div class="tracker"></div>
+        <div class="currentCursor"></div>
+    </div>
 
     <section id="loading-screen">
         <div class="ls-text-container cinzelDecorative">
@@ -55,15 +62,6 @@
         </div>
         <p>presented by seyyko</p>
     </section>
-
-    <section id="notify-user">
-        
-    </section>
-
-    <div class="cursor">
-        <div class="tracker"></div>
-        <div class="currentCursor"></div>
-    </div>
 
     <nav id="navbar">
         <div class="navbg"></div>

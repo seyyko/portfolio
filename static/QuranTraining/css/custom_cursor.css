@@ -1,0 +1,60 @@
+/* custom cursor */
+.cursor{
+    display: block;
+}.tracker, .currentCursor{
+    position: fixed;
+    z-index: 99999999;
+    pointer-events: none;
+    border-radius: 50%;
+}
+.tracker{
+    width: 40px; height: 40px;
+    border: 2px solid var(--alt-bg);
+}
+.currentCursor{
+    --parallax-circle-radiusadius: 8px;
+    width: var(--parallax-circle-radiusadius); height: var(--parallax-circle-radiusadius);
+    background-color: var(--cursor-middle-color);
+    opacity: .6;
+
+    transition: width .2s ease, height .2s ease;
+}
+
+.hovering{ /* expand the cursor */
+    --parallax-circle-radiusadius: 30px;
+    --arrow-box: 0;
+    --border-size: 0;
+}
+.scroll-state{ 
+    /* change the complete style to 
+    display a scroll state */
+    --arrow-box: 14px;
+    --border-size: 5px;
+
+    width: 5px; height: 24px;
+    border-radius: 0px;
+
+    transition: height .4s ease, width 0s;
+
+    &::after, &::before{
+        content: '';
+        width: var(--arrow-box); height: var(--arrow-box);
+        
+        position: absolute; left: 50%; /* center the arrows horizontally  */
+        transform: translateX(-50%) rotate(45deg); 
+
+        box-sizing: border-box; /* so borders won't bother us */
+    }
+    /* one above and one below, it should look something like this: ↕ 
+    */
+    &::after{
+        top: 0;
+        border-top: var(--border-size) solid var(--cursor-middle-color);
+        border-left: var(--border-size) solid var(--cursor-middle-color);
+    }
+    &::before{
+        bottom: 0;
+        border-bottom: var(--border-size) solid var(--cursor-middle-color);
+        border-right: var(--border-size) solid var(--cursor-middle-color);
+    }
+}
