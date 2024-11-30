@@ -220,12 +220,3 @@ a{
 }.footer-link{
     font-weight: 400;
 }
-
-@media (max-width: 768px) {
-    *, body{
-        cursor: default;
-    }
-    .cursor{
-        display: none;
-    }
-}

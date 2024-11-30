@@ -58,3 +58,12 @@
         border-right: var(--border-size) solid var(--cursor-middle-color);
     }
 }
+
+@media (max-width: 768px) {
+    *, body{
+        cursor: default;
+    }
+    .cursor{
+        display: none;
+    }
+}
