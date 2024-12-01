@@ -24,6 +24,8 @@ body{
     --alt-bg: #b5a3f0;
 
     --menu-close-color: rgb(231, 46, 151);
+    --single-mode-display-value: none;
+    --multi-mode-display-value: flex;
 }
 
 /* light mode variables */
@@ -127,8 +129,15 @@ a{
     user-select: none;
 }
 
-.circle {
-    will-change: transform;
+.multi-mode{
+    --single-mode-display-value: flex;
+    --multi-mode-display-value: none;
+}
+
+.nya{
+    color: red;
+    font-weight: bold;
+    font-size: clamp(10px, 2vw, 14px);
 }
 
 /* header */
@@ -193,6 +202,7 @@ a{
     position: absolute;
     top: var(--parallax-circle-posY); left: var(--parallax-circle-posX);
     border-radius: 50%;
+    will-change: transform;
 }
 
 /* footer */

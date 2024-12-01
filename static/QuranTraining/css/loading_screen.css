@@ -40,7 +40,7 @@ body.block-scroll {
 
     font-size: xx-large;
 
-    animation: disapear 1s 2s forwards;
+    animation: disapear .8s 1.2s forwards;
     p {
         font-family: 'Montserrat';
         font-weight: 100;
@@ -78,17 +78,12 @@ body.block-scroll {
     z-index: 1;
 }
 .first-letter{
-    /* background-color: red; */
     width: var(--first-letter-width);
     display: flex;
     justify-content: center; align-items: center;
 }
-/* .first-text .first-letter{
-    transform: translateX(350%);
-} */
 .next-letters{
-    /* background-color: blue; */
     z-index: -2;
     transform: translateX(-300px);
-    animation: slideToShowAll 2s ease-in-out forwards;
+    animation: slideToShowAll 1.2s ease-in-out forwards;
 }

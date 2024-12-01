@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-30 20:28+0100\n"
+"POT-Creation-Date: 2024-12-01 23:58+0100\n"
 "PO-Revision-Date: 2024-11-23 23:24+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -27,7 +27,7 @@ msgid "Delete your data"
 msgstr "Delete your data"
 
 #: QuranTraining/templates/base.html:80 QuranTraining/templates/base.html:138
-#: QuranTraining/templates/home.html:110
+#: QuranTraining/templates/home.html:105
 msgid "Features"
 msgstr "Features"
 
@@ -36,73 +36,73 @@ msgid "All rights reserved."
 msgstr "All rights reserved."
 
 #: QuranTraining/templates/base.html:122 QuranTraining/templates/home.html:29
-#: static/QuranTraining/js/surahHandler.js:98
-#: static/QuranTraining/js/surahHandler.js:183
+#: static/QuranTraining/js/surahHandler.js:97
+#: static/QuranTraining/js/surahHandler.js:162
 msgid "Click and Select Surahs to Memorize"
 msgstr "Click and Select Surahs to Memorize"
 
-#: QuranTraining/templates/base.html:123 QuranTraining/templates/home.html:38
+#: QuranTraining/templates/base.html:123
 msgid "Translation"
 msgstr "Translation"
 
-#: QuranTraining/templates/base.html:124 QuranTraining/templates/home.html:46
+#: QuranTraining/templates/base.html:124
 msgid "Recitation type"
 msgstr "Recitation type"
 
-#: QuranTraining/templates/base.html:125 QuranTraining/templates/home.html:54
+#: QuranTraining/templates/base.html:125 QuranTraining/templates/home.html:60
 msgid "Random part"
 msgstr "Random part"
 
-#: QuranTraining/templates/base.html:126 QuranTraining/templates/home.html:57
+#: QuranTraining/templates/base.html:126 QuranTraining/templates/home.html:63
 msgid "start"
 msgstr "start"
 
-#: QuranTraining/templates/base.html:127 QuranTraining/templates/home.html:58
+#: QuranTraining/templates/base.html:127 QuranTraining/templates/home.html:64
 msgid "middle"
 msgstr "middle"
 
-#: QuranTraining/templates/base.html:128 QuranTraining/templates/home.html:59
+#: QuranTraining/templates/base.html:128 QuranTraining/templates/home.html:65
 msgid "end"
 msgstr "end"
 
-#: QuranTraining/templates/base.html:129 QuranTraining/templates/home.html:95
+#: QuranTraining/templates/base.html:129 QuranTraining/templates/home.html:90
 msgid "clear"
 msgstr "clear"
 
-#: QuranTraining/templates/base.html:130 QuranTraining/templates/home.html:96
+#: QuranTraining/templates/base.html:130 QuranTraining/templates/home.html:91
 msgid "previous"
 msgstr "previous"
 
-#: QuranTraining/templates/base.html:131 QuranTraining/templates/home.html:97
-#: static/QuranTraining/js/surahHandler.js:295
+#: QuranTraining/templates/base.html:131 QuranTraining/templates/home.html:92
+#: static/QuranTraining/js/surahHandler.js:271
 msgid "generate"
 msgstr "generate"
 
-#: QuranTraining/templates/base.html:132 QuranTraining/templates/home.html:101
-#: static/QuranTraining/js/surahHandler.js:297
+#: QuranTraining/templates/base.html:132 QuranTraining/templates/home.html:96
+#: static/QuranTraining/js/surahHandler.js:273
 msgid "No verses to display."
 msgstr "No verses to display."
 
 #: QuranTraining/templates/base.html:133
-#: static/QuranTraining/js/surahHandler.js:98
-#: static/QuranTraining/js/surahHandler.js:110
-#: static/QuranTraining/js/surahHandler.js:182
-#: static/QuranTraining/js/surahHandler.js:191
+#: static/QuranTraining/js/surahHandler.js:97
+#: static/QuranTraining/js/surahHandler.js:109
+#: static/QuranTraining/js/surahHandler.js:161
+#: static/QuranTraining/js/surahHandler.js:170
 msgid "Click again to hide"
 msgstr "Click again to hide"
 
 #: QuranTraining/templates/base.html:134
-#: static/QuranTraining/js/surahHandler.js:217
+#: static/QuranTraining/js/surahHandler.js:196
 msgid "No surahs selected."
 msgstr "No surahs selected."
 
 #: QuranTraining/templates/base.html:135
-#: static/QuranTraining/js/surahHandler.js:274
+#: static/QuranTraining/js/surahHandler.js:250
 msgid "Show answer"
 msgstr "Show answer"
 
 #: QuranTraining/templates/base.html:136
-#: static/QuranTraining/js/surahHandler.js:295
+#: static/QuranTraining/js/surahHandler.js:271
 msgid "Next"
 msgstr "Next"
 
@@ -111,24 +111,24 @@ msgid "About"
 msgstr "About"
 
 #: QuranTraining/templates/base.html:141
-#: static/QuranTraining/js/surahHandler.js:273
-#: static/QuranTraining/js/surahHandler.js:312
+#: static/QuranTraining/js/surahHandler.js:249
+#: static/QuranTraining/js/surahHandler.js:288
 msgid "Current verse"
 msgstr "Current verse"
 
 #: QuranTraining/templates/base.html:142
-#: static/QuranTraining/js/surahHandler.js:313
+#: static/QuranTraining/js/surahHandler.js:289
 msgid "Full surah"
 msgstr "Full surah"
 
-#: QuranTraining/templates/base.html:143 QuranTraining/templates/home.html:88
-#: static/QuranTraining/js/surahHandler.js:110
-#: static/QuranTraining/js/surahHandler.js:192
+#: QuranTraining/templates/base.html:143 QuranTraining/templates/home.html:83
+#: static/QuranTraining/js/surahHandler.js:109
+#: static/QuranTraining/js/surahHandler.js:171
 msgid "Click to modify preferences"
 msgstr "Click to modify preferences"
 
 #: QuranTraining/templates/base.html:144
-#: static/QuranTraining/js/surahHandler.js:314
+#: static/QuranTraining/js/surahHandler.js:290
 msgid "Go to verse"
 msgstr "Go to verse"
 
@@ -144,7 +144,7 @@ msgstr ""
 msgid "All your data has been deleted."
 msgstr "All your data has been deleted."
 
-#: QuranTraining/templates/base.html:147 static/QuranTraining/js/main.js:244
+#: QuranTraining/templates/base.html:147 static/QuranTraining/js/main.js:243
 msgid "available soon"
 msgstr "available soon"
 
@@ -152,15 +152,43 @@ msgstr "available soon"
 msgid "Save"
 msgstr "Save"
 
-#: QuranTraining/templates/home.html:64
+#: QuranTraining/templates/home.html:38
 msgid "Choose a reciter :"
 msgstr "Choose a reciter :"
 
-#: QuranTraining/templates/home.html:113
+#: QuranTraining/templates/home.html:51
+msgid "multi"
+msgstr "multi"
+
+#: QuranTraining/templates/home.html:52
+msgid "single"
+msgstr "single"
+
+#: QuranTraining/templates/home.html:55
+msgid ""
+"*Single mode: This mode allows you to focus on a specific part of a "
+"surah. A random verse will be selected based on the entered limits."
+msgstr ""
+"*Single mode: This mode allows you to focus on a specific part of a "
+"surah. A random verse will be selected based on the entered limits."
+
+#: QuranTraining/templates/home.html:56
+msgid "NOT YET AVAILABLE"
+msgstr "NOT YET AVAILABLE"
+
+#: QuranTraining/templates/home.html:71
+msgid "starting verse :"
+msgstr "starting verse :"
+
+#: QuranTraining/templates/home.html:76
+msgid "last verse :"
+msgstr "last verse :"
+
+#: QuranTraining/templates/home.html:108
 msgid "Language Translation"
 msgstr "Language Translation"
 
-#: QuranTraining/templates/home.html:114
+#: QuranTraining/templates/home.html:109
 msgid ""
 "Switch between English and French automatically based on your browser's "
 "preferences."
@@ -168,11 +196,11 @@ msgstr ""
 "Switch between English and French automatically based on your browser's "
 "preferences."
 
-#: QuranTraining/templates/home.html:118
+#: QuranTraining/templates/home.html:113
 msgid "Keyboard Shortcuts"
 msgstr "Keyboard Shortcuts"
 
-#: QuranTraining/templates/home.html:119
+#: QuranTraining/templates/home.html:114
 msgid ""
 "Use shortcuts like <b>Escape</b> to toggle the menu or <b>Arrow keys</b> "
 "to navigate between verses."
@@ -180,51 +208,51 @@ msgstr ""
 "Use shortcuts like <b>Escape</b> to toggle the menu or <b>Arrow keys</b> "
 "to navigate between verses."
 
-#: QuranTraining/templates/home.html:123
+#: QuranTraining/templates/home.html:118
 msgid "Dark / Light Theme"
 msgstr "Dark / Light Theme"
 
-#: QuranTraining/templates/home.html:124
+#: QuranTraining/templates/home.html:119
 msgid "Switch between dark and light themes for comfortable reading."
 msgstr "Switch between dark and light themes for comfortable reading."
 
-#: QuranTraining/templates/home.html:128
+#: QuranTraining/templates/home.html:123
 msgid "Choose Random Part"
 msgstr "Choose Random Part"
 
-#: QuranTraining/templates/home.html:129
+#: QuranTraining/templates/home.html:124
 msgid "Start reading from the beginning, middle, or end of a surah randomly."
 msgstr "Start reading from the beginning, middle, or end of a surah randomly."
 
-#: QuranTraining/templates/home.html:133
+#: QuranTraining/templates/home.html:128
 msgid "Choose Reciter"
 msgstr "Choose Reciter"
 
-#: QuranTraining/templates/home.html:134
+#: QuranTraining/templates/home.html:129
 msgid "Change the reciter to listen to your preferred voice."
 msgstr "Change the reciter to listen to your preferred voice."
 
-#: QuranTraining/templates/home.html:138
+#: QuranTraining/templates/home.html:133
 msgid "Fast Preference Storage"
 msgstr "Fast Preference Storage"
 
-#: QuranTraining/templates/home.html:139
+#: QuranTraining/templates/home.html:134
 msgid "Save your preferences quickly and effortlessly for a smooth experience."
 msgstr "Save your preferences quickly and effortlessly for a smooth experience."
 
-#: QuranTraining/templates/home.html:143
+#: QuranTraining/templates/home.html:138
 msgid "Precision Mode"
 msgstr "Precision Mode"
 
-#: QuranTraining/templates/home.html:144
+#: QuranTraining/templates/home.html:139
 msgid "Focus on memorizing a single Surah for a more targeted approach."
 msgstr "Focus on memorizing a single Surah for a more targeted approach."
 
-#: QuranTraining/templates/home.html:148
+#: QuranTraining/templates/home.html:143
 msgid "Dynamic Web Page"
 msgstr "Dynamic Web Page"
 
-#: QuranTraining/templates/home.html:149
+#: QuranTraining/templates/home.html:144
 msgid "Enjoy a responsive and interactive page that adapts to your needs."
 msgstr "Enjoy a responsive and interactive page that adapts to your needs."
 

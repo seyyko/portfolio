@@ -33,55 +33,50 @@
 
         <div class="verse-preferences">
             <div class="preferences-container">
-                <div class="all-preferences">
-                    <!-- <div class="language-preferences">
-                        <p>{{ _('Translation') }}</p>
-                        <div class="slider-bg language-slider hover-cursor-event prevent-from-select" onclick="slide(this)">
-                            <div class="language-slider slider"></div>
-                            <div class="switch-btn en">en</div>
-                            <div class="switch-btn fr">fr</div>
-                        </div>
-                    </div>
-                    <div class="text-preferences">
-                        <p>{{ _('Recitation type') }}</p>
-                        <div class="slider-bg text-slider hover-cursor-event prevent-from-select" onclick="slide(this)">
-                            <div class="text-slider slider"></div>
-                            <div class="switch-btn hafs">hafs</div>
-                            <div class="switch-btn warsh">warsh</div>
-                        </div>
-                    </div> -->
-                    <div class="verse-part-preferences">
-                        <p>{{ _('Random part') }}</p>
-                        <div class="slider-container hover-cursor-event prevent-from-select">
-                            <div class="slider-button"></div>
-                            <div class="slider-label label-start">{{ _('start') }}</div>
-                            <div class="slider-label label-middle">{{ _('middle') }}</div>
-                            <div class="slider-label label-end">{{ _('end') }}</div>
-                        </div>
-                    </div>
-                </div>
+
                 <div class="reciter-container">
                     <p>{{ _('Choose a reciter :') }}</p>
                     <select name="reciter" id="reciter" onchange="saveReciter()">
-                        <option value="abdulbasitmurattal">Abdul Basit Murattal</option>
-                        <option value="abdullahbasfar">Abdullah Basfar</option>
-                        <option value="abdurrahmaansudais">Abdurrahman Sudais</option>
-                        <option value="abdulsamad">Abdul Samad</option>
-                        <option value="shaatree">Shaatree</option>
-                        <option value="ahmedajamy">Ahmed Ajamy</option>
-                        <option value="alafasy">Mishary Alafasy</option>
-                        <option value="hanirifai">Hani Rifai</option>
-                        <option value="husary">Husary</option>
-                        <option value="husarymujawwad">Husary Mujawwad</option>
-                        <option value="hudhaify">Hudhaify</option>
-                        <option value="ibrahimakhbar">Ibrahim Akbar</option>
-                        <option value="mahermuaiqly">Maher Al Muaiqly</option>
-                        <option value="minshawi">Minshawi</option>
-                        <option value="minshawimujawwad">Minshawi Mujawwad</option>
-                        <option value="muhammadayyoub">Muhammad Ayyoub</option>
-                        <option value="muhammadjibreel">Muhammad Jibreel</option>
-                        <option value="saoodshuraym">Saood Shuraym</option>
+                        {% for reciter_id, reciter in reciters.items() %}
+                            <option value="{{ reciter_id }}">{{ reciter }}</option>
+                        {% endfor %}
                     </select>
+                </div>
+
+                <div class="modes-preferences">
+
+                    <div id="2" class="modes-part-preference">
+                        <div class="slider-container hover-cursor-event prevent-from-select" onclick="toggleModePreference()">
+                            <div class="slider-button"></div>
+                            <div class="slider-label">{{ _('multi') }}</div>
+                            <div class="slider-label">{{ _('single') }}</div>
+                        </div>
+
+                        <p class="slider-description">{{ _('*Single mode: This mode allows you to focus on a specific part of a surah. A random verse will be selected based on the entered limits.') }}</p>
+                        <p class="nya">{{ _('NOT YET AVAILABLE') }}</p>
+                    </div>
+
+                    <div id="3" class="verse-part-preference multi-mode-display">
+                        <p>{{ _('Random part') }}</p>
+                        <div class="slider-container hover-cursor-event prevent-from-select">
+                            <div class="slider-button"></div>
+                            <div class="slider-label">{{ _('start') }}</div>
+                            <div class="slider-label">{{ _('middle') }}</div>
+                            <div class="slider-label">{{ _('end') }}</div>
+                        </div>
+                    </div>
+
+                    <div class="single-verse-mode">
+                        <div>
+                            <label for="min-input">{{ _('starting verse :') }}</label>
+                            <input type="number" id="min-input" min="0" value="" placeholder="0">
+                        </div>
+
+                        <div>
+                            <label for="value-input">{{ _('last verse :') }}</label>
+                            <input type="number" id="value-input" value="" placeholder="0">
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="title-verses-preferences hover-cursor-event" onclick="toggleVersePreferences()">

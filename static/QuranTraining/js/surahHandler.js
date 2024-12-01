@@ -47,18 +47,19 @@ const randomSurahSection = document.getElementById("training");
 const versePreferencesContainer = document.querySelector('.verse-preferences');
 const titleVersesPreferences = document.querySelector('.title-verses-preferences');
 const verseDisplayContainer = document.querySelector(".verse-display-container");
-// slider
-const sliderButton = document.querySelector(".slider-button");
-const sliderContainer = document.querySelector(".slider-container");
 // scroll
 const scrollUpButton = document.querySelector('.scroll-up');
 const targetDiv = document.querySelector('.verse-display');
+// input (single mode)
+const minInput = document.getElementById("min-input");
+const valueInput = document.getElementById("value-input");
 
-let currentValue = parseInt(localStorage.getItem("verse_position")) || 0;
-let selectedSurahsDict = null; // Initialisée à null
+let versePreferenceSliderPos;
+let modePreferenceSliderPos;
+let selectedSurahsDict = null;
 
 getDataDirectly('selected_surahs_dict', (result) => {
-    selectedSurahsDict = result || {}; // Charger ou initialiser comme un objet vide
+    selectedSurahsDict = result || {};
     console.log("Data loaded globally:", selectedSurahsDict);
 });
 
@@ -105,6 +106,13 @@ function toggleVersePreferences() {
 }
 
 /**
+ * Toggles the visibility of the differents modes.
+ */
+function toggleModePreference() {
+    document.body.classList.toggle("multi-mode");
+}
+
+/**
  * Selects all checkboxes for Surahs and saves the selected Surahs in localStorage.
  */
 function selectAllCheckboxes() {
@@ -131,41 +139,14 @@ function deselectAllCheckboxes() {
 }
 
 /**
- * Update the slider position based on the current value.
+ * Load the saved choices from localStorage.
  */
-function updateSliderPosition() {
-    const positions = {
-        '-1': '0px',
-        '0': '60px',
-        '1': '120px'
-    };
-    sliderButton.style.transform = `translateY(-50%) translateX(${positions[currentValue]})`;
-    localStorage.setItem("verse_position", currentValue);
-}
-
-/**
- * Toggle the slider value between -1, 0, and 1.
- */
-function nextSliderValue() {
-    currentValue = currentValue === 1 ? -1 : currentValue + 1;
-    updateSliderPosition();
-}
-
-/**
- * Get the current slider value.
- * @returns {number} The current slider value.
- */
-function getSliderValue() {
-    return currentValue;
-}
-
-/**
- * Load the saved slider choices and preferences from localStorage.
- */
-function loadSliderChoice() {
+function loadVersePreferencesChoice() {
     const savedStatusSurahSelection = localStorage.getItem("surah_selection_status");
     const savedStatusPreferences = localStorage.getItem("verses_preferences_status");
     const savedReciter = localStorage.getItem('selectedReciter');
+
+    document.body.classList.toggle("multi-mode", localStorage.getItem("slider_pos_modes") == "0");
 
     const isSSContainerOpen = savedStatusSurahSelection === "open";
     titleSurahContainer.classList.toggle('opened-form', isSSContainerOpen);
@@ -213,7 +194,7 @@ function generateRandomVerse() {
 
     const randomSurah = selectedSurahsDict[generateRandomNumber(0, selectedSurahsDict.length - 1)];
     const totalVerses = randomSurah["versets"].length;
-    const randomVerseIndex = generateRandomVerseIndex(totalVerses, currentValue);
+    const randomVerseIndex = generateRandomVerseIndex(totalVerses, versePreferenceSliderPos);
     const randomVerse = randomSurah["versets"][randomVerseIndex];
 
     history.push({ surah: randomSurah, verse: randomVerse, verseIndex: randomVerseIndex });
@@ -234,19 +215,16 @@ function generateRandomVerseIndex(totalVerses, position) {
     switch (position) {
         case -1: // start
             start = 0;
-            end = Math.floor((totalVerses / 3) + 1);
+            end = Math.floor(totalVerses / 3);
             break;
         case 0: // mid
             start = Math.floor((totalVerses / 3) - 1);
             end = Math.floor(((2 * totalVerses) / 3) +1);
             break;
         case 1: // end
-            start = Math.floor(((2 * totalVerses) / 3) - 1);
+            start = Math.floor((2 * totalVerses) / 3);
             end = totalVerses;
             break;
-        default:
-            start = Math.floor(totalVerses / 3) - 1;
-            end = Math.floor((2 * totalVerses / 3) +1);
     }
 
     return Math.floor(Math.random() * (end - start)) + start;
@@ -508,10 +486,6 @@ function showAnswerOrNavigate() {
     }
 }
 
-// Slider Handling
-sliderContainer.addEventListener("click", nextSliderValue);
-updateSliderPosition();
-
 // Surah Selection and Submission
 surahForm.addEventListener('submit', function(event) {
     event.preventDefault();
@@ -538,10 +512,79 @@ document.addEventListener('keydown', function(event) {
     switch (event.key) {
         case 'ArrowRight': nextVerse(); break;
         case 'ArrowLeft': previousVerse(); break;
-        case 'Backspace': event.preventDefault(); clearHistory(); break;
+        case 'r': event.preventDefault(); clearHistory(); break;
         case 'ArrowUp': event.preventDefault(); scrollUp(); break;
         case 'ArrowDown': event.preventDefault(); showAnswerOrNavigate(); break;
     }
 });
 
-document.addEventListener("DOMContentLoaded", loadSliderChoice);
+document.addEventListener("DOMContentLoaded", loadVersePreferencesChoice);
+
+/**
+ * Initialize the sliders by setting their initial positions based on localStorage.
+ */
+document.querySelectorAll(".slider-container").forEach(sliderContainer => {
+    const parentElement = sliderContainer.parentElement; 
+    const parentClass = [...parentElement.classList].find(cls => cls.endsWith("-part-preference")); // Trouver la classe spécifique
+    if (!parentClass) return; // Si la classe n'est pas trouvée, on ignore ce slider
+
+    const functionName = parentClass.split("-part-preference")[0]; // Extraire <nom_de_la_fonction>
+    const sliderButton = sliderContainer.querySelector(".slider-button");
+    const numPositions = parseInt(parentElement.id); // Nombre de positions défini par l'ID
+
+    // Récupérer la valeur du localStorage ou initialiser à -1
+    let currentValue = localStorage.getItem(`slider_pos_${functionName}`);
+    currentValue = currentValue !== null ? parseInt(currentValue) : -1;
+
+    /**
+     * Update the slider position based on the current value.
+     */
+    function updateSliderPosition() {
+        const stepSize = 60; // Distance entre chaque position (en pixels)
+        const positionX = (currentValue + 1) * stepSize; // Calculer la position X
+        sliderButton.style.transform = `translateY(-50%) translateX(${positionX}px)`;
+        localStorage.setItem(`slider_pos_${functionName}`, currentValue);
+        versePreferenceSliderPos = parseInt(localStorage.getItem("slider_pos_verse"));
+        modePreferenceSliderPos = parseInt(localStorage.getItem("slider_pos_modes"));
+    }
+
+    /**
+     * Toggle to the next slider value.
+     */
+    function nextSliderValue() {
+        currentValue = currentValue === numPositions - 2 ? -1 : currentValue + 1; // Passer au prochain ou revenir à -1
+        updateSliderPosition();
+    }
+
+    /**
+     * Attach the click event to toggle the slider.
+     */
+    sliderContainer.addEventListener("click", nextSliderValue);
+
+    // Initial setup
+    updateSliderPosition();
+});
+
+
+/**
+ * Update the value of the second field when the minimum is modified (via blur)
+ */
+function updateValueInputMin() {
+    const newMin = parseInt(minInput.value) || 0;
+    const maxInput = parseInt(valueInput.value) || 0;
+
+    if (maxInput < newMin) {
+        valueInput.value = newMin;
+    }
+    valueInput.min = newMin;
+}
+minInput.addEventListener("blur", updateValueInputMin);
+valueInput.addEventListener("blur", function() {
+    const newMin = parseInt(minInput.value) || 0;
+    const maxInput = parseInt(valueInput.value) || 0;
+    
+    if (maxInput < newMin) {
+      valueInput.value = newMin;
+    }
+});
+
