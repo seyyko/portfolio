@@ -525,14 +525,13 @@ document.addEventListener("DOMContentLoaded", loadVersePreferencesChoice);
  */
 document.querySelectorAll(".slider-container").forEach(sliderContainer => {
     const parentElement = sliderContainer.parentElement; 
-    const parentClass = [...parentElement.classList].find(cls => cls.endsWith("-part-preference")); // Trouver la classe spécifique
-    if (!parentClass) return; // Si la classe n'est pas trouvée, on ignore ce slider
+    const parentClass = [...parentElement.classList].find(cls => cls.endsWith("-part-preference"));
+    if (!parentClass) return;
 
-    const functionName = parentClass.split("-part-preference")[0]; // Extraire <nom_de_la_fonction>
+    const functionName = parentClass.split("-part-preference")[0];
     const sliderButton = sliderContainer.querySelector(".slider-button");
-    const numPositions = parseInt(parentElement.id); // Nombre de positions défini par l'ID
+    const numPositions = parseInt(parentElement.id);
 
-    // Récupérer la valeur du localStorage ou initialiser à -1
     let currentValue = localStorage.getItem(`slider_pos_${functionName}`);
     currentValue = currentValue !== null ? parseInt(currentValue) : -1;
 
@@ -540,8 +539,8 @@ document.querySelectorAll(".slider-container").forEach(sliderContainer => {
      * Update the slider position based on the current value.
      */
     function updateSliderPosition() {
-        const stepSize = 60; // Distance entre chaque position (en pixels)
-        const positionX = (currentValue + 1) * stepSize; // Calculer la position X
+        const stepSize = 60;
+        const positionX = (currentValue + 1) * stepSize;
         sliderButton.style.transform = `translateY(-50%) translateX(${positionX}px)`;
         localStorage.setItem(`slider_pos_${functionName}`, currentValue);
         versePreferenceSliderPos = parseInt(localStorage.getItem("slider_pos_verse"));
@@ -552,7 +551,7 @@ document.querySelectorAll(".slider-container").forEach(sliderContainer => {
      * Toggle to the next slider value.
      */
     function nextSliderValue() {
-        currentValue = currentValue === numPositions - 2 ? -1 : currentValue + 1; // Passer au prochain ou revenir à -1
+        currentValue = currentValue === numPositions - 2 ? -1 : currentValue + 1;
         updateSliderPosition();
     }
 

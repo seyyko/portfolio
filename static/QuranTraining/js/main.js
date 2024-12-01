@@ -1,4 +1,4 @@
-const serverVersion = '2.3'; // server version
+const serverVersion = '3.0'; // server version
 const clientVersion = localStorage.getItem('localStorageVersion');
 document.getElementById("appVersion").innerHTML += serverVersion;
 
