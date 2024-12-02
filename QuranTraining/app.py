@@ -3,9 +3,10 @@ import json, sys, os
 
 
 sys.stdout.reconfigure(encoding='utf-8')
+
 quran_app = Blueprint('quran_app', __name__, 
-                      static_folder='../static/QuranTraining', 
-                      template_folder='templates')
+                      static_folder='static/QuranTraining', 
+                      template_folder='templates/QuranTraining')
 file_path = os.path.join(os.path.dirname(__file__), 'quran.json')
 
 
@@ -37,8 +38,8 @@ for surah in quran["sourates"]:
 
 
 @quran_app.route('/', methods=["GET", "POST"])
-def home():
-    return render_template('home.html', surahs=surahs, reciters=reciters, lang=request.accept_languages.best_match(['en', 'fr']))
+def index():
+    return render_template('qt_index.html', surahs=surahs, reciters=reciters, lang=request.accept_languages.best_match(['en', 'fr']))
 
 @quran_app.route('/submit-surahs', methods=['POST'])
 def submit_surahs():

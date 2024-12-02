@@ -5,7 +5,7 @@
             "project_list": [
                 {
                     "name": "QuranTraining",
-                    "url": "quran_app.home",
+                    "url": "quran_app.index",
                     "description": "A web application to help with memorizing Quran verses.",
                     "technologies": ["Flask", "Python", "HTML", "CSS"],
                     "status": "Completed"
