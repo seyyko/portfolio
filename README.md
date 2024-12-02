@@ -7,7 +7,7 @@ About
 This repository contains several sections:
 
 - **Portfolio**: A showcase of my skills and professional achievements.
-- **Web Projects**: Various projects I’ve built, including interactive web apps, APIs, and technical demos. Don’t worry, some of them might actually work.
+- **Web Projects**: Various projects I’ve built, including interactive web apps.
 - **Flask Website**: The site architecture is built with **Flask**, using features like Jinja templates, route management.
 
 Features
