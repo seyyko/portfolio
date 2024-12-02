@@ -191,10 +191,10 @@ function handleScrollLeave() {
 }
 
 /**
-* Tracks mouse position and triggers the parallax update.
-* 
-* @param {MouseEvent} event - The mousemove event.
-*/
+ * Tracks mouse position and triggers the parallax update.
+ * 
+ * @param {MouseEvent} event - The mousemove event.
+ */
 function handleMouseMove(event) {
   mouseX = event.clientX;
   mouseY = event.clientY;
@@ -203,10 +203,10 @@ function handleMouseMove(event) {
 }
 
 /**
-* Handles key press events. Toggles the menu when "Escape" is pressed.
-* 
-* @param {KeyboardEvent} event - The keydown event.
-*/
+ * Handles key press events. Toggles the menu when "Escape" is pressed.
+ * 
+ * @param {KeyboardEvent} event - The keydown event.
+ */
 function handleKeyPress(event) {
   if (event.key === 'Escape') {
       toggleMenu();
