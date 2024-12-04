@@ -4,6 +4,13 @@
             "year": "2024",
             "project_list": [
                 {
+                    "name": "SAE 1.06",
+                    "url": "https://hchamrouk.com/sae1-06/",
+                    "description": "SAE1.06 project is a static website designed to present a controversy through an interactive form and structured content, emphasizing user engagement and data handling with PHP.",
+                    "technologies": ["HTML", "CSS", "JavaScript", "PHP"],
+                    "status": "Completed"
+                },
+                {
                     "name": "QuranTraining",
                     "url": "quran_app.index",
                     "description": "A web application to help with memorizing Quran verses.",

@@ -11,7 +11,11 @@
                 <div class="projects">
                     {% for p in project['project_list'] %}
                         <div class="project">
-                            <a href="{{ url_for(p['url']) }}">{{ p['name'] }}</a>
+                            {% if 'https' in p['url'] %}
+                                <a href="{{ p['url'] }}">{{ p['name'] }}</a>
+                            {% else %}
+                                <a href="{{ url_for(p['url']) }}">{{ p['name'] }}</a>
+                            {% endif %}
                             <p class="status">{{ p['status'] }}</p>
                         </div>
                     {% endfor %}
