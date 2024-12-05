@@ -41,6 +41,10 @@ for surah in quran["sourates"]:
 def index():
     return render_template('qt_index.html', surahs=surahs, reciters=reciters, lang=request.accept_languages.best_match(['en', 'fr']))
 
+@quran_app.route('/focus', methods=["GET", "POST"])
+def focus():
+    return render_template('qt_focus.html', surahs=surahs, reciters=reciters, lang=request.accept_languages.best_match(['en', 'fr']))
+
 @quran_app.route('/submit-surahs', methods=['POST'])
 def submit_surahs():
     data = request.get_json()

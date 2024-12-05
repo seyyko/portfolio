@@ -44,37 +44,13 @@
                 </div>
 
                 <div class="modes-preferences">
-
-                    <div id="2" class="modes-part-preference">
-                        <div class="slider-container hover-cursor-event prevent-from-select" onclick="toggleModePreference()">
-                            <div class="slider-button"></div>
-                            <div class="slider-label">{{ _('multi') }}</div>
-                            <div class="slider-label">{{ _('single') }}</div>
-                        </div>
-
-                        <p class="slider-description">{{ _('*Single mode: This mode allows you to focus on a specific part of a surah. A random verse will be selected based on the entered limits.') }}</p>
-                        <p class="nya">{{ _('NOT YET AVAILABLE') }}</p>
-                    </div>
-
-                    <div id="3" class="verse-part-preference multi-mode-display">
+                    <div id="3" class="verse-part-preference">
                         <p>{{ _('Random part') }}</p>
                         <div class="slider-container hover-cursor-event prevent-from-select">
                             <div class="slider-button"></div>
                             <div class="slider-label">{{ _('start') }}</div>
                             <div class="slider-label">{{ _('middle') }}</div>
                             <div class="slider-label">{{ _('end') }}</div>
-                        </div>
-                    </div>
-
-                    <div class="single-verse-mode">
-                        <div>
-                            <label for="min-input">{{ _('starting verse :') }}</label>
-                            <input type="number" id="min-input" min="0" value="" placeholder="0">
-                        </div>
-
-                        <div>
-                            <label for="value-input">{{ _('last verse :') }}</label>
-                            <input type="number" id="value-input" value="" placeholder="0">
                         </div>
                     </div>
                 </div>
@@ -100,51 +76,5 @@
 </section>
 
 <a class="scroll-up hover-cursor-event uppercase prevent-from-select" href="#verse-display">↑</a>
-
-<section id="features">
-    <h1>{{ _('Features') }} <p id="appVersion">v</p></h1>
-    <div class="features-container">
-      <div class="feature-card hover-cursor-event">
-        <h3>{{ _('Language Translation') }}</h3>
-        <p>{{ _('Switch between English and French automatically based on your browser\'s preferences.') }}</p>
-      </div>
-  
-      <div class="feature-card hover-cursor-event">
-        <h3>{{ _('Keyboard Shortcuts') }}</h3>
-        <p>{{ _('Use shortcuts like <b>Escape</b> to toggle the menu or <b>Arrow keys</b> to navigate between verses.') }}</p>
-      </div>
-  
-      <div class="feature-card hover-cursor-event">
-        <h3>{{ _('Dark / Light Theme') }}</h3>
-        <p>{{ _('Switch between dark and light themes for comfortable reading.') }}</p>
-      </div>
-  
-      <div class="feature-card hover-cursor-event">
-        <h3>{{ _('Choose Random Part') }}</h3>
-        <p>{{ _('Start reading from the beginning, middle, or end of a surah randomly.') }}</p>
-      </div>
-  
-      <div class="feature-card hover-cursor-event">
-        <h3>{{ _('Choose Reciter') }}</h3>
-        <p>{{ _('Change the reciter to listen to your preferred voice.') }}</p>
-      </div>  
-      
-      <div class="feature-card hover-cursor-event">
-        <h3>{{ _('Fast Preference Storage') }}</h3>
-        <p>{{ _('Save your preferences quickly and effortlessly for a smooth experience.') }}</p>
-      </div>
-      
-      <div class="feature-card hover-cursor-event soon">
-        <h3>{{ _('Precision Mode') }}</h3>
-        <p>{{ _('Focus on memorizing a single Surah for a more targeted approach.') }}</p>
-      </div>
-      
-      <div class="feature-card hover-cursor-event">
-        <h3>{{ _('Dynamic Web Page') }}</h3>
-        <p>{{ _('Enjoy a responsive and interactive page that adapts to your needs.') }}</p>
-      </div>      
-    </div>
-  </section>
-  
 
 {% endblock %}

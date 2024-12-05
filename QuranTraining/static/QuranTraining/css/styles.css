@@ -129,17 +129,6 @@ a{
     user-select: none;
 }
 
-.multi-mode{
-    --single-mode-display-value: flex;
-    --multi-mode-display-value: none;
-}
-
-.nya{
-    color: red;
-    font-weight: bold;
-    font-size: clamp(10px, 2vw, 14px);
-}
-
 /* header */
 #header{
     width: 100%; height: 100vh;

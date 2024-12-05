@@ -109,7 +109,7 @@ function toggleVersePreferences() {
  * Toggles the visibility of the differents modes.
  */
 function toggleModePreference() {
-    document.body.classList.toggle("multi-mode");
+    document.body.classList.toggle("single-mode");
 }
 
 /**
@@ -146,7 +146,7 @@ function loadVersePreferencesChoice() {
     const savedStatusPreferences = localStorage.getItem("verses_preferences_status");
     const savedReciter = localStorage.getItem('selectedReciter');
 
-    document.body.classList.toggle("multi-mode", localStorage.getItem("slider_pos_modes") == "0");
+    document.body.classList.toggle("single-mode", localStorage.getItem("slider_pos_modes") == "0");
 
     const isSSContainerOpen = savedStatusSurahSelection === "open";
     titleSurahContainer.classList.toggle('opened-form', isSSContainerOpen);
@@ -446,7 +446,11 @@ function submitSurahs(selectedSurahs) {
         selectedSurahsDict = data.selected_surahs;
         storeDataDirectly('selected_surahs_dict', selectedSurahsDict);
     })
-    .catch((error) => console.error('Error:', error));
+    .catch((error) => {
+        console.error('Error:', error);
+        localStorage.removeItem('selected_surahs');
+        updateCheckboxes([]);
+    });
 }
 
 /**
@@ -563,27 +567,3 @@ document.querySelectorAll(".slider-container").forEach(sliderContainer => {
     // Initial setup
     updateSliderPosition();
 });
-
-
-/**
- * Update the value of the second field when the minimum is modified (via blur)
- */
-function updateValueInputMin() {
-    const newMin = parseInt(minInput.value) || 0;
-    const maxInput = parseInt(valueInput.value) || 0;
-
-    if (maxInput < newMin) {
-        valueInput.value = newMin;
-    }
-    valueInput.min = newMin;
-}
-minInput.addEventListener("blur", updateValueInputMin);
-valueInput.addEventListener("blur", function() {
-    const newMin = parseInt(minInput.value) || 0;
-    const maxInput = parseInt(valueInput.value) || 0;
-    
-    if (maxInput < newMin) {
-      valueInput.value = newMin;
-    }
-});
-
